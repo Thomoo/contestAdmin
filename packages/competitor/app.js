@@ -18,8 +18,16 @@ Competitor.register(function(app, auth, database) {
 
   //We are adding a link to the main menu for all authenticated users
   Competitor.menus.add({
-    title: 'competitor example page',
-    link: 'competitor example page',
+    title: 'Anmeldung',
+    link: 'anmeldung',
+    roles: ['authenticated'],
+    menu: 'main'
+  });
+
+  //We are adding a link to the main menu for all authenticated users
+  Competitor.menus.add({
+    title: 'Teilnehmerverwaltung',
+    link: 'verwaltung',
     roles: ['authenticated'],
     menu: 'main'
   });

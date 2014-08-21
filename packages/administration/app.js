@@ -18,8 +18,8 @@ Administration.register(function(app, auth, database) {
 
   //We are adding a link to the main menu for all authenticated users
   Administration.menus.add({
-    title: 'administration example page',
-    link: 'administration example page',
+    title: 'Administration',
+    link: 'admin start',
     roles: ['authenticated'],
     menu: 'main'
   });

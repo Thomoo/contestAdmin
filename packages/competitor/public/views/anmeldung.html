@@ -1,70 +1,81 @@
 <div class="" data-ng-controller="CompetitorController">
-	<div class="row">
-		<label for="geschlecht" >Geschlecht</label>
-		<label for="male">männlich</label>
-		<input id="male" type="radio" name="geschlecht"/>
-		<label for="female">weiblich</label>
-		<input id="female" type="radio" name="geschlecht"/>
+	<h1>ToDo: Dr scn&auml;uscht Nidersimmetaler 2014</h1>
+	<textarea>ToDO: Anmeldungen sind nur bis am 1. Mai online <br/>m&ouml;glich.bla... bla... bla...</textarea>
+	<div class="form-group">
+		<label for="geschlecht" class="col-md-4 control-label">Geschlecht</label>
+		<div class="col-md-8">
+			<label for="female" >weiblich</label>
+			<input required id="female" type="radio" name="geschlecht"/>
+			<label for="male" >männlich</label>
+			<input required id="male" type="radio" name="geschlecht"/>
+		</div>
 	</div>
-	<div class="row">
-		<label for="name" span>Name</label>
-		<input id="name" type="text"/>
+	<div class="form-group">
+		<label for="name" class="col-md-4 control-label">Name</label>
+		<div class="col-md-8">
+			<input required id="name" type="text" placeholder="Name" class="form-control"/>
+		</div>
 	</div>
-	<div class="row">
-		<label for="vorname" span>Vorname</label>
-		<input id="vorname" type="text"/>
+	<div class="form-group">
+		<label for="vorname" class="col-md-4 control-label">Vorname</label>
+		<div class="col-md-8">
+			<input required id="vorname" type="text" placeholder="Vorname" class="form-control"/>
+		</div>
 	</div>
-	<div class="row">
-		<label for="adresse" span>Adresse</label>
-		<input id="adresse" type="text"/>
+	<div class="form-group">
+		<label for="adresse" class="col-md-4 control-label">Adresse</label>
+		<div class="col-md-8">
+			<input required id="adresse" type="text" placeholder="Adresse" class="form-control"/>
+		</div>
 	</div>
-	<div class="row">
-		<label for="plz" span>PLZ</label>
-		<input id="plz" type="number"/>
+	<div class="form-group">
+		<label for="plz" class="col-md-4 control-label">PLZ</label>
+		<div class="col-md-8">
+			<input required id="plz" type="number" placeholder="PLZ" class="form-control"/>
+		</div>
 	</div>
-	<div class="row">
-		<label for="ort" span>Ort</label>
-		<input id="ort" type="text"/>
+	<div class="form-group">
+		<label for="ort" class="col-md-4 control-label">Ort</label>
+		<div class="col-md-8">
+			<input required id="ort" type="text" placeholder="Ort" class="form-control"/>
+		</div>
 	</div>
-	<div class="row">
-		<label for="verein" span>Verein</label>
-		<input id="verein" type="text"/>
+	<div class="form-group">
+		<label for="verein" class="col-md-4 control-label">Verein</label>
+		<div class="col-md-8">
+			<input id="verein" type="text" placeholder="Verein" class="form-control"/>
+		</div>
 	</div>
-	<div class="row">
-		<label for="geburtstag" span>Geburtstag</label>
-		<input id="geburtstag" type="date"/>
+	<div class="form-group">
+		<label for="email" class="col-md-4 control-label">Email</label>
+		<div class="col-md-8">
+			<!-- <input required id="email" type="email" name="email" placeholder="Email" class="form-control" ng-model="user.email"/> -->
+		</div>
 	</div>
+	<div class="form-group">
+		<label for="geburtstag" class="col-md-4 control-label">Geburtstag</label>
+		<div class="col-md-8">
+			<input id="geburtstag" type="date"/>
+		</div>
+	</div>
+	<br/>
 
-
-	<div id="nap19" class="napkeeComponent napkeeCheckboxGroup">
-		<label for="nap19i0" class="checkbox">
-			<input id="nap19i0" type="checkbox"/>
-			Sprint</label>
-
-		<label for="nap19i1" class="checkbox">
-			<input id="nap19i1" type="checkbox" checked="true"/>
-			1000 Meter</label>
-
+	<div class="form-group">
+		<label class="col-md-4 control-label">Disziplinen</label>
+		<div class="col-md-8">
+			<!-- <table ng-table="tableParams" show-filter="true" class="table">
+			<tr ng-repeat="user in $data">
+			<td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
+			<input type="checkbox" ng-model="checkboxes.items[user.id]" />
+			</td>
+			<td data-title="''" filter="{ 'name': 'select' }" filter-data="names($column)"> {{user.name}} </td>
+			<td data-title="'Money'" sortable="money"> {{user.money}} </td>
+			</tr>
+			</table> -->
+		</div>
 	</div>
-
-	<span id="nap20" class="napkeeComponent napkeeLabel ">Disziplinen</span>
-
-	<div id="nap21" class="input-append date napkeeComponent napkeeDatechooser" data-date="  /  /    ">
-		<input id="nap21dp" type="text" disabled="${disabled}" value="  /  /    ">
-		<span class="add-on"><i class="icon-calendar"></i></span>
-	</div>
-
-	<div id="nap22" class="napkeeComponent napkeeStickynote">
-		Disziplin fexibel, je nach Jahrgang
-	</div>
-
-	<button id="nap23" type="button" class="napkeeComponent napkeeButton btn">
+	<button type="button" class="btn btn-success">
 		Anmelden
 	</button>
-
-	<span id="nap26" class="napkeeComponent napkeeLabel ">Dr scn&auml;uscht Nidersimmetaler 2014</span>
-	<textarea id="nap28" class="napkeeComponent napkeeTextarea">Anmeldungen sind nur bis am 1. Mai online <br/>m&ouml;glich.bla... bla... bla...</textarea>	
-
-
 </div>
 

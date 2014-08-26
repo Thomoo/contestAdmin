@@ -8,3 +8,4 @@ angular.module('mean.competitor').controller('CompetitorController', ['$scope', 
     };
   }
 ]);
+

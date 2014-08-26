@@ -1,56 +1,55 @@
-<div data-ng-controller="AdministrationController">
+<div data-ng-controller="AdministrationController" data-ng-init="loadConfig()">
 	<h1>Administration</h1>
-	<fieldset>
-		<legend>
-			Konfiguration verwalten
-		</legend>
-		<button id="import">
-			Import
-		</button>
-		<button id="export">
-			Export
-		</button>
-	</fieldset>
-	<form id="wettkampfVerwaltenForm">
-	<fieldset>
+		<fieldset class='form-horizontal well'>
+			<legend>
+				Konfiguration verwalten
+			</legend>
+			<button id="import" class="btn">
+				Import
+			</button>
+			<button id="export" class="btn">
+				Export
+			</button>
+		</fieldset>
+	<form name="wettkampfVerwaltenForm" data-ng-submit="save(wettkampfVerwaltenForm.$valid)" novalidate>
+		<fieldset class='form-horizontal well'>
 			<legend>
 				Wettkampf verwalten
 			</legend>
-			
-			<div class="row">
-				<label for="wettkampftitel">Wettkampftitel</label>
-				<input type="text" id="wettkampftitel"/>
+			<div class="form-group">
+				<label for="wettkampftitel" class="col-md-4 control-label">Wettkampftitel</label>
+				<div class="col-md-8">
+					<input required id="wettkampftitel" type="text" data-ng-model="wettkampf.title" name="wettkampftitel" placeholder="Titel" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="infoText" class="col-md-4 control-label">Info Text</label>
+				<div class="col-md-8">
+					<textarea name="infoText" data-ng-model="wettkampf.infoText" id="infoText" placeholder="Bitte Text hier eingeben" class="form-control"></textarea>
+				</div>
 			</div>
 
-			<div class="row">
-				<label for="infotext">Info Text</label>
-				<textarea id="infotext" rows="5" cols="50">Bitte Text hier eingeben</textarea>
+			<div class="form-group">
+				<label for="aktivieren" class="col-md-4 control-label">Anmeldung aktivieren</label>
+				<div class="col-md-8">
+					<input name="aktivieren" data-ng-model="wettkampf.anmeldungActive" id="aktivieren" type="checkbox" class="checkbox" />
+				</div>
 			</div>
-
-			<div class="row">
-				<label for="aktivieren">Anmeldung aktivieren</label>
-				<input id="aktivieren" type="checkbox" />
-			</div>
-			<button type="submit">
+			<button type="submit" class="btn btn-primary">
 				Speichern
 			</button>
 		</fieldset>
 	</form>
-	<fieldset>
+	<fieldset  class='form-horizontal well'>
 		<legend>
 			Disziplinen verwalten
 		</legend>
-		<button>Add</button>
-		<table>
-			<th>
-				<td>Disziplin</td>
-				<td>Bezeichnung (druck)</td>
-				<td>Jahrgang</td>
-				<td>Geschlecht</td>
-				<td>Format</td>
-				<td>Sortierung</td>
-			</th>
+		<button class="btn">
+			Add
+		</button>
+		<table class="table">
+			<th><td>Disziplin</td><td>Bezeichnung (druck)</td><td>Jahrgang</td><td>Geschlecht</td><td>Format</td><td>Sortierung</td></th>
 		</table>
-	</fieldset>	
+	</fieldset>
 </div>
 

@@ -1,9 +1,13 @@
 'use strict';
 
-angular.module('mean.administration').factory('Administration', [
-  function() {
-    return {
-      name: 'administration'
-    };
+//Articles service used for articles REST endpoint
+angular.module('mean.administration').factory('Wettkampf', ['$resource',
+  function($resource) {
+    return $resource('wettkampf', {
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
   }
 ]);

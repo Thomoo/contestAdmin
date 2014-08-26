@@ -1,65 +1,7 @@
 <div class="" data-ng-controller="CompetitorController">
 	<h1>ToDo: Dr scn&auml;uscht Nidersimmetaler 2014</h1>
 	<textarea>ToDO: Anmeldungen sind nur bis am 1. Mai online <br/>m&ouml;glich.bla... bla... bla...</textarea>
-	<div class="form-group">
-		<label for="geschlecht" class="col-md-4 control-label">Geschlecht</label>
-		<div class="col-md-8">
-			<label for="female" >weiblich</label>
-			<input required id="female" type="radio" name="geschlecht"/>
-			<label for="male" >männlich</label>
-			<input required id="male" type="radio" name="geschlecht"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="name" class="col-md-4 control-label">Name</label>
-		<div class="col-md-8">
-			<input required id="name" type="text" placeholder="Name" class="form-control"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="vorname" class="col-md-4 control-label">Vorname</label>
-		<div class="col-md-8">
-			<input required id="vorname" type="text" placeholder="Vorname" class="form-control"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="adresse" class="col-md-4 control-label">Adresse</label>
-		<div class="col-md-8">
-			<input required id="adresse" type="text" placeholder="Adresse" class="form-control"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="plz" class="col-md-4 control-label">PLZ</label>
-		<div class="col-md-8">
-			<input required id="plz" type="number" placeholder="PLZ" class="form-control"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="ort" class="col-md-4 control-label">Ort</label>
-		<div class="col-md-8">
-			<input required id="ort" type="text" placeholder="Ort" class="form-control"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="verein" class="col-md-4 control-label">Verein</label>
-		<div class="col-md-8">
-			<input id="verein" type="text" placeholder="Verein" class="form-control"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="email" class="col-md-4 control-label">Email</label>
-		<div class="col-md-8">
-			<!-- <input required id="email" type="email" name="email" placeholder="Email" class="form-control" ng-model="user.email"/> -->
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="geburtstag" class="col-md-4 control-label">Geburtstag</label>
-		<div class="col-md-8">
-			<input id="geburtstag" type="date"/>
-		</div>
-	</div>
-	<br/>
-
+	<user-form></user-form>
 	<div class="form-group">
 		<label class="col-md-4 control-label">Disziplinen</label>
 		<div class="col-md-8">

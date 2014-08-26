@@ -5,5 +5,5 @@ angular.module('mean.competitor').directive('userForm',function(){
         restrict: 'E',
         transclude: true,
         templateUrl: 'competitor/views/user-form.html'
-    }
+    };
 });

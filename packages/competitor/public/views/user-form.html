@@ -3,57 +3,67 @@
 		<label for="gender-radios" class="col-md-4 control-label">Geschlecht</label>
 		<div class="col-md-8" id="gender-radios">
 			<label for="female" >weiblich</label>
-			<input required id="female" type="radio" name="geschlecht"/>
+			<input ng-model="participant.gender" required id="female" type="radio" name="geschlecht" />
 			<label for="male" >männlich</label>
-			<input required id="male" type="radio" name="geschlecht"/>
+			<input ng-model="participant.gender" required id="male" type="radio" name="geschlecht"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="name" class="col-md-4 control-label">Name</label>
 		<div class="col-md-8">
-			<input required id="name" type="text" placeholder="Name" class="form-control"/>
+			<input ng-model="participant.name" required id="name" type="text" placeholder="Name" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="vorname" class="col-md-4 control-label">Vorname</label>
 		<div class="col-md-8">
-			<input required id="vorname" type="text" placeholder="Vorname" class="form-control"/>
+			<input ng-model="participant.firstname" required id="vorname" type="text" placeholder="Vorname" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="adresse" class="col-md-4 control-label">Adresse</label>
 		<div class="col-md-8">
-			<input required id="adresse" type="text" placeholder="Adresse" class="form-control"/>
+			<input ng-model="participant.address" required id="adresse" type="text" placeholder="Adresse" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="plz" class="col-md-4 control-label">PLZ</label>
 		<div class="col-md-8">
-			<input required id="plz" type="number" placeholder="PLZ" class="form-control"/>
+			<input ng-model="participant.zip" required id="plz" type="number" placeholder="PLZ" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="ort" class="col-md-4 control-label">Ort</label>
 		<div class="col-md-8">
-			<input required id="ort" type="text" placeholder="Ort" class="form-control"/>
+			<input ng-model="participant.city" required id="ort" type="text" placeholder="Ort" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="verein" class="col-md-4 control-label">Verein</label>
 		<div class="col-md-8">
-			<input id="verein" type="text" placeholder="Verein" class="form-control"/>
+			<input ng-model="participant.society" id="verein" type="text" placeholder="Verein" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="email" class="col-md-4 control-label">2Email</label>
+		<label for="email" class="col-md-4 control-label">Email</label>
 		<div class="col-md-8">
-			<!-- <input required id="email" type="email" name="email" placeholder="Email" class="form-control" ng-model="user.email"/> -->
+			<input ng-model="participant.email" required id="email" type="email" name="email" placeholder="Email" class="form-control"/>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group" ng-controller="DatePickerCtrl">
 		<label for="geburtstag" class="col-md-4 control-label">Geburtstag</label>
 		<div class="col-md-8">
-			<input id="geburtstag" type="date"/>
+			<div class="row">
+				<div class="col-md-6">
+					<p class="input-group">
+						<input type="text" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}" show-button-bar="false" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="open($event)">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button> </span>
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

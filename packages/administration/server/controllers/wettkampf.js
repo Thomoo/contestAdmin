@@ -33,7 +33,7 @@ exports.create = function(req, res) {
 };
 
 /**
- * List of Wettkampfs
+ * Get Wettkampf
  */
 exports.get = function(req, res) {
 	console.log('> get()');

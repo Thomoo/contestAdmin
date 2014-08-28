@@ -19,7 +19,14 @@ Result.register(function(app, auth, database) {
   //We are adding a link to the main menu for all authenticated users
   Result.menus.add({
     title: 'Resultate',
-    link: 'result start',
+    link: 'result enterResult',
+    roles: ['authenticated'],
+    menu: 'main'
+  });
+
+  Result.menus.add({
+    title: 'Start- und Ranglisten',
+    link: 'result chooseList',
     roles: ['authenticated'],
     menu: 'main'
   });

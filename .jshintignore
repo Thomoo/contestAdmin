@@ -1,1 +1,3 @@
 test/coverage/**
+packages/system/public/assets/css/dist/**
+packages/system/public/assets/js/dist/**

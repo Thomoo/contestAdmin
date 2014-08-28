@@ -19,6 +19,14 @@ System.register(function(app, auth, database) {
   System.routes(app, auth, database);
 
   System.aggregateAsset('css', 'common.css');
+  
+  // Add own global aggregates
+  	// Ladda for button-animation
+	System.aggregateAsset('js','dist/spin.min.js');
+	System.aggregateAsset('js','dist/ladda.min.js');
+	//Adding some css to the mean project
+	System.aggregateAsset('css','dist/ladda-themeless.min.css');  
+	System.aggregateAsset('css','dist/ladda.min.css');  
 
   // The middleware in config/express will run before this code
 

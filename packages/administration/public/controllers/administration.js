@@ -34,7 +34,12 @@ function($scope, $location, $log, $timeout, Global, Wettkampf, Disziplin) {
 	};
 
 // WETTKAMPF
+	var l;
+	/* jshint ignore:start */
+	l = Ladda.create( document.querySelector( '#saveWettkampf' ) );
+	/* jshint ignore:end */
 	$scope.saveWettkampf = function(isValid) {
+		l.start();
 		if (isValid) {
 			var wettkampf = new Wettkampf({
 				title : $scope.wettkampf.title,
@@ -43,6 +48,7 @@ function($scope, $location, $log, $timeout, Global, Wettkampf, Disziplin) {
 			});
 			wettkampf.$save(function(response) {
 				$log.info('saved');
+				$timeout(function(){l.stop();}, 500);
 			});
 		} else {
 			$scope.submitted = true;

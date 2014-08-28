@@ -35,8 +35,8 @@
 					<input name="aktivieren" data-ng-model="wettkampf.anmeldungActive" id="aktivieren" type="checkbox" class="checkbox" />
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">
-				Speichern
+			<button type="submit" class="btn btn-primary ladda-button" name="saveWettkampf" id="saveWettkampf" data-color="green" data-style="expand-left">
+				<span class="ladda-label">Speichern</span>
 			</button>
 		</fieldset>
 	</form>
@@ -52,6 +52,66 @@
 			<th><td>Disziplin</td><td>Bezeichnung (druck)</td><td>Jahrgang</td><td>Geschlecht</td><td>Format</td><td>Sortierung</td></th>
 		</table>
 -->		
+  <table class="table table-bordered table-hover table-condensed">
+		<tr>
+			<th>Disziplin</th>
+			<th>Bezeichnung (druck)</th>
+			<th>Jahrgang von</th>
+			<th>Jahrgang bis</th>
+			<th>Geschlecht</th>
+			<th>Format</th>
+			<th>Sortierung</th>
+		</tr>
+	<tr ng-repeat="disziplin in disziplins">    	
+      <td>
+        <!-- editable disziplin (text with validation) -->
+        <span editable-text="disziplin.disziplin" e-name="disziplin" e-form="rowform" onbeforesave="checkDisziplin($data, disziplin.id)" e-required>
+          {{ disziplin.disziplin }}
+        </span>
+      </td>
+      <td>
+        <!-- editable bezeichnung (text with validation) -->
+        <span editable-text="disziplin.bezeichnung" e-name="bezeichnung" e-form="rowform" onbeforesave="checkBezeichnung($data, disziplin.id)" e-required>
+          {{ disziplin.bezeichnung }}
+        </span>
+      </td>
+      <td>
+        <!-- editable jahrgang_von (select-local) -->
+        <span editable-select="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" e-ng-options="s.value as s.text for s in statuses" e-required>
+          {{ showStatus(user) }}
+        </span>
+      </td>
+      <td>
+        <!-- editable group (select-remote) -->
+        <span editable-select="user.group" e-name="group" onshow="loadGroups()" e-form="rowform" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup(user) }}
+        </span>
+      </td>
+      <td style="white-space: nowrap">
+        <!-- form -->
+        <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+            save
+          </button>
+          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+            cancel
+          </button>
+        </form>
+        <div class="buttons" ng-show="!rowform.$visible">
+          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+          <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+        </div>  
+      </td>
+    </tr>
+  </table>
+
+  <button class="btn btn-default" ng-click="addUser()">Add row</button>
+
+
+
+
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
   <form editable-form name="tableform" onaftersave="saveTable()">
 
     <!-- table -->

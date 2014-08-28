@@ -2,10 +2,10 @@
 	<div class="form-group">
 		<label for="gender-radios" class="col-md-4 control-label">Geschlecht</label>
 		<div class="col-md-8" id="gender-radios">
-			<label for="female" >weiblich</label>
-			<input ng-model="participant.gender" required id="female" type="radio" name="geschlecht" />
+			<label for="female">weiblich</label>
+			<input ng-model="participant.gender" required id="female" type="radio" name="geschlecht" value="female"/>
 			<label for="male" >männlich</label>
-			<input ng-model="participant.gender" required id="male" type="radio" name="geschlecht"/>
+			<input ng-model="participant.gender" required id="male" type="radio" name="geschlecht" value="male"/>
 		</div>
 	</div>
 	<div class="form-group">
@@ -56,7 +56,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<p class="input-group">
-						<input type="text" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}" show-button-bar="false" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" />
+						<input type="text" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}" show-button-bar="false" ng-model="participant.birthdate" is-open="opened" datepicker-options="dateOptions" ng-required="true" />
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-default" ng-click="open($event)">
 								<i class="glyphicon glyphicon-calendar"></i>
@@ -66,5 +66,24 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="form-group">
+		<label class="col-md-4 control-label">Disziplinen</label>
+		<div class="col-md-8">
+			<table class="table table-bordered table-striped">
+				<tr id="heading">
+					<th></th>
+					<th></th>
+					<th>Resultat</th>
+				</tr>
+				<tr ng-repeat="discipline in disciplines">
+					<td><input type="checkbox" ng-model="discipline.declared"></td>
+					<td>{{discipline.name}}</td>
+					<td>{{discipline.result}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
 </div>
 

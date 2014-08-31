@@ -18,7 +18,7 @@ function($scope, Global, Competitor) {
          society: 'TV Spiez',
          email: 'huber.tom@swissonline.ch',
          birthdate: new Date()
-     }
+    };
 
     $scope.disciplines = [{
         declared : true,
@@ -28,7 +28,7 @@ function($scope, Global, Competitor) {
         declared : false,
         name : 'Sprint',
         result : '9.50'
-    }]
+    }];
 
 }]);
 

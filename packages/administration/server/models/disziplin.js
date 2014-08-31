@@ -60,4 +60,14 @@ DisziplinSchema.path('jahrgang_bis').validate(function(jahrgang_bis) {
   return this.jahrgang_von < jahrgang_bis;
 }, 'jahrgang_bis must be smaller than jahrgang_von');
 
+/**
+ * Statics
+ */
+DisziplinSchema.statics.load = function(id, cb) {
+  this.findOne({
+    _id: id
+  }).exec(cb);
+};
+
+
 mongoose.model('Disziplin', DisziplinSchema);

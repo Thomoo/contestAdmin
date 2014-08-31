@@ -56,6 +56,7 @@ exports.update = function(req, res) {
  * Delete a disziplin
  */
 exports.destroy = function(req, res) {
+	console.log('destroy on server');
   var disziplin = req.disziplin;
 
   disziplin.remove(function(err) {

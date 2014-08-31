@@ -44,14 +44,6 @@
 		<legend>
 			Disziplinen verwalten
 		</legend>
-<!--
-		<button class="btn">
-			Add
-		</button>
-		<table class="table">
-			<th><td>Disziplin</td><td>Bezeichnung (druck)</td><td>Jahrgang</td><td>Geschlecht</td><td>Format</td><td>Sortierung</td></th>
-		</table>
--->		
   <table class="table table-bordered table-hover table-condensed">
 		<tr>
 			<th>Disziplin</th>
@@ -61,6 +53,7 @@
 			<th>Geschlecht</th>
 			<th>Format</th>
 			<th>Sortierung</th>
+			<th>Bearbeiten</th>
 		</tr>
 	<tr ng-repeat="disziplin in disziplins">    	
       <td>
@@ -76,20 +69,38 @@
         </span>
       </td>
       <td>
-        <!-- editable jahrgang_von (select-local) -->
-        <span editable-select="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" e-ng-options="s.value as s.text for s in statuses" e-required>
-          {{ showStatus(user) }}
+        <!-- editable jahrgang_von (text with validation) -->
+        <span editable-text="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" onbeforesave="checkJahrgangVon($data, disziplin.id)"  e-required>
+          {{ disziplin.jahrgang_von }}
         </span>
       </td>
       <td>
-        <!-- editable group (select-remote) -->
-        <span editable-select="user.group" e-name="group" onshow="loadGroups()" e-form="rowform" e-ng-options="g.id as g.text for g in groups">
-          {{ showGroup(user) }}
+        <!-- editable jahrgang_bis (text with validation) -->
+        <span editable-text="disziplin.jahrgang_bis" e-name="jahrgang_bis" e-form="rowform" onbeforesave="checkJahrgangBis($data, disziplin.id)"  e-required>
+          {{ disziplin.jahrgang_bis }}
         </span>
       </td>
+      <td>
+        <!-- editable geschlecht (select-local) -->
+        <span editable-select="disziplin.geschlecht" e-name="geschlecht" e-form="rowform" e-ng-options="g.id as g.text for g in geschlechter">
+          {{ showGeschlecht(disziplin) }}
+        </span>
+      </td>
+      <td>
+        <!-- editable format (text with validation) -->
+        <span editable-text="disziplin.format" e-name="format" e-form="rowform" onbeforesave="checkFormat($data, disziplin.id)" e-required>
+          {{ disziplin.format }}
+        </span>
+      </td>
+      <td>
+        <!-- editable sortierung (select-local) -->
+        <span editable-select="disziplin.sortierung" e-name="sortierung" e-form="rowform" e-ng-options="s.id as s.text for s in sortierungen">
+          {{ showSortierung(disziplin) }}
+        </span>
+      </td>      
       <td style="white-space: nowrap">
         <!-- form -->
-        <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+        <form editable-form name="rowform" onbeforesave="saveDisziplin($data, disziplin)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == disziplin">
           <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
             save
           </button>
@@ -99,79 +110,13 @@
         </form>
         <div class="buttons" ng-show="!rowform.$visible">
           <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-          <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+          <button class="btn btn-danger" ng-click="removeDisziplin(disziplin)">del</button>
         </div>  
       </td>
     </tr>
   </table>
 
-  <button class="btn btn-default" ng-click="addUser()">Add row</button>
-
-
-
-
-
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
-  <form editable-form name="tableform" onaftersave="saveTable()">
-
-    <!-- table -->
-    <table class="table table-bordered table-hover table-condensed">
-		<tr>
-			<th>Disziplin</th>
-			<th>Bezeichnung (druck)</th>
-			<th>Jahrgang von</th>
-			<th>Jahrgang bis</th>
-			<th>Geschlecht</th>
-			<th>Format</th>
-			<th>Sortierung</th>
-		</tr>
-		<tr ng-repeat="disziplin in disziplins">
-	        <td>
-	          <!-- editable disziplin (text with validation) -->
-	          <span editable-text="disziplin.disziplin" e-focus-me="user.isFocused" e-form="tableform">
-	            {{ disziplin.disziplin }}
-	          </span>
-	        </td>
-	        <td>
-	          <!-- editable bezeichnung (text with validation) -->
-	          <span editable-text="disziplin.bezeichnung" e-focus-me="user.isFocused" e-form="tableform">
-	            {{ disziplin.bezeichnung }}
-	          </span>
-	        </td>
-	        <td></td>
-	        <td></td>
-	        <td></td>
-	        <td></td>
-	        <td></td>
-	          <!-- editable status (select-local) -->
-<!--
-	        <td>
-	          <span editable-select="user.status" e-form="tableform" e-ng-options="s.value as s.text for s in statuses">
-	            {{ showStatus(user) }}
-	          </span>
-	        </td>
--->
-	          <!-- editable group (select-remote) -->
-<!--
-	        <td>
-	          <span editable-select="user.group" e-form="tableform" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
-	            {{ showGroup(user) }}
-	          </span>
-	        </td>
--->
-      </tr>
-    </table>
-
-    <!-- buttons -->
-    <div style="white-space: nowrap">
-      <button type="button" class="btn btn-default" ng-click="addDisziplin()" >Add</button>
-      <button type="submit" ng-show="tableform.$visible" ng-disabled="tableform.$waiting" class="btn btn-primary">save</button>
-      <button type="button" class="btn btn-default" ng-show="!tableform.$visible" ng-click="tableform.$show()">
-        edit
-      </button>
-      <button type="button" ng-show="tableform.$visible" ng-disabled="tableform.$waiting" ng-click="cancelChanges()" class="btn btn-default">cancel
-      </button>
-    </div>
+  <button class="btn btn-default" ng-click="addDisziplin()">Add row</button>
     
   </form>
   

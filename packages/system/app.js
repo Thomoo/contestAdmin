@@ -24,7 +24,6 @@ System.register(function(app, auth, database) {
   	// Ladda for button-animation
 	System.aggregateAsset('js','dist/spin.min.js');
 	System.aggregateAsset('js','dist/ladda.min.js');
-	//Adding some css to the mean project
 	System.aggregateAsset('css','dist/ladda-themeless.min.css');  
 	System.aggregateAsset('css','dist/ladda.min.css');  
 

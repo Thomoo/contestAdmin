@@ -1,7 +1,26 @@
 'use strict';
 
+var competitor = require('../controllers/competitor');
+
+// Competitor authorization helpers
+var hasAuthorization = function(req, res, next) {
+  if (!req.user.isAdmin && req.competitor.user.id !== req.user.id) {
+    return res.send(401, 'User is not authorized');
+  }
+  next();
+};
+
 // The Package is past automatically as first parameter
 module.exports = function(Competitor, app, auth, database) {
+
+  app.route('/competitor')
+    .get(competitor.all)
+    .post(auth.requiresLogin, competitor.create);
+
+  app.route('/competitor/:competitorId')
+    .get(competitor.show)
+    .put(auth.requiresLogin, hasAuthorization, competitor.update)
+    .delete(auth.requiresLogin, hasAuthorization, competitor.destroy);
 
   app.get('/competitor/example/anyone', function(req, res, next) {
     res.send('Anyone can access this');

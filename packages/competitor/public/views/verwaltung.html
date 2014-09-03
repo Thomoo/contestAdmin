@@ -1,18 +1,41 @@
+<div data-ng-controller="VerwaltungController" data-ng-init="find()">
 
-<div data-ng-controller="VerwaltungController">
+	<h1>Teilnehmerverwaltung</h1>
 
-    <h1>Teilnehmerverwaltung</h1>
+	<form>
 
-    <form>
+		suchmaske
 
-        suchmaske
+	</form>
 
-    </form>
+	<br />
+	&nbsp;
+	<br />
 
-    <br />&nbsp;<br />
+	<table class="table table-bordered table-striped">
+						<tr id="heading">
+					<th>Start-Nr.</th>
+					<th>Name</th>
+					<th>Vorname</th>
+					<th>Jahrganng</th>
+					<th>Geschlecht</th>
+					<th>Ort</th>
+					<th>Verein</th>
+					<th>Start-Nr. abgeholt</th>
+				</tr>
 
-    user tabelle
-
+		<tr ng-repeat="competitor in competitors">
+			<td>{{competitor.startnr}}</td>
+			<td>{{competitor.name}}</td>
+			<td>{{competitor.firstname}}</td>
+			<td>{{competitor.birthdate}}</td>
+			<td>{{competitor.gender}}</td>
+			<td>{{competitor.location}}</td>
+			<td>{{competitor.society}}</td>
+			<td>{{competitor.startnrfetched}}</td>
+			<td><a data-ng-href="#!/competitor/{{competitor._id}}">show</a><span data-ng-if="hasAuthorization(competitor)"> <a class="btn" href="/#!/competitor/{{competitor._id}}/edit"> <i class="glyphicon glyphicon-edit"></i> </a> <a class="btn" data-ng-click="remove(competitor);"> <i class="glyphicon glyphicon-trash"></i> </a> </span></td>
+		</tr>
+	</table>
 
 </div>
 

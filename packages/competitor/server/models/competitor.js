@@ -60,6 +60,16 @@ var CompetitorSchema = new Schema({
     required: true,
     trim: true
   },
+  startnr: {
+    type: String,
+    required: false,
+    trim: true
+  },
+    startnrfetched: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   user: {
     type: Schema.ObjectId,
     ref: 'User'

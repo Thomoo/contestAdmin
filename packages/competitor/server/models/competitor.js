@@ -36,7 +36,7 @@ var CompetitorSchema = new Schema({
     trim: true
   },
   zip: {
-    type: String,
+    type: Number,
     required: true,
     trim: true
   },
@@ -65,7 +65,7 @@ var CompetitorSchema = new Schema({
     required: false,
     trim: true
   },
-    startnrfetched: {
+  startnrfetched: {
     type: Boolean,
     required: true,
     default: false

@@ -42,4 +42,7 @@ module.exports = function(Competitor, app, auth, database) {
       res.send(html);
     });
   });
+  
+  // Finish with setting up the competitorId param
+  app.param('competitorId', competitor.competitor);
 };

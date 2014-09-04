@@ -18,46 +18,46 @@ function($scope, $log, $location, Global, Competitor) {
         $log.info('create competitor called...');
         if (true) {
 // TODO:        if (isValid) {
-            var competitor = new Competitor({
-                gender : this.participant.gender,
-                name : this.participant.name,
-                firstname: this.participant.firstname,
-                address: this.participant.address,
-                zip: this.participant.zip,
-                location: this.participant.city,
-                society: this.participant.society,
-                email: this.participant.email,
-                birthdate: this.participant.birthdate
+            var competitorToCreate = new Competitor({
+                gender : this.competitor.gender,
+                name : this.competitor.name,
+                firstname: this.competitor.firstname,
+                address: this.competitor.address,
+                zip: '' + this.competitor.zip,
+                location: this.competitor.location,
+                society: this.competitor.society,
+                email: this.competitor.email,
+                birthdate: this.competitor.birthdate
 //                disciplines: this.disciplines
             });
-            competitor.$save(function(response) {
+            competitorToCreate.$save(function(response) {
                 $location.path('competitor/' + response._id);
             });
-            this.participant.gender = '';
-            this.participant.name = '';
-            this.participant.firstname = '';
-            this.participant.address = '';
-            this.participant.zip = '';
-            this.participant.city = '';
-            this.participant.society = '';
-            this.participant.email = '';
-            this.participant.birthdate = new Date();
+            this.competitor.gender = '';
+            this.competitor.name = '';
+            this.competitor.firstname = '';
+            this.competitor.address = '';
+            this.competitor.zip = '';
+            this.competitor.location = '';
+            this.competitor.society = '';
+            this.competitor.email = '';
+            this.competitor.birthdate = new Date();
         } else {
-            $scope.participant.submitted = true;
+            $scope.competitor.submitted = true;
         }
     };
 
-    $scope.participant = {
-        gender : 'female',
-        name : 'Huber',
-        firstname : 'Thomas',
-        address : 'Alpenstrasse 20',
-        zip : 3084,
-        city : 'Wabern',
-        society : 'TV Spiez',
-        email : 'huber.tom@swissonline.ch',
-        birthdate : new Date()
-    };
+    // $scope.competitor = {
+        // gender : 'female',
+        // name : 'Huber',
+        // firstname : 'Thomas',
+        // address : 'Alpenstrasse 20',
+        // zip : 3084,
+        // location : 'Wabern',
+        // society : 'TV Spiez',
+        // email : 'huber.tom@swissonline.ch',
+        // birthdate : new Date()
+    // };
 
     $scope.disciplines = [{
         declared : true,

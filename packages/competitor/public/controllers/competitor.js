@@ -4,7 +4,7 @@ angular.module('mean.competitor').controller('CompetitorController', ['$scope', 
 function($scope, $log, $location, Global, Competitor) {
     $scope.global = Global;
     $scope.package = {
-        name : 'competitor',
+        name : 'competitor'
 
     };
 
@@ -31,7 +31,7 @@ function($scope, $log, $location, Global, Competitor) {
 //                disciplines: this.disciplines
             });
             competitor.$save(function(response) {
-                $location.path('competitor/' + response._id);
+                $location.path('/competitor/bearbeiten/' + response._id);
             });
             this.participant.gender = '';
             this.participant.name = '';

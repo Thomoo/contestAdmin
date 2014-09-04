@@ -12,8 +12,8 @@ var mongoose = require('mongoose'),
  */
 var CompetitorSchema = new Schema({
   created: {
-    type: Date,
-    default: Date.now
+      type: Date,
+      default: Date.now
   },
   gender: {
     type: String,
@@ -65,7 +65,7 @@ var CompetitorSchema = new Schema({
     required: false,
     trim: true
   },
-    startnrfetched: {
+  startnrfetched: {
     type: Boolean,
     required: true,
     default: false

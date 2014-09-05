@@ -12,8 +12,8 @@ var mongoose = require('mongoose'),
  */
 var CompetitorSchema = new Schema({
   created: {
-    type: Date,
-    default: Date.now
+      type: Date,
+      default: Date.now
   },
   gender: {
     type: String,

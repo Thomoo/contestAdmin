@@ -56,9 +56,10 @@ var DisziplinSchema = new Schema({
 /**
  * Validations
  */
-DisziplinSchema.path('jahrgang_bis').validate(function(jahrgang_bis) {
-  return this.jahrgang_von < jahrgang_bis;
-}, 'jahrgang_bis must be smaller than jahrgang_von');
+// TODO SIR dies einbauen?!
+// DisziplinSchema.path('jahrgang_bis').validate(function(jahrgang_bis) {
+  // return this.jahrgang_von < jahrgang_bis;
+// }, 'jahrgang_bis must be smaller than jahrgang_von');
 
 /**
  * Statics

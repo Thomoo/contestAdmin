@@ -4,12 +4,12 @@
 			<legend>
 				Konfiguration verwalten
 			</legend>
-			<button id="import" class="btn">
-				Import
-			</button>
-			<button id="export" class="btn">
-				Export
-			</button>
+			<button class="btn ladda-button" name="import" id="import" ng-click="import()" data-color="grey" data-style="expand-left">
+				<span class="ladda-label">Import</span>
+			</button>				
+			<button class="btn ladda-button" name="export" id="export" ng-click="export()" data-color="grey" data-style="expand-left">
+				<span class="ladda-label">Export</span>
+			</button>			
 		</fieldset>
 	<form name="wettkampfVerwaltenForm" data-ng-submit="saveWettkampf(wettkampfVerwaltenForm.$valid)" novalidate>
 		<fieldset class='form-horizontal well'>
@@ -70,37 +70,37 @@
       </td>
       <td>
         <!-- editable jahrgang_von (text with validation) -->
-        <span editable-text="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" onbeforesave="checkJahrgangVon($data, disziplin.id)"  e-required>
+        <span editable-text="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" onbeforesave="checkJahrgang($data, disziplin)"  e-required>
           {{ disziplin.jahrgang_von }}
         </span>
       </td>
       <td>
         <!-- editable jahrgang_bis (text with validation) -->
-        <span editable-text="disziplin.jahrgang_bis" e-name="jahrgang_bis" e-form="rowform" onbeforesave="checkJahrgangBis($data, disziplin.id)"  e-required>
+        <span editable-text="disziplin.jahrgang_bis" e-name="jahrgang_bis" e-form="rowform" onbeforesave="checkJahrgang($data, disziplin)"  e-required>
           {{ disziplin.jahrgang_bis }}
         </span>
       </td>
       <td>
         <!-- editable geschlecht (select-local) -->
-        <span editable-select="disziplin.geschlecht" e-name="geschlecht" e-form="rowform" e-ng-options="g.id as g.text for g in geschlechter">
+        <span editable-select="disziplin.geschlecht" e-name="geschlecht" e-form="rowform" e-ng-options="g.value as g.text for g in geschlechter" onbeforesave="checkGeschlecht($data)" e-required>
           {{ showGeschlecht(disziplin) }}
         </span>
       </td>
       <td>
         <!-- editable format (text with validation) -->
-        <span editable-text="disziplin.format" e-name="format" e-form="rowform" onbeforesave="checkFormat($data, disziplin.id)" e-required>
+        <span editable-text="disziplin.format" e-name="format" e-form="rowform" onbeforesave="checkFormat($data, disziplin.id)">
           {{ disziplin.format }}
         </span>
       </td>
       <td>
         <!-- editable sortierung (select-local) -->
-        <span editable-select="disziplin.sortierung" e-name="sortierung" e-form="rowform" e-ng-options="s.id as s.text for s in sortierungen">
+        <span editable-select="disziplin.sortierung" e-name="sortierung" e-form="rowform" e-ng-options="s.value as s.text for s in sortierungen" onbeforesave="checkSortierung($data)" e-required>
           {{ showSortierung(disziplin) }}
         </span>
       </td>      
       <td style="white-space: nowrap">
         <!-- form -->
-        <form editable-form name="rowform" onbeforesave="saveDisziplin($data, disziplin)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == disziplin">
+        <form editable-form name="rowform" onbeforesave="saveDisziplin($data, disziplin)" oncancel="cancelDisziplin($index, disziplin)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == disziplin">
           <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
             save
           </button>

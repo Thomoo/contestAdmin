@@ -25,6 +25,40 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 	};
 
 	// ---------------------------------
+	// Konfiguration
+	// ---------------------------------
+	var exportLadda;
+	/* jshint ignore:start */
+	exportLadda = Ladda.create(document.querySelector('#export'));
+	/* jshint ignore:end */
+
+	$scope.export = function() {
+		exportLadda.start();
+		$log.debug('export');
+		
+		var wettkampfExport;
+		var disziplinExport;
+
+		Wettkampf.get({
+		}, function(wettkampf) {
+			wettkampfExport = wettkampf;
+
+			Disziplin.query(function(disziplins) {
+				disziplinExport = disziplins;
+				
+				$log.debug('Wettkampf: ' + JSON.stringify(wettkampfExport));
+				$log.debug('Disziplins: ' + JSON.stringify(disziplinExport));
+				$timeout(function() {
+					exportLadda.stop();
+				}, 500);
+				
+			}); 
+
+		});
+
+
+	};
+	// ---------------------------------
 	// WETTKAMPF
 	// ---------------------------------
 	var l;
@@ -81,8 +115,6 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 	$scope.saveDisziplin = function(data, disziplin) {
 		var id = disziplin._id;
 		angular.copy(data, disziplin);
-		$log.debug('data ' + JSON.stringify(data));
-		$log.debug('disziplin ' + JSON.stringify(disziplin));
 		if (id) {
 			disziplin._id = id;
 			disziplin.$update(function(response) {
@@ -94,6 +126,14 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 			});
 		}
 
+	};
+
+	// cancel all changes
+	$scope.cancelDisziplin = function(index, disziplin) {
+		// falls disziplin noch nicht gespeichert, muss sie aus der liste gelöscht werden.
+		if (!disziplin._id) {
+			$scope.disziplins.splice(index, 1);
+		}
 	};
 
 	//  daten validieren
@@ -109,22 +149,24 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 		}
 	};
 
-	// TODO SIR ev doch nur ein checker
-	$scope.checkJahrgangVon = function(data, id) {
+	$scope.checkJahrgang = function(data, disziplin) {
 		if (!data) {
 			return 'Es muss ein Jahrgang angegeben werden.';
 		}
-		if (!data.match('^\\d{4}$')) {
+		if (/^\d{4}$/.exec(data) === null) {
 			return 'Der Jahrgang muss mit 4 Zahlen definiert werden.';
 		}
 	};
 
-	$scope.checkJahrgangBis = function(data, id) {
+	$scope.checkGeschlecht = function(data) {
 		if (!data) {
-			return 'Es muss ein Jahrgang angegeben werden.';
+			return 'Es muss eine Geschlecht ausgewählt werden.';
 		}
-		if (!data.match('^\\d{4}$')) {
-			return 'Der Jahrgang muss mit 4 Zahlen definiert werden.';
+	};
+
+	$scope.checkSortierung = function(data) {
+		if (!data) {
+			return 'Es muss eine Sortierung ausgewählt werden.';
 		}
 	};
 
@@ -151,25 +193,21 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 	$scope.showGeschlecht = function(disziplin) {
 		var selected = [];
 		if (disziplin.geschlecht) {
-			$log.debug('true ' + disziplin.geschlecht);
 			selected = $filter('filter')($scope.geschlechter, {
 				value : disziplin.geschlecht
 			});
 		}
-		$log.debug(JSON.stringify(selected));
 		return selected.length ? selected[0].text : 'Not set';
 	};
 
 	$scope.showSortierung = function(disziplin) {
 		var selected = [];
 		if (disziplin.sortierung) {
-			$log.debug('true ' + disziplin.sortierung);
 			selected = $filter('filter')($scope.sortierungen, {
 				value : disziplin.sortierung
 			});
 		}
-		$log.debug(JSON.stringify(selected));
-		return selected.length ? selected[0].text : 'Not set';		
+		return selected.length ? selected[0].text : 'Not set';
 	};
 
 }]);

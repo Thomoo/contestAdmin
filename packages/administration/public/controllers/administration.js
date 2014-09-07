@@ -27,6 +27,12 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 	// ---------------------------------
 	// Konfiguration
 	// ---------------------------------
+	var tagStart = '<<!#';
+	var tagEnd = '#!>>';
+	
+	var wettkampfKey = 'WETTKAMPF';
+	var disziplinKey = 'DISZIPLIN';
+	
 	var exportLadda;
 	/* jshint ignore:start */
 	exportLadda = Ladda.create(document.querySelector('#export'));
@@ -35,7 +41,7 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 	$scope.export = function() {
 		exportLadda.start();
 		$log.debug('export');
-		
+
 		var wettkampfExport;
 		var disziplinExport;
 
@@ -45,19 +51,75 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 
 			Disziplin.query(function(disziplins) {
 				disziplinExport = disziplins;
-				
-				$log.debug('Wettkampf: ' + JSON.stringify(wettkampfExport));
-				$log.debug('Disziplins: ' + JSON.stringify(disziplinExport));
+
+				// TODO SIR auslagern in funciton
+				var textFileAsBlob = new Blob([tagStart + wettkampfKey + JSON.stringify(wettkampfExport) + tagEnd, 
+												tagStart + disziplinKey + JSON.stringify(disziplinExport) + tagEnd], {
+					type : 'text/plain'
+				});
+				var fileNameToSaveAs = 'ContestAdminExport_' + new Date().getTime() + '.txt';
+
+				var downloadLink = document.createElement('a');
+				downloadLink.download = fileNameToSaveAs;
+				downloadLink.innerHTML = 'Download File';
+				if (window.webkitURL) {
+					// Chrome allows the link to be clicked
+					// without actually adding it to the DOM.
+					downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+				} else {
+					// Firefox requires the link to be added to the DOM
+					// before it can be clicked.
+					downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+					downloadLink.onclick = function(event) {
+						document.body.removeChild(event.target);
+					};
+					downloadLink.style.display = 'none';
+					document.body.appendChild(downloadLink);
+				}
+
+				downloadLink.click();
+
 				$timeout(function() {
 					exportLadda.stop();
 				}, 500);
-				
-			}); 
+
+			});
 
 		});
 
-
 	};
+
+	$scope.openImport = function() {
+		document.getElementById('configFileInput').click();
+	};
+	
+	$scope.importConfig = function(){
+		var fileToLoad = document.getElementById('configFileInput').files[0];
+		
+		if(!fileToLoad){
+			// noop; user aborted
+			return;
+		}
+
+		var fileReader = new FileReader();
+		fileReader.onload = function(fileLoadedEvent) {
+			var textFromFileLoaded = fileLoadedEvent.target.result;
+			// $log.debug('input: ' + textFromFileLoaded);
+			
+			// TODO SIR auslagern in funciton
+			var wettkampfText = /<<!#WETTKAMPF(.*?)#!>>/.exec(textFromFileLoaded)[1];
+			$log.debug('wettkampfText: ' + wettkampfText);
+			var wettkampfJSON = JSON.parse(wettkampfText);
+			
+			var disziplinText = /<<!#DISZIPLIN(.*?)#!>>/.exec(textFromFileLoaded)[1];
+			$log.debug('disziplinText: ' + disziplinText);
+			var disziplinJSON = JSON.parse(disziplinText);
+			$log.debug('wettkampf: ' + JSON.stringify(wettkampfJSON));
+			$log.debug('disziplins: ' + JSON.stringify(disziplinJSON));
+		};
+		fileReader.readAsText(fileToLoad, 'UTF-8');
+	};
+
 	// ---------------------------------
 	// WETTKAMPF
 	// ---------------------------------

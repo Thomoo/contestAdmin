@@ -4,9 +4,16 @@
 			<legend>
 				Konfiguration verwalten
 			</legend>
-			<button class="btn ladda-button" name="import" id="import" ng-click="import()" data-color="grey" data-style="expand-left">
-				<span class="ladda-label">Import</span>
-			</button>				
+				<input type="file" class="hidden" id="configFileInput" name="configFileInput" onchange="angular.element(this).scope().importConfig()" >
+				<button class="btn ladda-button" name="import" id="import" ng-click="openImport()" data-color="grey" data-style="expand-left">
+					<span class="ladda-label">Import</span>
+				</button>
+			<div class="form-group">
+				<label for="overrideConfig" class="col-md-4 control-label">aktuelle Konfiguration überschreiben</label>
+				<div class="col-md-8">
+					<input name="overrideConfig" id="overrideConfig" type="checkbox" class="checkbox" />
+				</div>
+			</div>			
 			<button class="btn ladda-button" name="export" id="export" ng-click="export()" data-color="grey" data-style="expand-left">
 				<span class="ladda-label">Export</span>
 			</button>			

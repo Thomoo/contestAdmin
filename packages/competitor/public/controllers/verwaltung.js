@@ -21,6 +21,10 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
         $scope.search = {};
     };
 
+    $scope.searchFormEmpty = function(){
+        return (!$scope.search || (!$scope.search.startnr && !$scope.search.$));
+    }
+
 
     // ------- static data -------
     $scope.genderOptions = [{

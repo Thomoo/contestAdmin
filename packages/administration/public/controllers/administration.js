@@ -2,6 +2,8 @@
 
 angular.module('mean.administration').controller('AdministrationController', ['$scope', '$location', '$log', '$timeout', '$filter', 'Global', 'Wettkampf', 'Disziplin',
 function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Disziplin) {
+	/*global $:false, Ladda:false */
+
 	// ---------------------------------
 	// GENERAL
 	// ---------------------------------
@@ -29,32 +31,28 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 	// ---------------------------------
 	var tagStart = '<<!#';
 	var tagEnd = '#!>>';
-	
+
 	var wettkampfKey = 'WETTKAMPF';
 	var disziplinKey = 'DISZIPLIN';
+
+	var exportButton = Ladda.create(document.querySelector('#export'));
+
+	var getTaggedJSONString = function(key, json){
+		return tagStart + key + JSON.stringify(json) + tagEnd;
+	};
 	
-	var exportLadda;
-	/* jshint ignore:start */
-	exportLadda = Ladda.create(document.querySelector('#export'));
-	/* jshint ignore:end */
-
 	$scope.export = function() {
-		exportLadda.start();
+		exportButton.start();
 		$log.debug('export');
-
-		var wettkampfExport;
-		var disziplinExport;
 
 		Wettkampf.get({
 		}, function(wettkampf) {
-			wettkampfExport = wettkampf;
-
+			delete wettkampf._id;
 			Disziplin.query(function(disziplins) {
-				disziplinExport = disziplins;
-
-				// TODO SIR auslagern in funciton
-				var textFileAsBlob = new Blob([tagStart + wettkampfKey + JSON.stringify(wettkampfExport) + tagEnd, 
-												tagStart + disziplinKey + JSON.stringify(disziplinExport) + tagEnd], {
+				$.each(disziplins, function() {
+					delete this._id;
+				});
+				var textFileAsBlob = new Blob([getTaggedJSONString(wettkampfKey, wettkampf), getTaggedJSONString(disziplinKey, disziplins)], {
 					type : 'text/plain'
 				});
 				var fileNameToSaveAs = 'ContestAdminExport_' + new Date().getTime() + '.txt';
@@ -80,7 +78,7 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 				downloadLink.click();
 
 				$timeout(function() {
-					exportLadda.stop();
+					exportButton.stop();
 				}, 500);
 
 			});
@@ -92,11 +90,11 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 	$scope.openImport = function() {
 		document.getElementById('configFileInput').click();
 	};
-	
-	$scope.importConfig = function(){
+
+	$scope.importConfig = function() {
 		var fileToLoad = document.getElementById('configFileInput').files[0];
-		
-		if(!fileToLoad){
+
+		if (!fileToLoad) {
 			// noop; user aborted
 			return;
 		}
@@ -104,31 +102,59 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 		var fileReader = new FileReader();
 		fileReader.onload = function(fileLoadedEvent) {
 			var textFromFileLoaded = fileLoadedEvent.target.result;
-			// $log.debug('input: ' + textFromFileLoaded);
-			
-			// TODO SIR auslagern in funciton
+
 			var wettkampfText = /<<!#WETTKAMPF(.*?)#!>>/.exec(textFromFileLoaded)[1];
-			$log.debug('wettkampfText: ' + wettkampfText);
 			var wettkampfJSON = JSON.parse(wettkampfText);
+
+			var wettkampf = new Wettkampf();
+			angular.copy(wettkampfJSON, wettkampf);
+			wettkampf.$save(function(response) {
+				// TODO SIR error handling?
+				// $log.debug('response: ' + response);
+			});
+
+			if ($('#overrideConfig').is(':checked')) {
+				$log.debug('remove all iterator');
+				Disziplin.query(function(disziplins) {
+					$.each(disziplins, function() {
+						this.$remove();
+					});
+					saveDisziplinsToDB(textFromFileLoaded);
+				});
+			}else{
+				saveDisziplinsToDB(textFromFileLoaded);
+			}
 			
-			var disziplinText = /<<!#DISZIPLIN(.*?)#!>>/.exec(textFromFileLoaded)[1];
-			$log.debug('disziplinText: ' + disziplinText);
-			var disziplinJSON = JSON.parse(disziplinText);
-			$log.debug('wettkampf: ' + JSON.stringify(wettkampfJSON));
-			$log.debug('disziplins: ' + JSON.stringify(disziplinJSON));
+			// refresh view
+			// TODO SIR prüfen ob dies so funktioniert oder ein window ENTWEDER ODER
+			// Ev. mit load image...
+			$scope.$apply($scope.loadConfig());			
+			// location.reload();					
 		};
 		fileReader.readAsText(fileToLoad, 'UTF-8');
+	};
+
+	var saveDisziplinsToDB = function(textFromFileLoaded){
+		$log.debug('saveToDB');
+		var disziplinText = /<<!#DISZIPLIN(.*?)#!>>/.exec(textFromFileLoaded)[1];
+		var disziplinJSON = JSON.parse(disziplinText);
+		var disziplin;
+		$.each(disziplinJSON, function() {
+			disziplin = new Disziplin();
+			angular.copy(this, disziplin);
+			disziplin.$save(function(response) {
+				// TODO SIR error handling?
+				// $log.debug('response: ' + response);
+			});
+		}); 
 	};
 
 	// ---------------------------------
 	// WETTKAMPF
 	// ---------------------------------
-	var l;
-	/* jshint ignore:start */
-	l = Ladda.create(document.querySelector('#saveWettkampf'));
-	/* jshint ignore:end */
+	var saveWettkampfButton = Ladda.create(document.querySelector('#saveWettkampf'));
 	$scope.saveWettkampf = function(isValid) {
-		l.start();
+		saveWettkampfButton.start();
 		if (isValid) {
 			var wettkampf = new Wettkampf({
 				title : $scope.wettkampf.title,
@@ -138,7 +164,7 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 			wettkampf.$save(function(response) {
 				$log.info('saved');
 				$timeout(function() {
-					l.stop();
+					saveWettkampfButton.stop();
 				}, 500);
 			});
 		} else {

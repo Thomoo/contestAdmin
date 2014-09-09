@@ -3,10 +3,6 @@
 /**
  * Module dependencies.
  */
-//var  Discipline = mongoose.model('Discipline');
-
-// angular.module('mean.competitor').controller('CompetitorController', ['$scope', '$log', '$location', '$stateParams', 'Global', 'Competitor', 'Discipline', 'Wettkampf', 'Disziplin', 'filterFilter',
-// function($scope, $log, $location, $stateParams, Global, Competitor, Discipline, Wettkampf, Disziplin, filterFilter) {
 angular.module('mean.competitor').controller('CompetitorController', ['$scope', '$log', '$location', '$stateParams', 'Global', 'Competitor', 'Wettkampf', 'Disziplin', 'filterFilter',
 function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, Disziplin, filterFilter) {
     $scope.global = Global;
@@ -25,7 +21,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
 
     $scope.create = function(isValid) {
         $log.info('create competitor called...');
-        $log.info(JSON.stringify($scope.allDisciplines));
+        //        $log.info(JSON.stringify($scope.allDisciplines));
         if (true) {
             // TODO:        if (isValid) {
             var competitorToCreate = new Competitor({
@@ -38,7 +34,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
                 society : this.competitor.society,
                 email : this.competitor.email,
                 birthdate : this.competitor.birthdate,
-//                disciplines : $scope.selectDeclaredDisciplines($scope.allDisciplines)
+                disciplines : $scope.selectDeclaredDisciplines($scope.allDisciplines)
             });
             competitorToCreate.$save(function(response) {
                 $location.path('competitor/' + response._id);
@@ -63,6 +59,15 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             competitorId : $stateParams.competitorId
         }, function(competitor) {
             $scope.competitor = competitor;
+            $log.info('competitor disciplines...: ' + JSON.stringify(competitor.disciplines));
+            competitor.disciplines.forEach(function(dbDiscipline) {
+                $scope.allDisciplines.forEach(function(discipline) {
+                    if (discipline._id === dbDiscipline.disciplineId) {
+                        $log.info('zwei gleiche Disziplinen gefunden...');
+                        discipline.declared = true;
+                    }
+                });
+            });
         });
     };
 
@@ -87,6 +92,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
     };
 
     $scope.loadConfig = function() {
+        $log.info('loadConfig called...');
         Wettkampf.get({
         }, function(wettkampf) {
             $scope.wettkampf = wettkampf;
@@ -104,24 +110,26 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             return false;
         if (discipline.geschlecht === 'f' && $scope.competitor.gender === 'male')
             return false;
-        if (discipline.jahrgang_von > $scope.competitor.birthdate)
-            return false;
-        if (discipline.jahrgang_bis < $scope.competitor.birthdate)
-            return false;
+        // if (discipline.jahrgang_von > $scope.competitor.birthdate)
+        // return false;
+        // if (discipline.jahrgang_bis < $scope.competitor.birthdate)
+        // return false;
         return true;
     };
 
-    $scope.selectDeclaredDisciplines = function(disciplines) {
+    $scope.selectDeclaredDisciplines = function(srcDisciplines) {
+        //        $log.info('selectDeclaredDisciplines called...');
         var destDisciplines = [];
-        // disciplines.forEach(function(discipline) {
-            // if (discipline.declared) {
-                // destDisciplines.push(new Discipline({
-                    // disciplineId : discipline._id
-                // }));
-            // }
-        // });
-        $log.info('selectDeclaredDisciplines' + JSON.stringify(destDisciplines));
+        srcDisciplines.forEach(function(discipline) {
+            if (discipline.declared) {
+                //            $log.info('selectDeclaredDisciplines... ' + JSON.stringify(discipline));
+                destDisciplines.push({
+                    disciplineId : discipline._id
+                });
+            }
+        });
         return destDisciplines;
     };
+
 }]);
 

@@ -80,7 +80,7 @@ var CompetitorSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  results: {
+  disciplines: {
   	type: [DisciplineResultSchema]
   }
 });
@@ -107,4 +107,4 @@ CompetitorSchema.statics.load = function(id, cb) {
 };
 
 mongoose.model('Competitor', CompetitorSchema);
-mongoose.model('Discipline', DisciplineResultSchema);
+//mongoose.model('DisciplineResult', DisciplineResultSchema);

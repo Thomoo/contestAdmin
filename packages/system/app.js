@@ -22,12 +22,16 @@ System.register(function(app, auth, database) {
   
   // Add own global aggregates
   	// Ladda for button-animation
-	System.aggregateAsset('js','dist/spin.min.js');
+    System.aggregateAsset('js','dist/spin.min.js');
 	System.aggregateAsset('js','dist/ladda.min.js');
-	System.aggregateAsset('css','dist/ladda-themeless.min.css');  
-	System.aggregateAsset('css','dist/ladda.min.css');  
+	System.aggregateAsset('css','dist/ladda-themeless.min.css');
+    System.aggregateAsset('css','dist/ladda.min.css');
 
-  // The middleware in config/express will run before this code
+
+    // custom styles that should be available globally
+    System.aggregateAsset('css','global.css');
+
+    // The middleware in config/express will run before this code
 
   // Set views path, template engine and default layout
   app.set('views', __dirname + '/server/views');

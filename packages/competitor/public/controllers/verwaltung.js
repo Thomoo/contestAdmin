@@ -17,44 +17,24 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
         $location.path('/competitor/' + competitor._id);
     };
 
+    $scope.resetSearchForm = function(){
+        $scope.search = {};
+    };
 
+    $scope.searchFormEmpty = function(){
+        return (!$scope.search || (!$scope.search.startnr && !$scope.search.$));
+    };
 
-    // ------- static data -------
-    $scope.genderOptions = [{
-        value : 'male',
-        text : 'männlich'
-    }, {
-        value : 'female',
-        text : 'weiblich'
-    }, {
-        value : 'other',
-        text : 'unentschlossen'
-    }];
-
-    $scope.showGender = function(competitor) {
-        var selected = [];
-        if(competitor.gender){
-            selected = $filter('filter')($scope.genderOptions, {
-                value : competitor.gender
-            });
-        }
-        return selected.length ? selected[0].text : 'Not set';
+    $scope.generateStartNbr = function(){
+        alert('hello!');
     };
 
 
-    // ------- end static data -------
+    // ------- filters -------
 
 
-    // ------- validators -------
 
-    $scope.validateStartNbr = function(data, competitor) {
-        // TODO: check if competitor.startnrfetched evaluates as expected
-        if(competitor.startnrfetched && !data.match('^\\d+$')) {
-            return 'Die Startnummer muss aus Zahlen bestehen.';
-        }
-    };
-
-    // ------- end validators -------
+    // ------- end filters -------
 
 
 

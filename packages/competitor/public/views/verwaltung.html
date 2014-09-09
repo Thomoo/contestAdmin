@@ -2,11 +2,20 @@
 
 	<h1>Teilnehmerverwaltung</h1>
 
-	<form>
-
-		suchmaske
-
-	</form>
+    <form>
+        <fieldset class="competitor-filter-input-group well well-sm">
+            <legend>Filter</legend>
+            <table>
+                <tr>
+                    <td><label for="searchStartNbr">Startnummer</label></td>
+                    <td><input type="text" class="input-search-start-nbr form-control" id="searchStartNbr" ng-model="search.startnr"></td>
+                    <td><label for="searchTxt">Suchtext</label></td>
+                    <td><input type="text" class="input-search-all form-control" id="searchTxt" ng-model="search.$"></td>
+                    <td><button class="btn btn-warning" ng-click="resetSearchForm()" ng-disabled="searchFormEmpty()">Filter zurücksetzen</button></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 
 	<br />
 	&nbsp;
@@ -22,64 +31,35 @@
             <th>Geschlecht</th>
             <th>Ort</th>
             <th>Verein</th>
-            <th>Start-Nr abgeholt</th>
             <th></th>
         </tr>
-        <tr ng-repeat="competitor in competitors">
+        <tr ng-repeat="competitor in competitors | filter:search:strict">
             <td>
-                <span editable-text="competitor.startnr" e-name="startnr" e-form="rowform" onbeforesave="validateStartNbr($data, competitor)">
                   {{ competitor.startnr }}
-                </span>
             </td>
             <td>
-                <span editable-text="competitor.name" e-name="name" e-form="rowform" onbeforesave="checkName($data, competitor.id)" e-required>
                   {{ competitor.name }}
-                </span>
             </td>
             <td>
-                <span editable-text="competitor.firstname" e-name="firstName" e-form="rowform" onbeforesave="validateFirstName($data, competitor.id)"  e-required>
                   {{ competitor.firstname }}
-                </span>
             </td>
             <td>
-                <span editable-text="competitor.birthdate" e-name="yearOfBirth" e-form="rowform" onbeforesave="validateBirthDate($data, competitor.id)"  e-required>
-                  {{ competitor.birthdate }}
-                </span>
+                  {{ competitor.birthdate | date:'yyyy' }}
             </td>
             <td>
-                <span editable-select="competitor.gender" e-name="gender" e-form="rowform" e-ng-options="g.id as g.text for g in genderOptions">
-                  {{ showGender(competitor) }}
-                </span>
+                  {{ competitor.gender }}
             </td>
             <td>
-                <span editable-text="competitor.location" e-name="location" e-form="rowform" onbeforesave="validateLocation($data, competitor.id)" e-required>
                   {{ competitor.location }}
-                </span>
             </td>
             <td>
-                <span editable-text="competitor.society" e-name="society" e-form="rowform" onbeforesave="validateSociety($data, competitor.id)" e-required>
                   {{ competitor.society }}
-                </span>
-            </td>
-            <td>
-                <span editable-checkbox="competitor.startnrfetched" e-name="startnrfetched" e-form="rowform">
-                    {{ competitor.startnrfetched && "Ja" || "Nein" }}
-                </span>
             </td>
             <td style="white-space: nowrap">
-                <form editable-form name="rowform" onbeforesave="saveCompetitor($data, competitor)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == competitor">
-                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                        save
-                    </button>
-                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-                        cancel
-                    </button>
-                </form>
                 <div class="buttons" ng-show="!rowform.$visible">
-                    <button class="btn btn-primary" ng-click="navigateToDetails(competitor)">details</button>
+                    <button class="btn btn-info" ng-click="navigateToDetails(competitor)">Editieren</button>
                     <span data-ng-if="true || hasAuthorization(competitor)">
-                        <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-                        <button class="btn btn-danger" ng-click="removeCompetitor(competitor)">del</button>
+                        <button class="btn btn-success" ng-click="generateStartNbr(competitor)">Start-Nr. vergeben</button>
                     </span>
                 </div>
             </td>

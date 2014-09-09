@@ -1,3 +1,18 @@
-.competitor-example h1 {
-  background-color: purple
+.competitor-filter-input-group label {
+    margin-bottom: 0; /* override bootstrap margin */
+}
+.competitor-filter-input-group input {
+    margin: 0 20px 0 5px;
+}
+.competitor-filter-input-group input.input-search-start-nbr{
+    width: 60px;
+}
+.competitor-filter-input-group input.input-search-all{
+     width: 350px;
+}
+.btn-cstm-controls {
+    margin: 0 3px 0 3px;
+}
+.btn-cstm-controls-right {
+    float: right;
 }

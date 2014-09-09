@@ -26,33 +26,6 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
     }
 
 
-    // ------- static data -------
-    $scope.genderOptions = [{
-        value : 'male',
-        text : 'männlich'
-    }, {
-        value : 'female',
-        text : 'weiblich'
-    }, {
-        value : 'other',
-        text : 'unentschlossen'
-    }];
-
-    $scope.showGender = function(competitor) {
-        var selected = [];
-        if(competitor.gender){
-            selected = $filter('filter')($scope.genderOptions, {
-                value : competitor.gender
-            });
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
-
-
-
-    // ------- end static data -------
-
-
     // ------- filters -------
 
 

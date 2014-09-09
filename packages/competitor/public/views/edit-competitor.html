@@ -1,31 +1,12 @@
-
 <div data-ng-controller="EditCompetitorController" data-ng-init="findOne()">
-
-    <h1>Teilnehmer bearbeiten</h1>
-
-    <form>
-
-    <user-form></user-form>
-
-    <div class="form-group">
-        <label class="col-md-4 control-label">Disziplinen & Resultate</label>
-        <div class="col-md-8">
-            <!-- <table ng-table="tableParams" show-filter="true" class="table">
-            <tr ng-repeat="user in $data">
-            <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
-            <input type="checkbox" ng-model="checkboxes.items[user.id]" />
-            </td>
-            <td data-title="''" filter="{ 'name': 'select' }" filter-data="names($column)"> {{user.name}} </td>
-            <td data-title="'Money'" sortable="money"> {{user.money}} </td>
-            </tr>
-            </table> -->
-        </div>
-    </div>
-    <button type="button" class="btn btn-success">
-        Speichern
-    </button>
-
-    </form>
-
+	<h1>Teilnehmer bearbeiten</h1>
+	<form name="competitorEditForm" data-ng-submit="update(articleForm.$valid)" novalidate>
+		<div class="form-group">
+			<user-form></user-form>
+		</div>
+		<button type="submit" class="btn btn-success">
+			Speichern
+		</button>
+	</form>
 </div>
 

@@ -75,11 +75,11 @@ var CompetitorSchema = new Schema({
     ref: 'User'
   },
   results: {
-  	type: [ResultSchema]
+  	type: [DisciplineResultSchema]
   }
 });
 
-var ResultSchema = new Schema({
+var DisciplineResultSchema = new Schema({
   disciplineId: {
   	type: Schema.ObjectId,
   	required: true,
@@ -87,7 +87,7 @@ var ResultSchema = new Schema({
   },
   result: {
     type: String,
-    required: true,
+    required: false,
     trim: true
   }
 });

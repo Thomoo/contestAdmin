@@ -23,7 +23,7 @@ exports.create = function(req, res) {
 	wettkampf.save(function(err) {
 		if (err) {
 			return res.status(500).json({
-				error : 'Cannot save the wettkampf'
+				error : 'Cannot save the wettkampf' + err
 			});
 		}
 		removeOtherEntries(wettkampf);

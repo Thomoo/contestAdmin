@@ -27,7 +27,7 @@ var WettkampfSchema = new Schema({
   },
   anmeldungActive: {
     type: Boolean,
-    required: true
+    required: false
   }
 });
 

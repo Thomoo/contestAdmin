@@ -6,6 +6,18 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+var DisciplineResultSchema = new Schema({
+  disciplineId: {
+    type: Schema.ObjectId,
+    required: true,
+    trim: true
+  },
+  result: {
+    type: String,
+    required: false,
+    trim: true
+  }
+});
 
 /**
  * Competitor Schema
@@ -79,18 +91,6 @@ var CompetitorSchema = new Schema({
   }
 });
 
-var DisciplineResultSchema = new Schema({
-  disciplineId: {
-  	type: Schema.ObjectId,
-  	required: true,
-  	trim: true
-  },
-  result: {
-    type: String,
-    required: false,
-    trim: true
-  }
-});
 
 /**
  * Validations

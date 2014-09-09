@@ -1,5 +1,5 @@
 .competitorFilterInputGroup label {
-    margin-bottom: 0 !important; /* override bootstrap margin */
+    margin-bottom: 0; /* override bootstrap margin */
 }
 .competitorFilterInputGroup input {
     margin: 0 15px 0 5px;

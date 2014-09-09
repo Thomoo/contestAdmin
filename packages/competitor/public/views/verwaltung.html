@@ -3,13 +3,16 @@
 	<h1>Teilnehmerverwaltung</h1>
 
     <form>
-        <fieldset class="competitorFilterInputGroup">
+        <fieldset class="competitorFilterInputGroup well well-sm">
             <legend>Filter</legend>
-            <label for="searchStartNbr">Startnummer</label>
-            <input class="inputSearchStartNbr" id="searchStartNbr" maxlength="5">
-
-            <label for="searchTxt">Suchtext</label>
-            <input class="inputSearchTxt" id="searchTxt">
+            <table>
+                <tr>
+                    <td><label for="searchStartNbr">Startnummer</label></td>
+                    <td><input class="inputSearchStartNbr form-control" id="searchStartNbr" maxlength="5"></td>
+                    <td><label for="searchTxt">Suchtext</label></td>
+                    <td><input class="inputSearchTxt form-control" id="searchTxt"></td>
+                </tr>
+            </table>
         </fieldset>
     </form>
 

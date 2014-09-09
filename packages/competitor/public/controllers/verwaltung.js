@@ -49,7 +49,7 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
 
     $scope.validateStartNbr = function(data, competitor) {
         // TODO: check if competitor.startnrfetched evaluates as expected
-        if(competitor.startnrfetched && !data.match('^\\d+$')) {
+        if(!data.match('^\\d+$')) {
             return 'Die Startnummer muss aus Zahlen bestehen.';
         }
     };

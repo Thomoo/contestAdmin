@@ -1,3 +1,12 @@
-.competitor-example h1 {
-  background-color: purple
+.competitorFilterInputGroup label {
+    margin-bottom: 0 !important; /* override bootstrap margin */
+}
+.competitorFilterInputGroup input {
+    margin: 0 15px 0 5px;
+}
+.competitorFilterInputGroup input.inputSearchStartNbr{
+    width: 60px;
+}
+.competitorFilterInputGroup input.inputSearchTxt{
+     width: 350px;
 }

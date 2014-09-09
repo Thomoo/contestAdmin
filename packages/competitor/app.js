@@ -7,6 +7,10 @@ var Module = require('meanio').Module;
 
 var Competitor = new Module('competitor');
 
+
+Competitor.aggregateAsset('css','competitor.css');
+
+
 /*
  * All MEAN packages require registration
  * Dependency injection is used to define required modules

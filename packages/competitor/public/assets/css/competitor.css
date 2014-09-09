@@ -1,12 +1,12 @@
-.competitorFilterInputGroup label {
+.competitor-filter-input-group label {
     margin-bottom: 0; /* override bootstrap margin */
 }
-.competitorFilterInputGroup input[type=text] {
+.competitor-filter-input-group input {
     margin: 0 20px 0 5px;
 }
-.competitorFilterInputGroup input.inputSearchStartNbr{
+.competitor-filter-input-group input.input-search-start-nbr{
     width: 60px;
 }
-.competitorFilterInputGroup input.inputSearchTxt{
+.competitor-filter-input-group input.input-search-all{
      width: 350px;
 }

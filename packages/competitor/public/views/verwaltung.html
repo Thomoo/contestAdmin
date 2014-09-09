@@ -3,14 +3,14 @@
 	<h1>Teilnehmerverwaltung</h1>
 
     <form>
-        <fieldset class="competitorFilterInputGroup well well-sm">
+        <fieldset class="competitor-filter-input-group well well-sm">
             <legend>Filter</legend>
             <table>
                 <tr>
                     <td><label for="searchStartNbr">Startnummer</label></td>
-                    <td><input type="text" class="inputSearchStartNbr form-control" id="searchStartNbr" maxlength="5" ng-model="search.startnr"></td>
+                    <td><input type="text" class="input-search-start-nbr form-control" id="searchStartNbr" ng-model="search.startnr"></td>
                     <td><label for="searchTxt">Suchtext</label></td>
-                    <td><input type="text" class="inputSearchTxt form-control" id="searchTxt" ng-model="search.$"></td>
+                    <td><input type="text" class="input-search-all form-control" id="searchTxt" ng-model="search.$"></td>
                     <td><input class="btn btn-warning" value="Filter zurücksetzen" ng-click="resetSearchForm()" ng-disabled="searchFormEmpty()"></td>
                 </tr>
             </table>

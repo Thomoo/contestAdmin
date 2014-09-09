@@ -1,4 +1,4 @@
-<div id="user-form">
+<div id="user-form" data-ng-init="loadConfig()">
 	<div class="form-group">
 		<label for="gender-radios" class="col-md-4 control-label">Geschlecht</label>
 		<div class="col-md-8" id="gender-radios">
@@ -76,9 +76,9 @@
 					<th></th>
 					<th>Resultat</th>
 				</tr>
-				<tr ng-repeat="discipline in disciplines">
+				<tr ng-repeat="discipline in allDisciplines | filter:isPossibleDiscipline">
 					<td><input type="checkbox" ng-model="discipline.declared"></td>
-					<td>{{discipline.name}}</td>
+					<td>{{discipline.bezeichnung}}</td>
 					<td>{{discipline.result}}</td>
 				</tr>
 			</table>

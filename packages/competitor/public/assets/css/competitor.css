@@ -1,8 +1,8 @@
 .competitorFilterInputGroup label {
     margin-bottom: 0; /* override bootstrap margin */
 }
-.competitorFilterInputGroup input {
-    margin: 0 15px 0 5px;
+.competitorFilterInputGroup input[type=text] {
+    margin: 0 20px 0 5px;
 }
 .competitorFilterInputGroup input.inputSearchStartNbr{
     width: 60px;

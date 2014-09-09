@@ -17,6 +17,9 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
         $location.path('/competitor/' + competitor._id);
     };
 
+    $scope.resetSearchForm = function(){
+        $scope.search = {};
+    };
 
 
     // ------- static data -------
@@ -42,19 +45,15 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
     };
 
 
+
     // ------- end static data -------
 
 
-    // ------- validators -------
+    // ------- filters -------
 
-    $scope.validateStartNbr = function(data, competitor) {
-        // TODO: check if competitor.startnrfetched evaluates as expected
-        if(!data.match('^\\d+$')) {
-            return 'Die Startnummer muss aus Zahlen bestehen.';
-        }
-    };
 
-    // ------- end validators -------
+
+    // ------- end filters -------
 
 
 

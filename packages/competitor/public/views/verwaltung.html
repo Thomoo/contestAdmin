@@ -8,9 +8,10 @@
             <table>
                 <tr>
                     <td><label for="searchStartNbr">Startnummer</label></td>
-                    <td><input class="inputSearchStartNbr form-control" id="searchStartNbr" maxlength="5"></td>
+                    <td><input type="text" class="inputSearchStartNbr form-control" id="searchStartNbr" maxlength="5" ng-model="search.startnr"></td>
                     <td><label for="searchTxt">Suchtext</label></td>
-                    <td><input class="inputSearchTxt form-control" id="searchTxt"></td>
+                    <td><input type="text" class="inputSearchTxt form-control" id="searchTxt" ng-model="search.$"></td>
+                    <td><input class="btn btn-warning" value="Reset" ng-click="resetSearchForm()"></td>
                 </tr>
             </table>
         </fieldset>
@@ -32,7 +33,7 @@
             <th>Verein</th>
             <th></th>
         </tr>
-        <tr ng-repeat="competitor in competitors">
+        <tr ng-repeat="competitor in competitors | filter:search:strict">
             <td>
                   {{ competitor.startnr }}
             </td>
@@ -55,18 +56,10 @@
                   {{ competitor.society }}
             </td>
             <td style="white-space: nowrap">
-                <form editable-form name="rowform" onbeforesave="saveCompetitor($data, competitor)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == competitor">
-                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                        save
-                    </button>
-                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-                        cancel
-                    </button>
-                </form>
                 <div class="buttons" ng-show="!rowform.$visible">
-                    <button class="btn btn-primary" ng-click="navigateToDetails(competitor)">Editieren</button>
+                    <button class="btn btn-info" ng-click="navigateToDetails(competitor)">Editieren</button>
                     <span data-ng-if="true || hasAuthorization(competitor)">
-                        <button class="btn btn-primary" ng-click="generateStartNbr(competitor)">Start-Nr. vergeben</button>
+                        <button class="btn btn-success" ng-click="generateStartNbr(competitor)">Start-Nr. vergeben</button>
                         <button class="btn btn-danger" ng-click="removeCompetitor(competitor)">Löschen</button>
                     </span>
                 </div>

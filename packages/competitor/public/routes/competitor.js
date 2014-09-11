@@ -8,8 +8,11 @@ function($stateProvider) {
     }).state('verwaltung', {
         url : '/competitor/verwaltung',
         templateUrl : 'competitor/views/verwaltung.html'
-    }).state('competitor by id', {
+    }).state('edit competitor by id', {
         url : '/competitor/:competitorId',
         templateUrl : 'competitor/views/edit-competitor.html'
+    }).state('confirm competitor by id', {
+        url : '/competitor/bestaetigung/:competitorId',
+        templateUrl : 'competitor/views/subscription-confirmation.html'
     });
 }]);

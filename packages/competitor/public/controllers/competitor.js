@@ -37,7 +37,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
                 disciplines : $scope.selectDeclaredDisciplines($scope.allDisciplines)
             });
             competitorToCreate.$save(function(response) {
-                $location.path('competitor/' + response._id);
+                $location.path('competitor/bestaetigung/' + response._id);
             });
             this.competitor.gender = '';
             this.competitor.name = '';
@@ -52,12 +52,30 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             $scope.competitor.submitted = true;
         }
     };
-    
+
     $scope.loadAllDisziplinsAndFindOne = function() {
         $log.info('loadAllDisziplinsAndFindOne called...');
+        $scope.loadAllDisziplins($scope.findOne);
+    };
+
+    $scope.loadAllDisziplinsAndConfig = function() {
+        $log.info('loadAllDisziplinsAndFindOne called...');
+        $scope.loadAllDisziplins($scope.loadConfig);
+    };
+
+    $scope.loadConfig = function() {
+        $log.info('loadConfig called...');
+        Wettkampf.get({
+        }, function(wettkampf) {
+            $scope.wettkampf = wettkampf;
+        });
+    };
+
+    $scope.loadAllDisziplins = function(cb) {
+        $log.info('loadAllDisziplins called...');
         Disziplin.query(function(disciplines) {
             $scope.allDisciplines = disciplines;
-            $scope.findOne();
+            cb();
         });
     };
 
@@ -97,18 +115,6 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
         } else {
             $scope.submitted = true;
         }
-    };
-
-    $scope.loadConfig = function() {
-        $log.info('loadConfig called...');
-        Wettkampf.get({
-        }, function(wettkampf) {
-            $scope.wettkampf = wettkampf;
-        });
-
-        Disziplin.query(function(disciplines) {
-            $scope.allDisciplines = disciplines;
-        });
     };
 
     $scope.isPossibleDiscipline = function(discipline) {

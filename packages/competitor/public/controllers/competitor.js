@@ -52,6 +52,14 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             $scope.competitor.submitted = true;
         }
     };
+    
+    $scope.loadAllDisziplinsAndFindOne = function() {
+        $log.info('loadAllDisziplinsAndFindOne called...');
+        Disziplin.query(function(disciplines) {
+            $scope.allDisciplines = disciplines;
+            $scope.findOne();
+        });
+    };
 
     $scope.findOne = function() {
         $log.info('find competitor called... with: ' + $stateParams.competitorId);

@@ -1,8 +1,8 @@
-<div data-ng-controller="CompetitorController" data-ng-init="loadConfig()">
+<div data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndFindOne()">
 	<h1>Teilnehmer bearbeiten</h1>
 	<form name="competitorEditForm" data-ng-submit="update(articleForm.$valid)" novalidate>
 		<div class="form-group">
-			<user-form data-ng-init="findOne()"></user-form>
+			<user-form></user-form>
 		</div>
         <button nb-click="cancel()" class="btn btn-default btn-cstm-controls btn-cstm-controls-right">Abbrechen</button>
         <button type="submit" class="btn btn-primary btn-cstm-controls btn-cstm-controls-right">Speichern</button>

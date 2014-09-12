@@ -10,8 +10,11 @@ function($scope, $log, $location, Global, Disziplin, Competitor, Result) {
 	$scope.disciplines = [];
 	$scope.competitors = [];
 	$scope.possibleCompetitors = [];
-	$scope.enteredResults = [];
-
+	
+	if(!$scope.global.enteredResults){
+		$scope.global.enteredResults = [];
+	}
+	
 	Disziplin.query(function(disciplines) {
 		$scope.disciplines = disciplines;
 	});
@@ -57,7 +60,7 @@ function($scope, $log, $location, Global, Disziplin, Competitor, Result) {
 			}
 		});
 
-		$scope.enteredResults.push({
+		$scope.global.enteredResults.push({
 			competitor : $scope.competitor,
 			discipline : $scope.discipline,
 			result : $scope.result

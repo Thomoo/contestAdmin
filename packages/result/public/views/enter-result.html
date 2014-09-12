@@ -30,7 +30,7 @@
 		</div>
 	</form>
 
-	<table class="table table-bordered table-hover table-condensed table-striped" ng-show="(enteredResults | filter:criteria).length">
+	<table class="table table-bordered table-hover table-condensed table-striped" ng-show="(global.enteredResults | filter:criteria).length">
 		<tr>
 			<th>Nr.</th>
 			<th>Name</th>
@@ -39,7 +39,7 @@
 			<th>Disziplin</th>
 			<th>Resultat</th>
 		</tr>
-		<tr ng-repeat="result in enteredResults | reverse">
+		<tr ng-repeat="result in global.enteredResults | reverse">
 			<td> {{ result.competitor.startnr }} </td>
 			<td> {{ result.competitor.name }} </td>
 			<td> {{ result.competitor.firstname }} </td>

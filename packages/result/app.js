@@ -18,7 +18,7 @@ Result.register(function(app, auth, database) {
 
   //We are adding a link to the main menu for all authenticated users
   Result.menus.add({
-    title: 'Resultate',
+    title: 'Resultat erfassen',
     link: 'result enter-result',
     roles: ['authenticated'],
     menu: 'main'

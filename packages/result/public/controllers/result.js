@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.result').controller('ResultController', ['$scope', '$log', '$location', 'Global', 'Disziplin', 'Competitor', 'Result',
-function($scope, $log, $location, Global, Disziplin, Competitor, Result) {
+angular.module('mean.result').controller('ResultController', ['$scope', '$window', '$log', '$location', 'Global', 'Disziplin', 'Competitor', 'Result',
+function($scope, $window, $log, $location, Global, Disziplin, Competitor, Result) {
 	$scope.global = Global;
 	$scope.package = {
 		name : 'result'
@@ -9,7 +9,7 @@ function($scope, $log, $location, Global, Disziplin, Competitor, Result) {
 
 	$scope.disciplines = [];
 	$scope.competitors = [];
-	$scope.possibleCompetitors = [];
+	$scope.possibleCompetitors = [];	
 	
 	if(!$scope.global.enteredResults){
 		$scope.global.enteredResults = [];
@@ -17,7 +17,13 @@ function($scope, $log, $location, Global, Disziplin, Competitor, Result) {
 	
 	Disziplin.query(function(disciplines) {
 		$scope.disciplines = disciplines;
+		$scope.disciplines.forEach(function(discipline){
+			discipline.selected = false;
+		});
 	});
+	
+	$scope.selectAllDisciplines = false;
+	$scope.selectedDisciplines = [];
 
 	Competitor.query(function(competitors) {
 		$scope.competitors = competitors;
@@ -35,6 +41,30 @@ function($scope, $log, $location, Global, Disziplin, Competitor, Result) {
 			});
 		}
 	};
+	
+	$scope.updateSelectAllDisciplines = function() {
+		if ($scope.selectAllDisciplines){
+			$scope.disciplines.forEach(function(discipline){
+				discipline.selected = true;
+			});
+		} else {
+			$scope.disciplines.forEach(function(discipline){
+				discipline.selected = false;
+			});
+		}
+	};
+
+	$scope.updateSelectedDisciplines = function() {
+		var allSelected = true;
+		$scope.disciplines.forEach(function(discipline){
+			if (!discipline.selected){
+				allSelected = false;
+				//break;
+			} 
+		});
+		$scope.selectAllDisciplines = allSelected;	
+	};
+
 
 	$scope.updateResult = function() {
 		$log.info('update result called...');
@@ -74,4 +104,16 @@ function($scope, $log, $location, Global, Disziplin, Competitor, Result) {
 		$scope.competitor = {};
 		$scope.result = '';
 	};
+	
+	$scope.createStartLists = function() {
+		$location.path('result/start-lists');
+	};
+
+	$scope.createRankings = function() {
+		$location.path('result/rankings');
+	};
+	
+	$scope.navBack = function() {
+            $window.history.back();
+          };
 }]);

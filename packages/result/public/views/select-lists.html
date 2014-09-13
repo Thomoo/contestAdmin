@@ -3,14 +3,22 @@
     <h1>Start- und Ranglisten</h1>
 
     <form>
-
         suchmaske
-
     </form>
-
-    <br />&nbsp;<br />
-
-    user tabelle
+    
+    <br />
+	<table class="table table-bordered table-hover table-condensed table-striped">
+		<tr>
+			<th>Disziplin</th>
+			<th><input type="checkbox" ng-model="selectAllDisciplines" ng-change="updateSelectAllDisciplines()">&nbsp; alle</th>
+		</tr>
+		<tr ng-repeat="discipline in disciplines | orderBy:'bezeichnung'">
+			<td>{{ discipline.bezeichnung }}</td>
+			<td><input type="checkbox" ng-model="discipline.selected" ng-change="updateSelectedDisciplines()"></td>
+		</tr>
+	</table>
+	<button class="btn btn-success" ng-click="createStartLists()">Startlisten erstellen</button>
+	<button class="btn btn-success" ng-click="createRankings()">Ranglisten erstellen</button>
 
 
 </div>

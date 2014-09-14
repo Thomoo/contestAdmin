@@ -87,6 +87,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
                 $scope.allDisciplines.forEach(function(discipline) {
                     if (discipline._id === dbDiscipline.disciplineId) {
                         discipline.declared = true;
+                        discipline.result = dbDiscipline.result;
                     }
                 });
             });

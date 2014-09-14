@@ -20,10 +20,8 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
     };
 
     $scope.create = function(isValid) {
-        $log.info('create competitor called...');
-        //        $log.info(JSON.stringify($scope.allDisciplines));
-        if (true) {
-            // TODO:        if (isValid) {
+        $log.info('create competitor called...: ' + isValid);
+        if (isValid) {
             var competitorToCreate = new Competitor({
                 gender : this.competitor.gender,
                 name : this.competitor.name,
@@ -85,11 +83,9 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             competitorId : $stateParams.competitorId
         }, function(competitor) {
             $scope.competitor = competitor;
-            $log.info('competitor disciplines...: ' + JSON.stringify(competitor.disciplines));
             competitor.disciplines.forEach(function(dbDiscipline) {
                 $scope.allDisciplines.forEach(function(discipline) {
                     if (discipline._id === dbDiscipline.disciplineId) {
-                        $log.info('zwei gleiche Disziplinen gefunden...');
                         discipline.declared = true;
                     }
                 });
@@ -98,9 +94,8 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
     };
 
     $scope.update = function(isValid) {
-        $log.info('update competitor called...');
-        // TODO:        if (isValid) {
-        if (true) {
+        $log.info('update competitor called...: ' + isValid);
+        if (isValid) {
             var competitor = $scope.competitor;
             competitor.disciplines = $scope.selectDeclaredDisciplines($scope.allDisciplines);
 
@@ -124,10 +119,16 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             return false;
         if (discipline.geschlecht === 'f' && $scope.competitor.gender === 'male')
             return false;
-        // if (discipline.jahrgang_von > $scope.competitor.birthdate)
-        // return false;
-        // if (discipline.jahrgang_bis < $scope.competitor.birthdate)
-        // return false;
+        if (!$scope.competitor.birthdate)
+            return false;
+//        $log.info('type of $scope.competitor.birthdate: ' + typeof $scope.competitor.birthdate);        
+//TODO: keine Ahnung wieso, birhtdate kommt als String von der DB
+        if (typeof $scope.competitor.birthdate === 'string')
+            $scope.competitor.birthdate = new Date($scope.competitor.birthdate); 
+        if (discipline.jahrgang_von > $scope.competitor.birthdate.getFullYear())
+            return false;
+        if (discipline.jahrgang_bis < $scope.competitor.birthdate.getFullYear())
+            return false;
         return true;
     };
 
@@ -135,8 +136,8 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
         //        $log.info('selectDeclaredDisciplines called...');
         var destDisciplines = [];
         srcDisciplines.forEach(function(discipline) {
-            if (discipline.declared) {
-                //            $log.info('selectDeclaredDisciplines... ' + JSON.stringify(discipline));
+            if (discipline.declared && $scope.isPossibleDiscipline(discipline)) {
+                //                $log.info('selectDeclaredDisciplines... ' + JSON.stringify(discipline));
                 destDisciplines.push({
                     disciplineId : discipline._id
                 });

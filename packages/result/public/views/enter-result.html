@@ -1,0 +1,51 @@
+<div class="" data-ng-controller="ResultController">
+	<h1>Resultat erfassen</h1>
+
+	<!-- <form name="enterResultForm" data-ng-submit="saveResult(enterResultForm.$valid)" novalidate> -->
+	<form name="enterResultForm" data-ng-submit="updateResult()" novalidate>
+		<div class="form-group">
+			<label for"discipline" class="col-md-4 control-label">Disziplin</label>
+			<div class="col-md-8">
+				<select id="discipline" class="form-control" required ng-model="discipline" ng-options="discipline.bezeichnung for discipline in disciplines | orderBy:'bezeichnung'" ng-change="updatePossibleCompetitors()"></select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="startnr" class="col-md-4 control-label">Start Nr.</label>
+			<div class="col-md-8">
+				<!-- <input id="startnr" required type="number" placeholder="999" min="1" max="999" class="form-control" ng-model="startnr"/> -->
+				<select id="startnr" class="form-control" required ng-model="competitor" ng-options="competitor.startnr for competitor in possibleCompetitors | orderBy:'startnr'"></select>
+			</div>
+			<!-- <div class="col-md-4"></div> -->
+		</div>
+		<div class="form-group">
+			<label for="result" class="col-md-4 control-label">Resultat</label>
+			<div class="col-md-8">
+				<input id="result" required type="text" placeholder="" class="form-control" ng-model="result"/>
+			</div>
+			<!-- <div class="col-md-2"></div> -->
+		</div>
+
+		<div class="form-group">
+			<button type="submit" class="btn btn-success" ng-disabled="enterResultForm.$invalid">Speichern</button>
+		</div>
+	</form>
+
+	<table class="table table-bordered table-hover table-condensed table-striped" ng-show="(global.enteredResults | filter:criteria).length">
+		<tr>
+			<th>Nr.</th>
+			<th>Name</th>
+			<th>Vorname</th>
+			<th>Verein</th>
+			<th>Disziplin</th>
+			<th>Resultat</th>
+		</tr>
+		<tr ng-repeat="result in global.enteredResults | reverse">
+			<td> {{ result.competitor.startnr }} </td>
+			<td> {{ result.competitor.name }} </td>
+			<td> {{ result.competitor.firstname }} </td>
+			<td> {{ result.competitor.society }} </td>
+			<td> {{ result.discipline.bezeichnung }} </td>
+			<td> {{ result.result }} </td>
+		</tr>
+	</table>
+</div>

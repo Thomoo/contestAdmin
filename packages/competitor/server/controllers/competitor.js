@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
   Competitor = mongoose.model('Competitor'),
+//  Disziplin = mongoose.model('Disziplin'),
   _ = require('lodash');
 
 

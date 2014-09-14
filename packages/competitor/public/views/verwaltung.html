@@ -11,7 +11,7 @@
                     <td><input type="text" class="input-search-start-nbr form-control" id="searchStartNbr" ng-model="search.startnr"></td>
                     <td><label for="searchTxt">Suchtext</label></td>
                     <td><input type="text" class="input-search-all form-control" id="searchTxt" ng-model="search.$"></td>
-                    <td><input class="btn btn-warning" value="Filter zurücksetzen" ng-click="resetSearchForm()" ng-disabled="searchFormEmpty()"></td>
+                    <td><button class="btn btn-warning" ng-click="resetSearchForm()" ng-disabled="searchFormEmpty()">Filter zurücksetzen</button></td>
                 </tr>
             </table>
         </fieldset>
@@ -60,7 +60,6 @@
                     <button class="btn btn-info" ng-click="navigateToDetails(competitor)">Editieren</button>
                     <span data-ng-if="true || hasAuthorization(competitor)">
                         <button class="btn btn-success" ng-click="generateStartNbr(competitor)">Start-Nr. vergeben</button>
-                        <button class="btn btn-danger" ng-click="removeCompetitor(competitor)">Löschen</button>
                     </span>
                 </div>
             </td>

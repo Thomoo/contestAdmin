@@ -10,7 +10,7 @@ var DisciplineResultSchema = new Schema({
   disciplineId: {
     type: Schema.ObjectId,
     required: true,
-    trim: true
+    ref: 'Disziplin'
   },
   result: {
     type: String,
@@ -73,20 +73,14 @@ var CompetitorSchema = new Schema({
     trim: true
   },
   startnr: {
-    type: String,
+    type: Number,
     required: false,
-    trim: true
-  },
-  startnrfetched: {
-    type: Boolean,
-    required: true,
-    default: false
   },
   user: {
     type: Schema.ObjectId,
     ref: 'User'
   },
-  results: {
+  disciplines: {
   	type: [DisciplineResultSchema]
   }
 });
@@ -113,3 +107,4 @@ CompetitorSchema.statics.load = function(id, cb) {
 };
 
 mongoose.model('Competitor', CompetitorSchema);
+//mongoose.model('DisciplineResult', DisciplineResultSchema);

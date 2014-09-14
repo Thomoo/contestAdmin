@@ -2,13 +2,13 @@
 
 angular.module('mean.result').config(['$stateProvider',
   function($stateProvider) {
-    $stateProvider.state('result enterResult', {
-      url: '/result/example',
-      templateUrl: 'result/views/enterResult.html'
+    $stateProvider.state('result enter-result', {
+      url: '/result/enter-result',
+      templateUrl: 'result/views/enter-result.html'
     });
-    $stateProvider.state('result chooseList', {
-      url: '/result/example',
-      templateUrl: 'result/views/chooseList.html'
+    $stateProvider.state('result lists', {
+      url: '/result/lists',
+      templateUrl: 'result/views/lists.html'
     });
   }
 ]);

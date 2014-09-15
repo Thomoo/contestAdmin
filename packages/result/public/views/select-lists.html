@@ -12,13 +12,13 @@
 			<th>Disziplin</th>
 			<th><input type="checkbox" ng-model="selectAllDisciplines" ng-change="updateSelectAllDisciplines()">&nbsp; alle</th>
 		</tr>
-		<tr ng-repeat="discipline in disciplines | orderBy:'bezeichnung'">
+		<tr ng-repeat="discipline in global.disciplines | orderBy:'bezeichnung'">
 			<td>{{ discipline.bezeichnung }}</td>
 			<td><input type="checkbox" ng-model="discipline.selected" ng-change="updateSelectedDisciplines()"></td>
 		</tr>
 	</table>
-	<button class="btn btn-success" ng-click="createStartLists()">Startlisten erstellen</button>
-	<button class="btn btn-success" ng-click="createRankings()">Ranglisten erstellen</button>
+	<button class="btn btn-success" ng-click="createStartLists()" ng-disabled="selectedNoDisciplines">Startlisten erstellen</button>
+	<button class="btn btn-success" ng-click="createRankings()" ng-disabled="selectedNoDisciplines">Ranglisten erstellen</button>
 
 
 </div>

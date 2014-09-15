@@ -6,7 +6,7 @@
 		<div class="form-group">
 			<label for"discipline" class="col-md-4 control-label">Disziplin</label>
 			<div class="col-md-8">
-				<select id="discipline" class="form-control" required ng-model="discipline" ng-options="discipline.bezeichnung for discipline in disciplines | orderBy:'bezeichnung'" ng-change="updatePossibleCompetitors()"></select>
+				<select id="discipline" class="form-control" required ng-model="discipline" ng-options="discipline.bezeichnung for discipline in global.disciplines | orderBy:'bezeichnung'" ng-change="updatePossibleCompetitors()"></select>
 			</div>
 		</div>
 		<div class="form-group">

@@ -142,6 +142,14 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 		});		
 	};
 	
+    $scope.resetSearchForm = function(){
+        $scope.search = {};
+    };
+
+    $scope.searchFormEmpty = function(){
+        return (!$scope.search || (!$scope.search.bezeichnung && !$scope.search.$));
+    };
+	
 	$scope.navStartLists = function() {
 		$scope.createSelectedDisciplines();
 		$location.path('result/start-lists');

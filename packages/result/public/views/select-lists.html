@@ -3,7 +3,12 @@
     <h1>Start- und Ranglisten</h1>
 
     <form>
-        suchmaske
+        <fieldset class="competitor-filter-input-group well well-sm">
+            <legend>Filter</legend>
+        	<label for="searchTxt" class="col-md-1">Suchtext</label>
+            <input type="text" class="input-search-all form-control col-md-8" id="searchTxt" ng-model="search.bezeichnung">
+            <button class="btn btn-warning" ng-click="resetSearchForm()" ng-disabled="searchFormEmpty()">Filter zurücksetzen</button>
+        </fieldset>
     </form>
     
     <br />
@@ -12,7 +17,7 @@
 			<th>Disziplin</th>
 			<th><input type="checkbox" ng-model="selectAllDisciplines" ng-change="refreshSelectAllDisciplines()">&nbsp; alle</th>
 		</tr>
-		<tr ng-repeat="discipline in global.disciplines | orderBy:'bezeichnung'">
+		<tr ng-repeat="discipline in global.disciplines | orderBy:'bezeichnung' | filter:search:strict">
 			<td>{{ discipline.bezeichnung }}</td>
 			<td><input type="checkbox" ng-model="global.selectedDisciplinesIds[discipline._id]" ng-change="refreshSelectedDisciplines()"></td>
 		</tr>

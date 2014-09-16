@@ -4,7 +4,7 @@
 		<button class="btn btn-primary" ng-click="navBack()">zurück</button>
 		<br />
 		<br />
-	    <fieldset class="well well-sm"><strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></fieldset>
+		<div class="alert alert-info"><strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></div>
 	</div>
 	
 	<div ng-repeat="discipline in global.selectedDisciplines | orderBy:'bezeichnung'">
@@ -22,7 +22,7 @@
 			<td>{{ competitor.name }}</td>
 			<td>{{ competitor.firstname }}</td>
 			<td>{{ competitor.society }}</td>
-			<td>{{ competitor.birthdate }}</td>
+			<td>{{ competitor.birthdate | date: 'yyyy' }}</td>
 		</tr>
 	</table>
 	</div>

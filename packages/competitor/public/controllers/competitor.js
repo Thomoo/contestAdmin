@@ -14,9 +14,10 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
     $scope.competitor = '';
 
     $scope.hasAuthorization = function(competitor) {
-        if (!competitor || !competitor.user)
+        if (!competitor)
+        // if (!competitor || !competitor.user)
             return false;
-        return $scope.global.isAdmin || competitor.user._id === $scope.global.user._id;
+        return $scope.global.isAdmin;
     };
 
     $scope.create = function(isValid) {

@@ -26,7 +26,7 @@ Result.register(function(app, auth, database) {
 
   Result.menus.add({
     title: 'Start- und Ranglisten',
-    link: 'result lists',
+    link: 'result select-lists',
     roles: ['resultAdmin'],
     menu: 'main'
   });

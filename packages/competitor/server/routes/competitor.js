@@ -25,6 +25,7 @@ module.exports = function(Competitor, app, auth, database) {
 
   app.route('/competitor/:competitorId')
     .get(competitor.show)
+    .post(auth.requiresLogin, isCompetitorAdminOrResultAdmin, competitor.updateWithStartNr)
     .put(auth.requiresLogin, isCompetitorAdminOrResultAdmin, competitor.update)
     .delete(auth.requiresLogin, isCompetitorAdmin, competitor.destroy);
 

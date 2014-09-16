@@ -42,13 +42,4 @@ WettkampfSchema.path('infoText').validate(function(infoText) {
   return !!infoText;
 }, 'Info Text cannot be blank');
 
-/**
- * Statics
- */
-// WettkampfSchema.statics.load = function(id, cb) {
-  // this.findOne({
-    // _id: id
-  // }).populate('user', 'name username').exec(cb);
-// };
-
 mongoose.model('Wettkampf', WettkampfSchema);

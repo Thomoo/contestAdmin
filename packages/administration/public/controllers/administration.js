@@ -3,7 +3,7 @@
 angular.module('mean.administration').controller('AdministrationController', ['$scope', '$location', '$log', '$timeout', '$filter', 'Global', 'Wettkampf', 'Disziplin', 'User',
 function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Disziplin, User) {
 	/*global $:false, Ladda:false */
-
+	
 	// ---------------------------------
 	// GENERAL
 	// ---------------------------------
@@ -217,7 +217,6 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 				$log.info('saved');
 			});
 		}
-
 	};
 
 	// cancel all changes
@@ -262,6 +261,12 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 		}
 	};
 
+	$scope.checkFormat = function(data) {
+		if (!data) {
+			return 'Es muss eine Format ausgewählt werden.';
+		}
+	};
+
 	// daten aufbereiten
 	$scope.geschlechter = [{
 		value : 'm',
@@ -282,6 +287,28 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 		text : 'absteigend'
 	}];
 
+	var time1Val = JSON.stringify({validate: '^\\d{1-2}\\.\\d{2}$', format: '(function(val){return val + "sec";})'});
+	var time2Val = JSON.stringify({validate: '^\\d{2}:\\d{2}\\.\\d{1}$', format: '(function(val){return val.replace(":", "min ") + "sec";})'});
+	var distance1Val = JSON.stringify({validate: '^\\d+$', format: '(function(val){return val + "m";})'});
+	var distance2Val = JSON.stringify({validate: '\\d+\\.\\d{2}$', format: '(function(val){return val + "m";})'});
+	var punkte1Val = JSON.stringify({validate: '^\\d+$', format: '(function(val){return val + "pte";})'});
+	$scope.formats = [{
+		value : time1Val,
+		text : 'time: ss.hh'
+	}, {
+		value : time2Val,
+		text : 'time: mm:ss.h'
+	}, {
+		value : distance1Val,
+		text : 'distance: m'
+	}, {
+		value : distance2Val,
+		text : 'distance: m.cm'
+	}, {
+		value : punkte1Val,
+		text : 'punkte: x'
+	}];
+	
 	$scope.showGeschlecht = function(disziplin) {
 		var selected = [];
 		if (disziplin.geschlecht) {
@@ -297,6 +324,16 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 		if (disziplin.sortierung) {
 			selected = $filter('filter')($scope.sortierungen, {
 				value : disziplin.sortierung
+			});
+		}
+		return selected.length ? selected[0].text : 'Not set';
+	};
+
+	$scope.showFormat = function(disziplin) {
+		var selected = [];
+		if (disziplin.format) {
+			selected = $filter('filter')($scope.formats, {
+				value : disziplin.format
 			});
 		}
 		return selected.length ? selected[0].text : 'Not set';

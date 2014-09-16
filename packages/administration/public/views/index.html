@@ -94,11 +94,11 @@
         </span>
       </td>
       <td>
-        <!-- editable format (text with validation) -->
-        <span editable-text="disziplin.format" e-name="format" e-form="rowform" onbeforesave="checkFormat($data, disziplin.id)">
-          {{ disziplin.format }}
+        <!-- editable format (select-local) -->
+        <span editable-select="disziplin.format" e-name="format" e-form="rowform" e-ng-options="f.value as f.text for f in formats" onbeforesave="checkFormat($data)" e-required>
+          {{ showFormat(disziplin) }}
         </span>
-      </td>
+      </td>      
       <td>
         <!-- editable sortierung (select-local) -->
         <span editable-select="disziplin.sortierung" e-name="sortierung" e-form="rowform" e-ng-options="s.value as s.text for s in sortierungen" onbeforesave="checkSortierung($data)" e-required>

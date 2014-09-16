@@ -5,7 +5,7 @@ var disziplins = require('../controllers/disziplins');
 
 // Administration authorization helpers
 var hasAuthorization = function(req, res, next) {
-	if (!req.user.isAdmin) {
+	if (!req.user.isAdmin()) {
 		return res.send(401, 'User is not authorized');
 	}
 	next();

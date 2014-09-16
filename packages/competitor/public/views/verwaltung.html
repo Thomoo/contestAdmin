@@ -59,7 +59,8 @@
                 <div class="buttons" ng-show="!rowform.$visible">
                     <button class="btn btn-info" ng-click="navigateToDetails(competitor)">Editieren</button>
                     <span data-ng-if="true || hasAuthorization(competitor)">
-                        <button class="btn btn-success" ng-click="generateStartNbr(competitor)">Start-Nr. vergeben</button>
+                        <button class="btn btn-default" ng-click="generateStartNbr(competitor)">Start-Nr. vergeben</button>
+                        wenn startnr vergeben, dann startnummer löschen
                     </span>
                 </div>
             </td>

@@ -149,7 +149,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
     };
 
     $scope.deleteCompetitor = function(competitor){
-        competitor.delete();
+        competitor.$delete();
     };
 
 }]);

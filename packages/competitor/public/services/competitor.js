@@ -6,7 +6,7 @@ function($resource) {
         competitorId : '@_id'
     }, {
         update : {method : 'PUT'},
-        delete : {method : 'DELETE'},
+        delete : {method : 'DELETE', params:{competitorId : '@_id'}},
         toggleStartNr : {method:'POST', params:{competitorId : '@_id'}}
     });
 }]);

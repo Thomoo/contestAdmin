@@ -107,4 +107,5 @@ CompetitorSchema.statics.load = function(id, cb) {
 //  }).populate('user', 'name username').exec(cb);
 };
 
+
 mongoose.model('Competitor', CompetitorSchema);

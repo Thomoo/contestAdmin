@@ -24,10 +24,7 @@ function($stateProvider) {
 		
     $stateProvider.state('anmeldung', {
         url : '/competitor/anmeldung',
-        templateUrl : 'competitor/views/anmeldung.html',
-		resolve : {
-			loggedin : isCompetitorAdmin
-		}
+        templateUrl : 'competitor/views/anmeldung.html'
     }).state('verwaltung', {
         url : '/competitor/verwaltung',
         templateUrl : 'competitor/views/verwaltung.html',
@@ -36,15 +33,9 @@ function($stateProvider) {
 		}
     }).state('edit competitor by id', {
         url : '/competitor/:competitorId',
-        templateUrl : 'competitor/views/edit-competitor.html',
-		resolve : {
-			loggedin : isCompetitorAdmin
-		}
+        templateUrl : 'competitor/views/edit-competitor.html'
     }).state('confirm competitor by id', {
         url : '/competitor/bestaetigung/:competitorId',
-        templateUrl : 'competitor/views/subscription-confirmation.html',
-		resolve : {
-			loggedin : isCompetitorAdmin
-		}
+        templateUrl : 'competitor/views/subscription-confirmation.html'
     });
 }]);

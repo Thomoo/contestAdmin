@@ -1,9 +1,7 @@
 <div class="" data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndConfig()">
 	<h1><label>{{wettkampf.title}}</label></h1>
-	<div class="form-group" class="col-md-8">
-		<textarea name="infoText" data-ng-model="wettkampf.infoText" id="infoText" class="form-control"></textarea>
-	</div>
-	<form name="competitorCreateForm" data-ng-submit="create(competitorCreateForm.$valid)" novalidate>
+	<pre>{{wettkampf.infoText}}</pre>
+	<form ng-show="wettkampf.anmeldungActive" name="competitorCreateForm" data-ng-submit="create(competitorCreateForm.$valid)" novalidate>
 		<div class="form-group">
 			<user-form></user-form>
 		</div>

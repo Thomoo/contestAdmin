@@ -30,7 +30,10 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
 
       $scope.global = {
         authenticated: !! $rootScope.user,
-        user: $rootScope.user
+        user: $rootScope.user,
+        admin: $rootScope.user.roles.indexOf('admin') !== -1,
+        resultAdmin: $rootScope.user.roles.indexOf('admin') !== -1 || $rootScope.user.roles.indexOf('resultAdmin') !== -1,
+        competitorAdmin: $rootScope.user.roles.indexOf('admin') !== -1 || $rootScope.user.roles.indexOf('competitorAdmin') !== -1
       };
     });
 

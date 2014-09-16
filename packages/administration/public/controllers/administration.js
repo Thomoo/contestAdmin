@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.administration').controller('AdministrationController', ['$scope', '$location', '$log', '$timeout', '$filter', 'Global', 'Wettkampf', 'Disziplin',
-function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Disziplin) {
+angular.module('mean.administration').controller('AdministrationController', ['$scope', '$location', '$log', '$timeout', '$filter', 'Global', 'Wettkampf', 'Disziplin', 'User',
+function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Disziplin, User) {
 	/*global $:false, Ladda:false */
 
 	// ---------------------------------
@@ -23,6 +23,10 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 
 		Disziplin.query(function(disziplins) {
 			$scope.disziplins = disziplins;
+		});
+		
+		User.query(function(users){
+			$scope.users = users;
 		});
 	};
 
@@ -298,4 +302,20 @@ function($scope, $location, $log, $timeout, $filter, Global, Wettkampf, Diszipli
 		return selected.length ? selected[0].text : 'Not set';
 	};
 
+	// ---------------------------------
+	// Roles
+	// ---------------------------------
+	$scope.saveUser = function($index, user){
+		var pw1 = $('#password' + $index).val();
+		var pw2 = $('#passwordBe' + $index).val();
+		$log.debug('pw1: ' + pw1);
+		$log.debug('pw2: ' + pw2);
+		if(pw1 !== pw2){
+			throw Error('fu');
+		}
+		
+		$log.debug('PWCHECK ok');
+		
+		
+	};
 }]);

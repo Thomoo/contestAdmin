@@ -125,10 +125,87 @@
 
   <button class="btn btn-default" ng-click="addDisziplin()">Add row</button>
     
-  </form>
   
-</div>
-		
+  </form>
 	</fieldset>
+    
+	<fieldset  class='form-horizontal well'>
+		<legend>
+			Benutzerrollen verwalten
+		</legend>
+  <table class="table table-bordered table-hover table-condensed">
+		<tr>
+			<th>Benutzer</th>
+		</tr>		
+		<tr ng-repeat="user in users">
+			<td>{{ user.name }}</td>
+			<td ng-show="rowform.$visible">Passwort: <input type="password" name="password1" id="password{{$index}}"/></td>
+			<td ng-show="rowform.$visible">Passwort bestätigen: <input type="password" name="password2" id="passwordBe{{$index}}"/></td>
+	      <td style="white-space: nowrap">
+	        <!-- form -->
+	        <form editable-form name="rowform" onbeforesave="saveUser($index, user)" oncancel="cancelUser($index, user)" ng-show="rowform.$visible" class="form-buttons form-inline">
+	          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+	            save
+	          </button>
+	          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+	            cancel
+	          </button>
+	        </form>
+	        <div class="buttons" ng-show="!rowform.$visible">
+	          <button class="btn btn-primary" ng-click="rowform.$show()">change password</button>
+	          <!-- <button class="btn btn-danger" ng-click="removeDisziplin(disziplin)">del</button> -->
+	        </div>  
+	      </td>			
+		</tr>
+</table>		
+  <table class="table table-bordered table-hover table-condensed">
+		<tr>
+			<th>Benutzer</th>
+			<th>Passwort</th>
+			<th>Passwort bestätigen</th>
+		</tr>
+	<tr ng-repeat="user in users">    	
+      <td>
+        <!-- name (text) -->
+        <span e-name="name" e-form="rowform">
+          {{ user.name }}
+        </span>
+      </td>
+      <td>
+        <!-- editable password (text with validation) -->
+        <!-- <input type="password" editable-text="user.password" e-name="password" e-form="rowform" onbeforesave="checkPassword($data, password.id)" e-required>
+          {{ user.hashed_password }}
+        </input> -->
+        <span editable-text="user.password" e-name="password" e-form="rowform" onbeforesave="checkPassword($data, password.id)" e-required>
+          {{ user.hashed_password }}
+        </span>
+      </td>
+      <td>
+        <!-- editable password repeat (text with validation) -->
+        <span e-form="rowform" onbeforesave="checkPassword($data, password.id)"  ng-show="rowform.$visible" e-required>
+          {{ user.password }}
+        </span>
+      </td>   
+      <td style="white-space: nowrap">
+        <!-- form -->
+        <form editable-form name="rowform" onbeforesave="saveUser($data, user)" oncancel="cancelUser($index, user)" ng-show="rowform.$visible" class="form-buttons form-inline">
+          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+            save
+          </button>
+          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+            cancel
+          </button>
+        </form>
+        <div class="buttons" ng-show="!rowform.$visible">
+          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+          <!-- <button class="btn btn-danger" ng-click="removeDisziplin(disziplin)">del</button> -->
+        </div>  
+      </td>
+    </tr>
+  </table>
+  
+  <!-- <a ui-sref='forgot-password'>Forgot your password?</a> -->
+
+	</fieldset>    
 </div>
 

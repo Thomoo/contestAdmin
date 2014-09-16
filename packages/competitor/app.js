@@ -24,7 +24,6 @@ Competitor.register(function(app, auth, database) {
   Competitor.menus.add({
     title: 'Anmeldung',
     link: 'anmeldung',
-    roles: ['authenticated'],
     menu: 'main'
   });
 
@@ -32,7 +31,7 @@ Competitor.register(function(app, auth, database) {
   Competitor.menus.add({
     title: 'Teilnehmerverwaltung',
     link: 'verwaltung',
-    roles: ['authenticated'],
+    roles: ['competitorAdmin'],
     menu: 'main'
   });
 

@@ -20,14 +20,14 @@ Result.register(function(app, auth, database) {
   Result.menus.add({
     title: 'Resultat erfassen',
     link: 'result enter-result',
-    roles: ['authenticated'],
+    roles: ['resultAdmin'],
     menu: 'main'
   });
 
   Result.menus.add({
     title: 'Start- und Ranglisten',
     link: 'result lists',
-    roles: ['authenticated'],
+    roles: ['resultAdmin'],
     menu: 'main'
   });
 

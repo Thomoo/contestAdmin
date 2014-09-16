@@ -25,8 +25,16 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
         return (!$scope.search || (!$scope.search.startnr && !$scope.search.$));
     };
 
-    $scope.generateStartNbr = function(){
-        alert('hello!');
+    $scope.generateStartNr = function(competitor){
+        if(!competitor.startnr) {
+            competitor.$toggleStartNr();
+        }
+    };
+
+    $scope.removeStartNr = function(competitor){
+        if(competitor.startnr) {
+            competitor.$toggleStartNr();
+        }
     };
 
 

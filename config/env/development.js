@@ -30,12 +30,13 @@ module.exports = {
     clientSecret: 'SECRET_KEY',
     callbackURL: 'http://localhost:3000/auth/linkedin/callback'
   },
-  emailFrom: 'SENDER EMAIL ADDRESS', // sender address like ABC <abc@example.com>
+// Set your Email setting here
+  emailFrom: 'contestadmin@padoo.net', // sender address like ABC <abc@example.com>
   mailer: {
-    service: 'SERVICE_PROVIDER',
+    service: 'Gmail',
     auth: {
-      user: 'EMAIL_ID',
-      pass: 'PASSWORD'
+      user: 'contestadmin@padoo.net',
+      pass: 'Integration'
     }
   }
 };

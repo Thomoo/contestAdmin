@@ -1,3 +1,14 @@
 @media print {
     /*h1 {page-break-before: always;}*/
+   
+   .content {
+   		margin-top: 0 !important;
+   }
+   
+   .no-print {
+   		display: none;
+   }
+   .page-break-after {
+   		page-break-after: always;
+   }
 }

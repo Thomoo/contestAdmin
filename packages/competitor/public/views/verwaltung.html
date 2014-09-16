@@ -57,10 +57,10 @@
             </td>
             <td style="white-space: nowrap">
                 <div class="buttons" ng-show="!rowform.$visible">
-                    <button class="btn btn-info" ng-click="navigateToDetails(competitor)">Editieren</button>
+                    <button class="btn btn-info" ng-click="navigateToDetails(competitor)">Bearbeiten</button>
                     <span data-ng-if="true || hasAuthorization(competitor)">
-                        <button class="btn btn-default" ng-click="generateStartNbr(competitor)">Start-Nr. vergeben</button>
-                        wenn startnr vergeben, dann startnummer löschen
+                    <button ng-show="!competitor.startnr" class="btn btn-primary" ng-click="generateStartNr(competitor)">Start-Nr. vergeben</button>
+                    <button ng-show="competitor.startnr" class="btn btn-danger" ng-click="removeStartNr(competitor)">Start-Nr. entfernen</button>
                     </span>
                 </div>
             </td>

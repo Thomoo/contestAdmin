@@ -34,15 +34,15 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     });
   app.route('/isAdmin')
     .get(function(req, res) {
-      res.send(req.user.isAdmin() ? req.user : '0');
+      res.send(req.user && req.user.isAdmin() ? req.user : '0');
     });
   app.route('/isResultAdmin')
     .get(function(req, res) {
-      res.send(req.user.isResultAdmin() ? req.user : '0');
+      res.send(req.user && req.user.isResultAdmin() ? req.user : '0');
     });
   app.route('/isCompetitorAdmin')
     .get(function(req, res) {
-      res.send(req.user.isCompetitorAdmin() ? req.user : '0');
+      res.send(req.user && req.user.isCompetitorAdmin() ? req.user : '0');
     });
 
   // Setting the local strategy route

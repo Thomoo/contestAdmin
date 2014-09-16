@@ -133,7 +133,17 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 	};
 	
 	
+	$scope.createSelectedDisciplines = function(){
+		$scope.global.selectedDisciplines = [];
+		$scope.global.disciplines.forEach(function(discipline){
+			if($scope.global.selectedDisciplinesIds[discipline._id] === true){
+				$scope.global.selectedDisciplines.push(discipline);
+			}					
+		});		
+	};
+	
 	$scope.navStartLists = function() {
+		$scope.createSelectedDisciplines();
 		$location.path('result/start-lists');
 	};
 

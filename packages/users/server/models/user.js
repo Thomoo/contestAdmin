@@ -15,11 +15,11 @@ var validatePresenceOf = function(value) {
   return (this.provider && this.provider !== 'local') || (value && value.length);
 };
 
-var validateUniqueEmail = function(value, callback) {
+var validateUniqueUsername = function(value, callback) {
   var User = mongoose.model('User');
   User.find({
     $and: [{
-      email: value
+      username: value
     }, {
       _id: {
         $ne: this._id
@@ -37,23 +37,18 @@ var validateUniqueEmail = function(value, callback) {
 var UserSchema = new Schema({
   name: {
     type: String,
-    required: true
-  },
-  email: {
-    type: String,
     required: true,
-    unique: true,
-    match: [/.+\@.+\..+/, 'Please enter a valid email'],
-    validate: [validateUniqueEmail, 'E-mail address is already in-use']
   },
   username: {
     type: String,
     unique: true,
-    required: true
+    required: true,
+    validate: [validateUniqueUsername, 'Username is already in-use']
   },
   roles: {
     type: Array,
-    default: ['authenticated']
+    enum:['admin', 'resultAdmin', 'competitorAdmin'],
+    required: true
   },
   hashed_password: {
     type: String,
@@ -65,12 +60,7 @@ var UserSchema = new Schema({
   },
   salt: String,
   resetPasswordToken: String,
-  resetPasswordExpires: Date,
-  facebook: {},
-  twitter: {},
-  github: {},
-  google: {},
-  linkedin: {}
+  resetPasswordExpires: Date
 });
 
 /**
@@ -99,18 +89,6 @@ UserSchema.pre('save', function(next) {
 UserSchema.methods = {
 
   /**
-   * HasRole - check if the user has required role
-   *
-   * @param {String} plainText
-   * @return {Boolean}
-   * @api public
-   */
-  hasRole: function(role) {
-    var roles = this.roles;
-    return roles.indexOf('admin') !== -1 || roles.indexOf(role) !== -1;
-  },
-
-  /**
    * IsAdmin - check if the user is an administrator
    *
    * @return {Boolean}
@@ -118,6 +96,26 @@ UserSchema.methods = {
    */
   isAdmin: function() {
     return this.roles.indexOf('admin') !== -1;
+  },
+
+  /**
+   * IsResultAdmin - check if the user is an administrator of results
+   *
+   * @return {Boolean}
+   * @api public
+   */
+  isResultAdmin: function() {
+    return this.roles.indexOf('admin') !== -1 || this.roles.indexOf('resultAdmin') !== -1;
+  },
+
+  /**
+   * IsCompetitorAdmin - check if the user is an administrator of competitors
+   *
+   * @return {Boolean}
+   * @api public
+   */
+  isCompetitorAdmin: function() {
+    return this.roles.indexOf('admin') !== -1 || this.roles.indexOf('competitorAdmin') !== -1;
   },
 
   /**

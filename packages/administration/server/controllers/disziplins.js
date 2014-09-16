@@ -36,7 +36,7 @@ exports.create = function(req, res) {
 };
 
 /**
- * Update an disziplin
+ * Update a disziplin
  */
 exports.update = function(req, res) {
 	var disziplin = req.disziplin;

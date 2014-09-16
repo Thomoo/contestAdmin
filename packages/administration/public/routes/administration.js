@@ -2,19 +2,19 @@
 
 angular.module('mean.administration').config(['$stateProvider',
 function($stateProvider) {
-	// Check if the user is connected
+	// Check if the user is connected and admin
 	var checkLoggedin = function($q, $timeout, $http, $location) {
 		// Initialize a new promise
 		var deferred = $q.defer();
 
 		// Make an AJAX call to check if the user is logged in
-		$http.get('/loggedin').success(function(user) {
+		$http.get('/isAdmin').success(function(user) {
 			// Authenticated
-			if (user !== '0')
+			console.log('User: ' + JSON.stringify(user));
+			if (user !== '0'){
 				$timeout(deferred.resolve);
-
 			// Not Authenticated
-			else {
+			}else {
 				$timeout(deferred.reject);
 				$location.url('/login');
 			}
@@ -30,4 +30,5 @@ function($stateProvider) {
 			loggedin : checkLoggedin
 		}
 	});
+
 }]);

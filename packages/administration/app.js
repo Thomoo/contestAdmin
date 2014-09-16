@@ -20,7 +20,7 @@ Administration.register(function(app, auth, database) {
   Administration.menus.add({
     title: 'Administration',
     link: 'admin start',
-    roles: ['authenticated'],
+    roles: ['admin'],
     menu: 'main'
   });
 

@@ -21,3 +21,12 @@ angular.module('mean.administration').factory('Disziplin', ['$resource',
     });
   }
 ]);
+
+//User service used for user REST endpoint
+angular.module('mean.administration').factory('User', ['$resource',
+  function($resource) {
+    return $resource('users', {
+    }, {
+    });
+  }
+]);

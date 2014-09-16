@@ -7,30 +7,21 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 		name : 'result'
 	};
 	
-	
-///	
+		
 	$scope.loadCompetitors = function(){
 		var deferred = $q.defer();
 		if(!$scope.global.competitors){
 			Competitor.query(function(competitors) {
-				// $scope.global.competitors = competitors;
-				// deferred.resolve('competitors loaded');
 				deferred.resolve(competitors);
 			});
 		}	
 		return deferred.promise;
-	};
-	
+	};	
 	
 	$scope.loadDisciplines = function(){
 		var deferred = $q.defer();
 		if(!$scope.global.disciplines){
 			Disziplin.query(function(disciplines) {
-				// $scope.global.disciplines = disciplines;
-				// $scope.global.disciplines.forEach(function(discipline){
-					// discipline.selected = false;
-				// });
-				// deferred.resolve('disciplines loaded');
 				disciplines.forEach(function(discipline){
 					discipline.selected = false;
 				});
@@ -52,46 +43,21 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 				});
 			});
 		}
-	};
-	
-	// $scope.global.competitors = $scope.loadCompetitors();
-	// $scope.global.disciplines = $scope.loadDisciplines();
+	};	
+		
 	
 	$q.all([$scope.loadCompetitors(), $scope.loadDisciplines()]).then(function(finished){
 		$scope.global.competitors = finished[0];
 		$scope.global.disciplines = finished[1];
 		$scope.initCompetitorsPerDiscipline();
 	    
-	    $scope.updateSelectedDisciplines();
+	    $scope.refreshSelectedDisciplines();
 		});
-	
-	$scope.possibleCompetitors = [];
-	
-///
-
-	if(!$scope.global.enteredResults){
-		$scope.global.enteredResults = [];
-	}
-	
 	
 	$scope.selectAllDisciplines = false;
 	$scope.selectedNoDisciplines = true;
-
-
-	$scope.updatePossibleCompetitors = function() {
-		if ($scope.discipline) {
-			$scope.possibleCompetitors = [];
-			$scope.global.competitors.forEach(function(competitor) {
-				competitor.disciplines.forEach(function(discipline) {
-					if ($scope.discipline._id === discipline.disciplineId) {
-						$scope.possibleCompetitors.push(competitor);
-					}
-				});
-			});
-		}
-	};
 	
-	$scope.updateSelectAllDisciplines = function() {
+	$scope.refreshSelectAllDisciplines = function() {
 		if ($scope.selectAllDisciplines){
 			$scope.global.disciplines.forEach(function(discipline){
 				discipline.selected = true;
@@ -105,7 +71,7 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 		}
 	};
 
-	$scope.updateSelectedDisciplines = function() {
+	$scope.refreshSelectedDisciplines = function() {
 		if($scope.global.disciplines){
 			var allSelected = true;
 			var noneSelected = true;
@@ -122,6 +88,10 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 	};
 
 
+	if(!$scope.global.enteredResults){
+		$scope.global.enteredResults = [];
+	}
+	
 	$scope.updateResult = function() {
 		$log.info('update result called...');
 		console.log($scope.competitor);
@@ -161,17 +131,18 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 		$scope.result = '';
 	};
 	
-	$scope.createStartLists = function() {
+	
+	$scope.navStartLists = function() {
 		$location.path('result/start-lists');
 	};
 
-	$scope.createRankings = function() {
+	$scope.navRankings = function() {
 		$location.path('result/rankings');
 	};
 	
 	$scope.navBack = function() {
-            $window.history.back();
-          };
+    	$window.history.back();
+    };
           
-    $scope.updateSelectedDisciplines();
+    $scope.refreshSelectedDisciplines();
 }]);

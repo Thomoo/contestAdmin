@@ -6,14 +6,14 @@
 		<div class="form-group">
 			<label for"discipline" class="col-md-4 control-label">Disziplin</label>
 			<div class="col-md-8">
-				<select id="discipline" class="form-control" required ng-model="discipline" ng-options="discipline.bezeichnung for discipline in global.disciplines | orderBy:'bezeichnung'" ng-change="updatePossibleCompetitors()"></select>
+				<select id="discipline" class="form-control" required ng-model="discipline" ng-options="discipline.bezeichnung for discipline in global.disciplines | orderBy:'bezeichnung'"></select>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="startnr" class="col-md-4 control-label">Start Nr.</label>
 			<div class="col-md-8">
 				<!-- <input id="startnr" required type="number" placeholder="999" min="1" max="999" class="form-control" ng-model="startnr"/> -->
-				<select id="startnr" class="form-control" required ng-model="competitor" ng-options="competitor.startnr for competitor in possibleCompetitors | orderBy:'startnr'"></select>
+				<select id="startnr" class="form-control" required ng-model="competitor" ng-options="competitor.startnr for competitor in global.competitorsPerDiscipline[discipline._id] | orderBy:'startnr'"></select>
 			</div>
 			<!-- <div class="col-md-4"></div> -->
 		</div>

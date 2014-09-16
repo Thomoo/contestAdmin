@@ -59,3 +59,8 @@ modules/public/
 modules/views/
 /public/build/
 /.project
+
+# --------------------
+# Windows generated
+# --------------------
+Thumbs.db

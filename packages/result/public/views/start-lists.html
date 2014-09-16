@@ -1,0 +1,25 @@
+<div data-ng-controller="ResultController">
+    <h1>Startlisten</h1>
+	<button class="btn btn-primary" ng-click="navBack()">zurück</button>
+
+	<div ng-repeat="discipline in global.disciplines | orderBy:'bezeichnung'">
+	<h1>{{ discipline.bezeichnung }}</h1>
+	<table class="table table-bordered table-hover table-condensed table-striped">
+		<tr>
+			<th>Disziplin</th>
+			<th>Name</th>
+			<th>Vorname</th>
+			<th>Ort/Verein</th>
+			<th>Jahrgang</th>
+		</tr>
+		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy:'startnr'">
+			<td>{{ competitor.startnr }}</td>
+			<td>{{ competitor.name }}</td>
+			<td>{{ competitor.firstname }}</td>
+			<td>{{ competitor.society }}</td>
+			<td>{{ competitor.birthdate }}</td>
+		</tr>
+	</table>
+	</div>
+
+</div>

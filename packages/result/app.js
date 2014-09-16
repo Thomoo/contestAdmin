@@ -26,10 +26,12 @@ Result.register(function(app, auth, database) {
 
   Result.menus.add({
     title: 'Start- und Ranglisten',
-    link: 'result lists',
+    link: 'result select-lists',
     roles: ['resultAdmin'],
     menu: 'main'
   });
+  
+  Result.aggregateAsset('css','result.css');
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

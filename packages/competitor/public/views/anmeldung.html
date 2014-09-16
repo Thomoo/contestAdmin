@@ -1,13 +1,11 @@
 <div class="" data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndConfig()">
 	<h1><label>{{wettkampf.title}}</label></h1>
-	<div class="form-group" class="col-md-8">
-		<textarea name="infoText" data-ng-model="wettkampf.infoText" id="infoText" class="form-control"></textarea>
-	</div>
-	<form name="competitorForm" data-ng-submit="create(competitorForm.$valid)" novalidate>
+	<pre>{{wettkampf.infoText}}</pre>
+	<form ng-show="wettkampf.anmeldungActive" name="competitorForm" data-ng-submit="create(competitorForm.$valid)" novalidate>
 		<div class="form-group">
 			<user-form></user-form>
 		</div>
-		<button type="submit" ng-disabled="competitorForm.$invalid" class="btn btn-success btn-cstm-controls btn-cstm-controls-right">Anmelden</button>
+		<button type="submit" ng-disabled="competitorCreateForm.$invalid" class="btn btn-success btn-cstm-controls btn-cstm-controls-right">Anmelden</button>
 	</form>
 </div>
 

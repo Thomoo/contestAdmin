@@ -1,4 +1,36 @@
 <div data-ng-controller="ResultController">
-    <h1>Ranglisten</h1>
-    <button class="btn btn-primary" ng-click="navBack()">zurück</button>
+	<div class="no-print">
+	    <h1>Ranglisten</h1>
+		<button class="btn btn-primary" ng-click="navBack()">zurück</button>
+		<br />
+		<br />
+		<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></div>
+	</div>
+	
+	<div ng-repeat="discipline in global.selectedDisciplines | orderBy:'bezeichnung'">
+	<h3>{{ discipline.bezeichnung }}</h3>
+	<table class="table table-bordered table-hover table-condensed table-striped page-break-after">
+		<tr>
+			<th>Rang</th>
+			<th>Name</th>
+			<th>Vorname</th>
+			<th>Ort/Verein</th>
+			<th>Jahrgang</th>
+			<th>Resultat</th>
+		</tr>
+		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy:'startnr'">
+			<td>{{ competitor.startnr }}</td>
+			<td>{{ competitor.name }}</td>
+			<td>{{ competitor.firstname }}</td>
+			<td>{{ competitor.society }}</td>
+			<td>{{ competitor.birthdate | date: 'yyyy' }}</td>
+			<td>{{ competitor.disciplines.disciplineId | filter: discipline._id }}</td>
+		</tr>
+	</table>
+	</div>
+	
+	<div class="no-print">
+		<br/>
+		<button class="btn btn-primary no-print" ng-click="navBack()">zurück</button>
+	</div>
 </div>

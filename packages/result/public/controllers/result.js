@@ -156,6 +156,7 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 	};
 
 	$scope.navRankings = function() {
+		$scope.createSelectedDisciplines();
 		$location.path('result/rankings');
 	};
 	

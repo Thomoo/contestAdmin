@@ -20,8 +20,16 @@ module.exports = function(Competitor, app, auth, database) {
 
   app.route('/competitor/:competitorId')
     .get(competitor.show)
+    .post(auth.requiresLogin, hasAuthorization, competitor.updateWithStartNr)
     .put(auth.requiresLogin, hasAuthorization, competitor.update)
     .delete(auth.requiresLogin, hasAuthorization, competitor.destroy);
+
+
+
+    app.route('/competitor/:competitorId')
+        .get(competitor.show)
+        .put(auth.requiresLogin, hasAuthorization, competitor.update)
+        .delete(auth.requiresLogin, hasAuthorization, competitor.destroy);
 
   // app.get('/competitor/example/anyone', function(req, res, next) {
     // res.send('Anyone can access this');

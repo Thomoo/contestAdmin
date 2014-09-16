@@ -38,6 +38,56 @@ exports.create = function(req, res) {
   });
 };
 
+
+
+function saveCompetitor(res, competitor){
+    return competitor.save(function(err) {
+        if (err) {
+            return res.json(500, {
+                error: 'Cannot update the competitor'
+            });
+        }
+
+    });
+}
+
+
+exports.updateWithStartNr = function(req, res) {
+
+    console.info('updateWithStartNr');
+
+    var competitor = req.competitor;
+
+    competitor = _.extend(competitor, req.body);
+
+    if(competitor.startnr){
+        // startnr already exists, remove it
+        competitor.startnr = undefined;
+        saveCompetitor(res, competitor);
+
+        res.json(competitor);
+
+        return;
+    }
+
+    Competitor.findOne().sort('-startnr').exec(function(err, highestCompetitor) {
+        if (err) {
+            console.log('err: ' + err);
+            return res.status(500).json({
+                error: 'Cannot generate a new startnr'
+            });
+        }
+
+        competitor.startnr = highestCompetitor.startnr ? highestCompetitor.startnr + 1 : 1;
+
+        competitor = _.extend(competitor, req.body);
+
+        saveCompetitor(res, competitor);
+
+        res.json(competitor);
+    });
+};
+
 /**
  * Update a competitor
  */
@@ -61,6 +111,9 @@ exports.update = function(req, res) {
  * Delete a competitor
  */
 exports.destroy = function(req, res) {
+
+    console.info('deleting user');
+
   var competitor = req.competitor;
 
   competitor.remove(function(err) {

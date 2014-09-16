@@ -148,5 +148,9 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
         return destDisciplines;
     };
 
+    $scope.deleteCompetitor = function(competitor){
+        competitor.delete();
+    };
+
 }]);
 

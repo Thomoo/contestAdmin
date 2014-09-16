@@ -14,7 +14,7 @@
 		</tr>
 		<tr ng-repeat="discipline in global.disciplines | orderBy:'bezeichnung'">
 			<td>{{ discipline.bezeichnung }}</td>
-			<td><input type="checkbox" ng-model="discipline.selected" ng-change="refreshSelectedDisciplines()"></td>
+			<td><input type="checkbox" ng-model="global.selectedDisciplinesIds[discipline._id]" ng-change="refreshSelectedDisciplines()"></td>
 		</tr>
 	</table>
 	<button class="btn btn-success" ng-click="navStartLists()" ng-disabled="selectedNoDisciplines">Startlisten erstellen</button>

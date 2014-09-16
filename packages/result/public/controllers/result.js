@@ -6,7 +6,6 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 	$scope.package = {
 		name : 'result'
 	};
-	
 		
 	$scope.loadCompetitors = function(){
 		var deferred = $q.defer();
@@ -22,9 +21,6 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 		var deferred = $q.defer();
 		if(!$scope.global.disciplines){
 			Disziplin.query(function(disciplines) {
-				disciplines.forEach(function(discipline){
-					discipline.selected = false;
-				});
 				deferred.resolve(disciplines);
 			});
 		}
@@ -51,8 +47,13 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 		$scope.global.disciplines = finished[1];
 		$scope.initCompetitorsPerDiscipline();
 	    
+		if(!$scope.global.selectedDisciplinesIds){
+			$scope.global.selectedDisciplinesIds = {};
+		}
+		
 	    $scope.refreshSelectedDisciplines();
-		});
+	});
+	
 	
 	$scope.selectAllDisciplines = false;
 	$scope.selectedNoDisciplines = true;
@@ -60,12 +61,12 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 	$scope.refreshSelectAllDisciplines = function() {
 		if ($scope.selectAllDisciplines){
 			$scope.global.disciplines.forEach(function(discipline){
-				discipline.selected = true;
+				$scope.global.selectedDisciplinesIds[discipline._id] = true;
 			});
 			$scope.selectedNoDisciplines = false;
 		} else {
 			$scope.global.disciplines.forEach(function(discipline){
-				discipline.selected = false;
+				$scope.global.selectedDisciplinesIds[discipline._id] = false;
 			});
 			$scope.selectedNoDisciplines = true;
 		}
@@ -76,11 +77,11 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 			var allSelected = true;
 			var noneSelected = true;
 			$scope.global.disciplines.forEach(function(discipline){
-				if (discipline.selected){
+				if($scope.global.selectedDisciplinesIds[discipline._id] === true){
 					noneSelected = false;
 				} else {
 					allSelected = false;
-				}
+				}					
 			});
 			$scope.selectAllDisciplines = allSelected;	
 			$scope.selectedNoDisciplines = noneSelected;	

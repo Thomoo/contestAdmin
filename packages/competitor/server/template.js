@@ -3,7 +3,7 @@
 module.exports = {
   confirmation_email: function(req, competitor, mailOptions) {
     mailOptions.html = [
-      'Hallo ' + competitor.firtname + ' ' + competitor.name + ',',
+      'Hallo ' + competitor.firstname + ' ' + competitor.name + ',',
       'Vielen Dank für Deine Anmeldung.',
       'Du kannst Deine Angaben jederzeit unter folgendem Link einsehen und allenfalls korrigieren:',
       'http://' + req.headers.host + '/#!/competitor/' + competitor._id,

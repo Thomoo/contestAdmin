@@ -5,7 +5,6 @@
  */
 var mongoose = require('mongoose'),
   Competitor = mongoose.model('Competitor'),
-//  Disziplin = mongoose.model('Disziplin'),
   _ = require('lodash');
 
 
@@ -26,7 +25,7 @@ exports.competitor = function(req, res, next, id) {
  */
 exports.create = function(req, res) {
   var competitor = new Competitor(req.body);
-  competitor.user = req.user;
+//  competitor.user = req.user;
 
   competitor.save(function(err) {
     if (err) {
@@ -86,7 +85,8 @@ exports.show = function(req, res) {
  * List of Competitors
  */
 exports.all = function(req, res) {
-  Competitor.find().sort('-created').populate('user', 'name username').exec(function(err, competitors) {
+  Competitor.find().sort('-created').exec(function(err, competitors) {
+//  Competitor.find().sort('-created').populate('user', 'name username').exec(function(err, competitors) {
     if (err) {
       return res.json(500, {
         error: 'Cannot list the competitors'

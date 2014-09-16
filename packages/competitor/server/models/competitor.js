@@ -76,10 +76,10 @@ var CompetitorSchema = new Schema({
     type: Number,
     required: false,
   },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  },
+  // user: {
+    // type: Schema.ObjectId,
+    // ref: 'User'
+  // },
   disciplines: {
   	type: [DisciplineResultSchema]
   }
@@ -103,8 +103,8 @@ var CompetitorSchema = new Schema({
 CompetitorSchema.statics.load = function(id, cb) {
   this.findOne({
     _id: id
-  }).populate('user', 'name username').exec(cb);
+  }).exec(cb);
+//  }).populate('user', 'name username').exec(cb);
 };
 
 mongoose.model('Competitor', CompetitorSchema);
-//mongoose.model('DisciplineResult', DisciplineResultSchema);

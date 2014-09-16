@@ -128,7 +128,7 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 
 	$scope.clearForm = function() {
 		//$scope.discipline = '';
-		$scope.competitor = {};
+		$scope.competitor = null;
 		$scope.result = '';
 	};
 	

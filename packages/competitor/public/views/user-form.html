@@ -35,7 +35,7 @@
 	<div class="form-group">
 		<label for="ort" class="col-md-4 control-label">Ort</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.location" required id="ort" type="text" placeholder="Ort" class="form-control"/>
+			<input ng-model="competitor.location" required id="ort" type="text" placeholder="Ort" class="form-control" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -47,7 +47,9 @@
 	<div class="form-group">
 		<label for="email" class="col-md-4 control-label">Email</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.email" required id="email" type="email" name="email" placeholder="Email" class="form-control"/>
+			<input ng-model="competitor.email" required id="email" type="email" name="email" placeholder="Email" class="form-control"
+                tooltip="Bitte eine gültige Email Adresse eingeben!"
+                tooltip-trigger="{{{true: 'mouseenter', false: 'never'}[competitorForm.email.$invalid]}}" />
 		</div>
 	</div>
 	<div class="form-group" ng-controller="DatePickerCtrl">
@@ -56,7 +58,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<p class="input-group">
-						<input type="date" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}" show-button-bar="false" ng-model="competitor.birthdate" is-open="opened" datepicker-options="dateOptions" ng-required="true" />
+						<input id="geburtstag" name="geburtstag" type="date" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}"
+                               show-button-bar="false" ng-model="competitor.birthdate" is-open="opened" datepicker-options="dateOptions" required />
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-default" ng-click="open($event)">
 								<i class="glyphicon glyphicon-calendar"></i>

@@ -1,11 +1,11 @@
 <div data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndFindOne()">
 	<h1>Teilnehmer bearbeiten</h1>
-	<form name="competitorEditForm" data-ng-submit="update(competitorEditForm.$valid)" novalidate>
+	<form name="competitorForm" data-ng-submit="update(competitorForm.$valid)" novalidate>
 		<div class="form-group">
 			<user-form></user-form>
 		</div>
         <button nb-click="cancel()" class="btn btn-default btn-cstm-controls btn-cstm-controls-right">Abbrechen</button>
-        <button type="submit" ng-disabled="competitorEditForm.$invalid" class="btn btn-primary btn-cstm-controls btn-cstm-controls-right">Speichern</button>
+        <button type="submit" ng-disabled="competitorForm.$invalid" class="btn btn-primary btn-cstm-controls btn-cstm-controls-right">Speichern</button>
         <button nb-click="todo()" class="btn btn-danger btn-cstm-controls">Benutzer löschen</button>
 	</form>
 </div>

@@ -3,51 +3,51 @@
 		<label for="gender-radios" class="col-md-4 control-label">Geschlecht</label>
 		<div class="col-md-8" id="gender-radios">
 			<label for="female">weiblich</label>
-			<input ng-model="competitor.gender" required id="female" type="radio" name="geschlecht" value="female"/>
+			<input ng-model="competitor.gender" ng-disabled="readonly" required id="female" type="radio" name="geschlecht" value="female"/>
 			<label for="male" >männlich</label>
-			<input ng-model="competitor.gender" required id="male" type="radio" name="geschlecht" value="male"/>
+			<input ng-model="competitor.gender" ng-disabled="readonly" required id="male" type="radio" name="geschlecht" value="male"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="name" class="col-md-4 control-label">Name</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.name" required id="name" type="text" placeholder="Name" class="form-control"/>
+			<input ng-model="competitor.name" ng-readonly="readonly" required id="name" type="text" placeholder="Name" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="vorname" class="col-md-4 control-label">Vorname</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.firstname" required id="vorname" type="text" placeholder="Vorname" class="form-control"/>
+			<input ng-model="competitor.firstname" ng-readonly="readonly" required id="vorname" type="text" placeholder="Vorname" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="adresse" class="col-md-4 control-label">Adresse</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.address" required id="adresse" type="text" placeholder="Adresse" class="form-control"/>
+			<input ng-model="competitor.address" ng-readonly="readonly" required id="adresse" type="text" placeholder="Adresse" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="plz" class="col-md-4 control-label">PLZ</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.zip" required id="plz" type="number" min="1000" max="9999" placeholder="PLZ" class="form-control"/>
+			<input ng-model="competitor.zip" ng-readonly="readonly" required id="plz" type="number" min="1000" max="9999" placeholder="PLZ" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="ort" class="col-md-4 control-label">Ort</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.location" required id="ort" type="text" placeholder="Ort" class="form-control" />
+			<input ng-model="competitor.location" ng-readonly="readonly" required id="ort" type="text" placeholder="Ort" class="form-control" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="verein" class="col-md-4 control-label">Verein</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.society" id="verein" type="text" placeholder="Verein" class="form-control"/>
+			<input ng-model="competitor.society" ng-readonly="readonly" id="verein" type="text" placeholder="Verein" class="form-control"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="email" class="col-md-4 control-label">Email</label>
 		<div class="col-md-8">
-			<input ng-model="competitor.email" required id="email" type="email" name="email" placeholder="Email" class="form-control"
+			<input ng-model="competitor.email" ng-readonly="readonly" required id="email" type="email" name="email" placeholder="Email" class="form-control"
                 tooltip="Bitte eine gültige Email Adresse eingeben!"
                 tooltip-trigger="{{{true: 'mouseenter', false: 'never'}[competitorForm.email.$invalid]}}" />
 		</div>
@@ -58,10 +58,10 @@
 			<div class="row">
 				<div class="col-md-6">
 					<p class="input-group">
-						<input id="geburtstag" name="geburtstag" type="date" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}"
+						<input id="geburtstag" ng-readonly="readonly" name="geburtstag" type="date" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}"
                                show-button-bar="false" ng-model="competitor.birthdate" is-open="opened" datepicker-options="dateOptions" required />
 						<span class="input-group-btn">
-							<button type="button" class="btn btn-default" ng-click="open($event)">
+							<button type="button" ng-disabled="readonly" class="btn btn-default" ng-click="open($event)">
 								<i class="glyphicon glyphicon-calendar"></i>
 							</button> </span>
 					</p>

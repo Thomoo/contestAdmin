@@ -36,7 +36,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
                 disciplines : $scope.selectDeclaredDisciplines($scope.allDisciplines)
             });
             competitorToCreate.$save(function(response) {
-                $location.path('competitor/bestaetigung/' + response._id);
+                $location.path('competitor/bestaetigung');
             });
             this.competitor.gender = '';
             this.competitor.name = '';

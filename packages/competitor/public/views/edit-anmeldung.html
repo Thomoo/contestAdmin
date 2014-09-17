@@ -1,0 +1,14 @@
+<div class="" data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndFindOne()">
+	<h1><label>{{wettkampf.title}}</label></h1>
+	<pre>{{wettkampf.infoText}}</pre>
+	<div class="form-group" class="col-md-8">
+		<textarea name="infoText" id="infoText" class="form-control">Vielen Dank für Ihre Teilnahme, hier können sie ihre Daten ändern.</textarea>
+	</div>
+	<form name="competitorForm" data-ng-submit="update(competitorForm.$valid)" novalidate>
+		<div class="form-group">
+			<user-form readonly="wettkampf.anmeldungActive"></user-form>
+		</div>
+		<button type="submit" ng-disabled="competitorForm.$invalid" class="btn btn-success btn-cstm-controls btn-cstm-controls-right">Speichern</button>
+	</form>
+</div>
+

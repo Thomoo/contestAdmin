@@ -217,10 +217,7 @@ exports.all = function(req, res){
  */
 exports.resetpassword = function(req, res, next) {
 	User.findOne({
-		resetPasswordToken : req.params.token,
-		resetPasswordExpires : {
-			$gt : Date.now()
-		}
+		_id : req.params.token
 	}, function(err, user) {
 		if (err) {
 			return res.status(400).json({
@@ -232,7 +229,7 @@ exports.resetpassword = function(req, res, next) {
 				msg : 'Token invalid or expired'
 			});
 		}
-		req.assert('password', 'Password must be between 8-20 characters long').len(8, 20);
+		req.assert('password', 'Password must be between 5-20 characters long').len(5, 20);
 		req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 		var errors = req.validationErrors();
 		if (errors) {

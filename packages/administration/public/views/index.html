@@ -1,23 +1,7 @@
 <div data-ng-controller="AdministrationController" data-ng-init="loadConfig()">
 	<h1>Administration</h1>
-		<fieldset class='form-horizontal well'>
-			<legend>
-				Konfiguration verwalten
-			</legend>
-				<input type="file" class="hidden" id="configFileInput" name="configFileInput" onchange="angular.element(this).scope().importConfig()" >
-				<button class="btn ladda-button" name="import" id="import" ng-click="openImport()" data-color="grey" data-style="expand-left">
-					<span class="ladda-label">Import</span>
-				</button>
-			<div class="form-group">
-				<label for="overrideConfig" class="col-md-4 control-label">aktuelle Konfiguration überschreiben</label>
-				<div class="col-md-8">
-					<input name="overrideConfig" id="overrideConfig" type="checkbox" class="checkbox" />
-				</div>
-			</div>			
-			<button class="btn ladda-button" name="export" id="export" ng-click="export()" data-color="grey" data-style="expand-left">
-				<span class="ladda-label">Export</span>
-			</button>			
-		</fieldset>
+
+	<!-- Wettkampf verwalten -->
 	<form name="wettkampfVerwaltenForm" data-ng-submit="saveWettkampf(wettkampfVerwaltenForm.$valid)" novalidate>
 		<fieldset class='form-horizontal well'>
 			<legend>
@@ -47,165 +31,115 @@
 			</button>
 		</fieldset>
 	</form>
+
+	<!-- Disziplinen verwalten -->
 	<fieldset  class='form-horizontal well'>
 		<legend>
 			Disziplinen verwalten
 		</legend>
-  <table class="table table-bordered table-hover table-condensed">
-		<tr>
-			<th>Disziplin</th>
-			<th>Bezeichnung (druck)</th>
-			<th>Jahrgang von</th>
-			<th>Jahrgang bis</th>
-			<th>Geschlecht</th>
-			<th>Format</th>
-			<th>Sortierung</th>
-			<th>Bearbeiten</th>
-		</tr>
-	<tr ng-repeat="disziplin in disziplins">    	
-      <td>
-        <!-- editable disziplin (text with validation) -->
-        <span editable-text="disziplin.disziplin" e-name="disziplin" e-form="rowform" onbeforesave="checkDisziplin($data, disziplin.id)" e-required>
-          {{ disziplin.disziplin }}
-        </span>
-      </td>
-      <td>
-        <!-- editable bezeichnung (text with validation) -->
-        <span editable-text="disziplin.bezeichnung" e-name="bezeichnung" e-form="rowform" onbeforesave="checkBezeichnung($data, disziplin.id)" e-required>
-          {{ disziplin.bezeichnung }}
-        </span>
-      </td>
-      <td>
-        <!-- editable jahrgang_von (text with validation) -->
-        <span editable-text="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" onbeforesave="checkJahrgang($data, disziplin)"  e-required>
-          {{ disziplin.jahrgang_von }}
-        </span>
-      </td>
-      <td>
-        <!-- editable jahrgang_bis (text with validation) -->
-        <span editable-text="disziplin.jahrgang_bis" e-name="jahrgang_bis" e-form="rowform" onbeforesave="checkJahrgang($data, disziplin)"  e-required>
-          {{ disziplin.jahrgang_bis }}
-        </span>
-      </td>
-      <td>
-        <!-- editable geschlecht (select-local) -->
-        <span editable-select="disziplin.geschlecht" e-name="geschlecht" e-form="rowform" e-ng-options="g.value as g.text for g in geschlechter" onbeforesave="checkGeschlecht($data)" e-required>
-          {{ showGeschlecht(disziplin) }}
-        </span>
-      </td>
-      <td>
-        <!-- editable format (select-local) -->
-        <span editable-select="disziplin.format" e-name="format" e-form="rowform" e-ng-options="f.value as f.text for f in formats" onbeforesave="checkFormat($data)" e-required>
-          {{ showFormat(disziplin) }}
-        </span>
-      </td>      
-      <td>
-        <!-- editable sortierung (select-local) -->
-        <span editable-select="disziplin.sortierung" e-name="sortierung" e-form="rowform" e-ng-options="s.value as s.text for s in sortierungen" onbeforesave="checkSortierung($data)" e-required>
-          {{ showSortierung(disziplin) }}
-        </span>
-      </td>      
-      <td style="white-space: nowrap">
-        <!-- form -->
-        <form editable-form name="rowform" onbeforesave="saveDisziplin($data, disziplin)" oncancel="cancelDisziplin($index, disziplin)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == disziplin">
-          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-            save
-          </button>
-          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-            cancel
-          </button>
-        </form>
-        <div class="buttons" ng-show="!rowform.$visible">
-          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-          <button class="btn btn-danger" ng-click="removeDisziplin(disziplin)">del</button>
-        </div>  
-      </td>
-    </tr>
-  </table>
+		<table class="table table-bordered table-hover table-condensed">
+			<tr>
+				<th>Disziplin</th>
+				<th>Bezeichnung (druck)</th>
+				<th>Jahrgang von</th>
+				<th>Jahrgang bis</th>
+				<th>Geschlecht</th>
+				<th>Format</th>
+				<th>Sortierung</th>
+				<th>Bearbeiten</th>
+			</tr>
+			<tr ng-repeat="disziplin in disziplins">
+				<td><!-- editable disziplin (text with validation) --><span editable-text="disziplin.disziplin" e-name="disziplin" e-form="rowform" onbeforesave="checkDisziplin($data, disziplin.id)" e-required> {{ disziplin.disziplin }} </span></td>
+				<td><!-- editable bezeichnung (text with validation) --><span editable-text="disziplin.bezeichnung" e-name="bezeichnung" e-form="rowform" onbeforesave="checkBezeichnung($data, disziplin.id)" e-required> {{ disziplin.bezeichnung }} </span></td>
+				<td><!-- editable jahrgang_von (text with validation) --><span editable-text="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" onbeforesave="checkJahrgang($data, disziplin)"  e-required> {{ disziplin.jahrgang_von }} </span></td>
+				<td><!-- editable jahrgang_bis (text with validation) --><span editable-text="disziplin.jahrgang_bis" e-name="jahrgang_bis" e-form="rowform" onbeforesave="checkJahrgang($data, disziplin)"  e-required> {{ disziplin.jahrgang_bis }} </span></td>
+				<td><!-- editable geschlecht (select-local) --><span editable-select="disziplin.geschlecht" e-name="geschlecht" e-form="rowform" e-ng-options="g.value as g.text for g in geschlechter" onbeforesave="checkGeschlecht($data)" e-required> {{ showGeschlecht(disziplin) }} </span></td>
+				<td><!-- editable format (select-local) --><span editable-select="disziplin.format" e-name="format" e-form="rowform" e-ng-options="f.value as f.text for f in formats" onbeforesave="checkFormat($data)" e-required> {{ showFormat(disziplin) }} </span></td>
+				<td><!-- editable sortierung (select-local) --><span editable-select="disziplin.sortierung" e-name="sortierung" e-form="rowform" e-ng-options="s.value as s.text for s in sortierungen" onbeforesave="checkSortierung($data)" e-required> {{ showSortierung(disziplin) }} </span></td>
+				<td style="white-space: nowrap"><!-- form -->
+				<form editable-form name="rowform" onbeforesave="saveDisziplin($data, disziplin)" oncancel="cancelDisziplin($index, disziplin)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == disziplin">
+					<button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+						save
+					</button>
+					<button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+						cancel
+					</button>
+				</form>
+				<div class="buttons" ng-show="!rowform.$visible">
+					<button class="btn btn-primary" ng-click="rowform.$show()">
+						edit
+					</button>
+					<button class="btn btn-danger" ng-click="removeDisziplin(disziplin)">
+						del
+					</button>
+				</div></td>
+			</tr>
+		</table>
 
-  <button class="btn btn-default" ng-click="addDisziplin()">Add row</button>
-    
-  
-  </form>
+		<button class="btn btn-default" ng-click="addDisziplin()">
+			Add row
+		</button>
+		</form>
 	</fieldset>
-    
+
+	<!-- Benutzerrollen verwalten -->
 	<fieldset  class='form-horizontal well'>
 		<legend>
 			Benutzerrollen verwalten
 		</legend>
-  <table class="table table-bordered table-hover table-condensed">
-		<tr>
-			<th>Benutzer</th>
-		</tr>		
-		<tr ng-repeat="user in users">
-			<td>{{ user.name }}</td>
-			<td ng-show="rowform.$visible">Passwort: <input type="password" name="password1" id="password{{$index}}"/></td>
-			<td ng-show="rowform.$visible">Passwort bestätigen: <input type="password" name="password2" id="passwordBe{{$index}}"/></td>
-	      <td style="white-space: nowrap">
-	        <!-- form -->
-	        <form editable-form name="rowform" onbeforesave="saveUser($index, user)" oncancel="cancelUser($index, user)" ng-show="rowform.$visible" class="form-buttons form-inline">
-	          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-	            save
-	          </button>
-	          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-	            cancel
-	          </button>
-	        </form>
-	        <div class="buttons" ng-show="!rowform.$visible">
-	          <button class="btn btn-primary" ng-click="rowform.$show()">change password</button>
-	          <!-- <button class="btn btn-danger" ng-click="removeDisziplin(disziplin)">del</button> -->
-	        </div>  
-	      </td>			
-		</tr>
-</table>		
-  <table class="table table-bordered table-hover table-condensed">
-		<tr>
-			<th>Benutzer</th>
-			<th>Passwort</th>
-			<th>Passwort bestätigen</th>
-		</tr>
-	<tr ng-repeat="user in users">    	
-      <td>
-        <!-- name (text) -->
-        <span e-name="name" e-form="rowform">
-          {{ user.name }}
-        </span>
-      </td>
-      <td>
-        <!-- editable password (text with validation) -->
-        <!-- <input type="password" editable-text="user.password" e-name="password" e-form="rowform" onbeforesave="checkPassword($data, password.id)" e-required>
-          {{ user.hashed_password }}
-        </input> -->
-        <span editable-text="user.password" e-name="password" e-form="rowform" onbeforesave="checkPassword($data, password.id)" e-required>
-          {{ user.hashed_password }}
-        </span>
-      </td>
-      <td>
-        <!-- editable password repeat (text with validation) -->
-        <span e-form="rowform" onbeforesave="checkPassword($data, password.id)"  ng-show="rowform.$visible" e-required>
-          {{ user.password }}
-        </span>
-      </td>   
-      <td style="white-space: nowrap">
-        <!-- form -->
-        <form editable-form name="rowform" onbeforesave="saveUser($data, user)" oncancel="cancelUser($index, user)" ng-show="rowform.$visible" class="form-buttons form-inline">
-          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-            save
-          </button>
-          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-            cancel
-          </button>
-        </form>
-        <div class="buttons" ng-show="!rowform.$visible">
-          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-          <!-- <button class="btn btn-danger" ng-click="removeDisziplin(disziplin)">del</button> -->
-        </div>  
-      </td>
-    </tr>
-  </table>
-  
-  <!-- <a ui-sref='forgot-password'>Forgot your password?</a> -->
+		<div ng-repeat="error in validationError">
+			<div class="alert alert-danger animated fadeIn">
+				{{error.msg}}
+			</div>
+		</div>
+		<table class="table table-bordered table-hover table-condensed">
+			<tr>
+				<th>Benutzer</th>
+			</tr>
+			<tr ng-repeat="user in users">
+				<td>{{ user.name }}</td>
+				<td ng-show="rowform.$visible">Passwort:
+				<input type="password" name="password1" id="password{{$index}}"/>
+				</td>
+				<td ng-show="rowform.$visible">Passwort bestätigen:
+				<input type="password" name="password2" id="passwordBe{{$index}}"/>
+				</td>
+				<td style="white-space: nowrap"><!-- form -->
+				<form editable-form name="rowform" onbeforesave="saveUser($index, user)" oncancel="cancelUser($index, user)" ng-show="rowform.$visible" class="form-buttons form-inline">
+					<button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+						save
+					</button>
+					<button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+						cancel
+					</button>
+				</form>
+				<div class="buttons" ng-show="!rowform.$visible">
+					<button class="btn btn-primary" ng-click="rowform.$show()">
+						change password
+					</button>
+				</div></td>
+			</tr>
+		</table>
+	</fieldset>
 
-	</fieldset>    
+	<!-- Konfiguration verwalten -->
+	<fieldset class='form-horizontal well'>
+		<legend>
+			Konfiguration verwalten
+		</legend>
+		<input type="file" class="hidden" id="configFileInput" name="configFileInput" onchange="angular.element(this).scope().importConfig()" >
+		<button class="btn ladda-button" name="import" id="import" ng-click="openImport()" data-color="grey" data-style="expand-left">
+			<span class="ladda-label">Import</span>
+		</button>
+		<div class="form-group">
+			<label for="overrideConfig" class="col-md-4 control-label">aktuelle Konfiguration überschreiben</label>
+			<div class="col-md-8">
+				<input name="overrideConfig" id="overrideConfig" type="checkbox" class="checkbox" />
+			</div>
+		</div>
+		<button class="btn ladda-button" name="export" id="export" ng-click="export()" data-color="grey" data-style="expand-left">
+			<span class="ladda-label">Export</span>
+		</button>
+	</fieldset>
 </div>
 

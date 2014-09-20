@@ -36,7 +36,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
                 disciplines : $scope.selectDeclaredDisciplines($scope.allDisciplines)
             });
             competitorToCreate.$save(function(response) {
-                $location.path('competitor/bestaetigung');
+                $location.path('/competitor/subscription/confirmation');
             });
             this.competitor.gender = '';
             this.competitor.name = '';
@@ -107,7 +107,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             competitor.updated.push(new Date().getTime());
 
             competitor.$update(function() {
-                $location.path('competitor/verwaltung');
+                $location.path('competitor/administration');
             });
         } else {
             $scope.submitted = true;
@@ -150,7 +150,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
 
     $scope.deleteCompetitor = function(competitor){
         competitor.$delete(function(){
-            $location.path('competitor/verwaltung');
+            $location.path('competitor/administration');
         });
     };
 

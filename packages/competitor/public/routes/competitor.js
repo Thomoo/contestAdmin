@@ -22,20 +22,26 @@ function($stateProvider) {
 		return deferred.promise;
 	};
 		
-    $stateProvider.state('anmeldung', {
-        url : '/competitor/anmeldung',
-        templateUrl : 'competitor/views/anmeldung.html'
-    }).state('verwaltung', {
-        url : '/competitor/verwaltung',
+    $stateProvider.state('subscription', {
+        url : '/competitor/subscription',
+        templateUrl : 'competitor/views/subscription.html'
+    }).state('confirm subscription', {
+        url : '/competitor/subscription/confirmation',
+        templateUrl : 'competitor/views/subscription-confirmation.html'
+    }).state('edit subscription by id', {
+        url : '/competitor/subscription/:competitorId',
+        templateUrl : 'competitor/views/edit-subscription.html'
+    }).state('administration', {
+        url : '/competitor/administration',
         templateUrl : 'competitor/views/verwaltung.html',
 		resolve : {
 			loggedin : isCompetitorAdmin
 		}
-    }).state('confirm subscription', {
-        url : '/competitor/bestaetigung',
-        templateUrl : 'competitor/views/subscription-confirmation.html'
     }).state('edit competitor by id', {
         url : '/competitor/:competitorId',
-        templateUrl : 'competitor/views/edit-competitor.html'
+        templateUrl : 'competitor/views/edit-competitor.html',
+                resolve : {
+            loggedin : isCompetitorAdmin
+        }
     });
 }]);

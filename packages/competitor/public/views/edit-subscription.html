@@ -1,10 +1,10 @@
-<div data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndFindOne()">
+<div data-ng-controller="CompetitorController" data-ng-init="loadAllConfigAndDisziplinsAndFindOne()">
 	<h1><label>{{wettkampf.title}}</label></h1>
 	<pre>{{wettkampf.infoText}}</pre>
 	<pre>Vielen Dank für Ihre Teilnahme. Solange die Anmeldung aktiviert ist, können Sie hier ihre Daten ändern.</pre>
 	<form name="competitorForm" data-ng-submit="update(competitorForm.$valid)" novalidate>
 		<div class="form-group">
-			<user-form readonly="wettkampf.anmeldungActive"></user-form>
+			<user-form readonly="!wettkampf.anmeldungActive"></user-form>
 		</div>
 		<button class="btn ladda-button" type="submit" ng-disabled="competitorForm.$invalid" data-color="grey" data-style="expand-right">Speichern</button>
 	</form>

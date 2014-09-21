@@ -61,12 +61,18 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
         $log.info('loadAllDisziplinsAndFindOne called...');
         $scope.loadAllDisziplins($scope.loadConfig);
     };
+    
+    $scope.loadAllConfigAndDisziplinsAndFindOne = function() {
+        $log.info('loadAllDisziplinsAndFindOne called...');
+        $scope.loadConfig($scope.loadAllDisziplinsAndFindOne);
+    };
 
-    $scope.loadConfig = function() {
+    $scope.loadConfig = function(cb) {
         $log.info('loadConfig called...');
         Wettkampf.get({
         }, function(wettkampf) {
             $scope.wettkampf = wettkampf;
+            cb();
         });
     };
 
@@ -107,7 +113,8 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             competitor.updated.push(new Date().getTime());
 
             competitor.$update(function() {
-                $location.path('competitor/administration');
+               if ($scope.global.isAdmin || $scope.global.isCompetitorAdmin)
+                  $location.path('competitor/administration');
             });
         } else {
             $scope.submitted = true;

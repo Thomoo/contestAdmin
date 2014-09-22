@@ -6,7 +6,9 @@
 		<div class="form-group">
 			<user-form readonly="!wettkampf.anmeldungActive"></user-form>
 		</div>
-		<button class="btn ladda-button" type="submit" ng-disabled="competitorForm.$invalid" data-color="grey" data-style="expand-right">Speichern</button>
+		<button ng-show="wettkampf.anmeldungActive" class="btn btn-primary ladda-button" type="submit" ng-disabled="competitorForm.$invalid" data-color="green" data-style="expand-right">
+				<span class="ladda-label">Speichern</span>
+			</button>
 	</form>
 </div>
 

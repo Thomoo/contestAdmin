@@ -75,12 +75,12 @@
 		<div class="col-md-8">
 			<table class="table table-bordered table-striped">
 				<tr id="heading">
-					<th></th>
-					<th></th>
+					<th>Teilnahme</th>
+					<th>Disziplin</th>
 					<th>Resultat</th>
 				</tr>
 				<tr ng-repeat="discipline in allDisciplines | filter:isPossibleDiscipline">
-					<td><input type="checkbox" ng-model="discipline.declared"></td>
+					<td><input type="checkbox" ng-disabled="readonly" ng-model="discipline.declared"></td>
 					<td>{{discipline.bezeichnung}}</td>
 					<td>{{discipline.result}}</td>
 				</tr>

@@ -13,10 +13,12 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
 
     $scope.competitor = '';
 
-    $scope.hasAuthorization = function(competitor) {       
+    $scope.subscriptionActive = $scope.global.isCompetitorAdmin;
+
+    $scope.hasAuthorization = function(competitor) {
         $log.info('hasAuthorization in competitor called...');
         if (!competitor)
-        // if (!competitor || !competitor.user)
+            // if (!competitor || !competitor.user)
             return false;
         return $scope.global.isAdmin;
     };
@@ -62,7 +64,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
         $log.info('loadAllDisziplinsAndFindOne called...');
         $scope.loadAllDisziplins($scope.loadConfig);
     };
-    
+
     $scope.loadAllConfigAndDisziplinsAndFindOne = function() {
         $log.info('loadAllDisziplinsAndFindOne called...');
         $scope.loadConfig($scope.loadAllDisziplinsAndFindOne);
@@ -73,6 +75,9 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
         Wettkampf.get({
         }, function(wettkampf) {
             $scope.wettkampf = wettkampf;
+            if (wettkampf.anmeldungActive) {
+                $scope.subscriptionActive = true;
+            }
             cb();
         });
     };
@@ -114,8 +119,8 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             competitor.updated.push(new Date().getTime());
 
             competitor.$update(function() {
-               if ($scope.global.isCompetitorAdmin)
-                  $location.path('competitor/administration');
+                if ($scope.global.isCompetitorAdmin)
+                    $location.path('competitor/administration');
             });
         } else {
             $scope.submitted = true;
@@ -131,10 +136,10 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             return false;
         if (!$scope.competitor.birthdate)
             return false;
-//        $log.info('type of $scope.competitor.birthdate: ' + typeof $scope.competitor.birthdate);        
-//TODO: keine Ahnung wieso, birhtdate kommt als String von der DB
-        if (typeof $scope.competitor.birthdate === 'string')
-            $scope.competitor.birthdate = new Date($scope.competitor.birthdate); 
+        //        $log.info('type of $scope.competitor.birthdate: ' + typeof $scope.competitor.birthdate);
+        //TODO: keine Ahnung wieso, birhtdate kommt als String von der DB
+        if ( typeof $scope.competitor.birthdate === 'string')
+            $scope.competitor.birthdate = new Date($scope.competitor.birthdate);
         if (discipline.jahrgang_von > $scope.competitor.birthdate.getFullYear())
             return false;
         if (discipline.jahrgang_bis < $scope.competitor.birthdate.getFullYear())
@@ -156,8 +161,8 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
         return destDisciplines;
     };
 
-    $scope.deleteCompetitor = function(competitor){
-        competitor.$delete(function(){
+    $scope.deleteCompetitor = function(competitor) {
+        competitor.$delete(function() {
             $location.path('competitor/administration');
         });
     };

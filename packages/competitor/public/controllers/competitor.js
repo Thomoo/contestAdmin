@@ -13,7 +13,8 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
 
     $scope.competitor = '';
 
-    $scope.hasAuthorization = function(competitor) {
+    $scope.hasAuthorization = function(competitor) {       
+        $log.info('hasAuthorization in competitor called...');
         if (!competitor)
         // if (!competitor || !competitor.user)
             return false;
@@ -113,7 +114,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             competitor.updated.push(new Date().getTime());
 
             competitor.$update(function() {
-               if ($scope.global.isAdmin || $scope.global.isCompetitorAdmin)
+               if ($scope.global.isCompetitorAdmin)
                   $location.path('competitor/administration');
             });
         } else {
@@ -162,4 +163,3 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
     };
 
 }]);
-

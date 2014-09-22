@@ -24,6 +24,8 @@ angular.module('mean.users')
                 window.location = response.redirect;
               }
             } else {
+              // Helps to have the Userroles set after login if not admin user - tönt komisch, ist aber so  
+              window.location.reload();
               $location.url('/');
             }
           })

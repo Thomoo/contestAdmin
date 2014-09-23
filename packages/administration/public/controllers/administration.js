@@ -19,14 +19,14 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 		Wettkampf.get({
 		}, function(wettkampf) {
 			$scope.wettkampf = wettkampf;
-		});
+			
+			Disziplin.query(function(disziplins) {
+				$scope.disziplins = disziplins;
 
-		Disziplin.query(function(disziplins) {
-			$scope.disziplins = disziplins;
-		});
-
-		User.query(function(users) {
-			$scope.users = users;
+				User.query(function(users) {
+					$scope.users = users;
+				});
+			});
 		});
 		
 		$scope.pw1Errors = [];

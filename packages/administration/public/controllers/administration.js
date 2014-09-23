@@ -171,7 +171,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 
 	var time1Val = JSON.stringify({
 		placeholder: 'ss.hh',
-		validate : '^\\d{1-2}\\.\\d{2}$',
+		validate : '^\\d{1,2}\\.\\d{2}$',
 		format : '(function(val){return val + "sec";})'
 	});
 	var time2Val = JSON.stringify({

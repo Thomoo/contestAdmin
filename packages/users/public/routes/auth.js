@@ -36,7 +36,7 @@ angular.module('mean.users').config(['$stateProvider',
         resolve: {
           loggedin: checkLoggedOut
         }
-      });
+      })
       // .state('auth.register', {
         // url: '/register',
         // templateUrl: 'users/views/register.html',
@@ -51,12 +51,12 @@ angular.module('mean.users').config(['$stateProvider',
           // loggedin: checkLoggedOut
         // }
       // })
-      // .state('reset-password', {
-        // url: '/reset/:tokenId',
-        // templateUrl: 'users/views/reset-password.html',
-        // resolve: {
-          // loggedin: checkLoggedOut
-        // }
-      // });
+      .state('reset-password', {
+        url: '/reset/:tokenId',
+        templateUrl: 'users/views/reset-password.html',
+        resolve: {
+          loggedin: checkLoggedOut
+        }
+      });
   }
 ]);

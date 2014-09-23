@@ -21,12 +21,14 @@ module.exports = function(Competitor, app, auth, database) {
 
   app.route('/competitor')
     .get(competitor.all)
-    .post(auth.requiresLogin, isCompetitorAdmin, competitor.create);
+    .post(competitor.create);
+//    .post(auth.requiresLogin, isCompetitorAdmin, competitor.create);
 
   app.route('/competitor/:competitorId')
     .get(competitor.show)
     .post(auth.requiresLogin, isCompetitorAdminOrResultAdmin, competitor.updateWithStartNr)
-    .put(auth.requiresLogin, isCompetitorAdminOrResultAdmin, competitor.update)
+    .put(competitor.update)
+//    .put(auth.requiresLogin, isCompetitorAdminOrResultAdmin, competitor.update)
     .delete(auth.requiresLogin, isCompetitorAdmin, competitor.destroy);
 
   // Finish with setting up the competitorId param

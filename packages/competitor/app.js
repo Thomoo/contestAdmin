@@ -23,14 +23,14 @@ Competitor.register(function(app, auth, database) {
   //We are adding a link to the main menu for all authenticated users
   Competitor.menus.add({
     title: 'Anmeldung',
-    link: 'anmeldung',
+    link: 'subscription',
     menu: 'main'
   });
 
   //We are adding a link to the main menu for all authenticated users
   Competitor.menus.add({
     title: 'Teilnehmerverwaltung',
-    link: 'verwaltung',
+    link: 'administration',
     roles: ['competitorAdmin'],
     menu: 'main'
   });

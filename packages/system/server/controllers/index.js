@@ -17,6 +17,15 @@ exports.render = function(req, res) {
   function isAdmin() {
     return req.user && req.user.roles.indexOf('admin') !== -1;
   }
+  
+  function isCompetitorAdmin() {
+    return isAdmin || (req.user && req.user.roles.indexOf('competitorAdmin') !== -1);
+  }
+
+  function isResultAdmin() {
+    return isAdmin || (req.user && req.user.roles.indexOf('resultAdmin') !== -1);
+  }
+
 
   // Send some basic starting info to the view
   res.render('index', {
@@ -28,6 +37,8 @@ exports.render = function(req, res) {
     } : {},
     modules: modules,
     isAdmin: isAdmin,
+    isCompetitorAdmin: isCompetitorAdmin,
+    isResultAdmin: isResultAdmin,
     adminEnabled: isAdmin() && mean.moduleEnabled('mean-admin')
   });
 };

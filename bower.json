@@ -12,6 +12,7 @@
     "angular-bootstrap": "0.11.0",
     "angular-ui-router": "#master",
     "angular-xeditable": "latest",
+    "xtform": "latest",
     "lodash": "~2.4.1"
   }
 }

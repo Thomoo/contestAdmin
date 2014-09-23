@@ -11,18 +11,18 @@
 	<h3>{{ discipline.bezeichnung }}</h3>
 	<table class="table table-bordered table-hover table-condensed table-striped page-break-after">
 		<tr>
-			<th>Start-Nr.</th>
-			<th>Name</th>
-			<th>Vorname</th>
-			<th>Ort/Verein</th>
-			<th>Jahrgang</th>
+			<th width="5%">Start-Nr.</th>
+			<th width="15%">Name</th>
+			<th width="15%">Vorname</th>
+			<th width="15%">Ort/Verein</th>
+			<th width="5%">Jahrgang</th>
 		</tr>
 		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'startnr' | filter: {startnr: '!!'}">
 		<!-- <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'startnr'"> -->
 			<td>{{ competitor.startnr }}</td>
 			<td>{{ competitor.name }}</td>
 			<td>{{ competitor.firstname }}</td>
-			<td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
+ 			<td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
 			<td>{{ competitor.birthdate | date: 'yyyy' }}</td>
 		</tr>
 	</table>

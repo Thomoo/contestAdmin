@@ -20,7 +20,12 @@ var WettkampfSchema = new Schema({
     required: true,
     trim: true
   },
-  infoText: {
+  infoTextActive: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  infoTextInactive: {
     type: String,
     required: true,
     trim: true
@@ -38,8 +43,13 @@ WettkampfSchema.path('title').validate(function(title) {
   return !!title;
 }, 'Title cannot be blank');
 
-WettkampfSchema.path('infoText').validate(function(infoText) {
-  return !!infoText;
+WettkampfSchema.path('infoTextActive').validate(function(infoTextActive) {
+  return !!infoTextActive;
 }, 'Info Text cannot be blank');
+
+WettkampfSchema.path('infoTextInactive').validate(function(infoTextInactive) {
+  return !!infoTextInactive;
+}, 'Info Text cannot be blank');
+
 
 mongoose.model('Wettkampf', WettkampfSchema);

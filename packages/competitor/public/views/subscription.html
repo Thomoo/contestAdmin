@@ -1,7 +1,8 @@
-<div data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndConfig()">
+<div class="form-container clearfix" data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndConfig()">
 	<h1><label>{{wettkampf.title}}</label></h1>
-	<pre>{{wettkampf.infoText}}</pre>
-	<form ng-show="subscriptionActive" name="competitorForm" data-ng-submit="create(competitorForm.$valid)" novalidate>
+	<pre ng-show="wettkampf.anmeldungActive">{{wettkampf.infoTextActive}}</pre>
+	<pre ng-show="!wettkampf.anmeldungActive">{{wettkampf.infoTextInactive}}</pre>
+		<form ng-show="subscriptionActive" name="competitorForm" data-ng-submit="create(competitorForm.$valid)" novalidate>
 		<div class="form-group">
 			<user-form></user-form>
 		</div>

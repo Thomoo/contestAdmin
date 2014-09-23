@@ -45,6 +45,18 @@ function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Compe
 	$q.all([$scope.loadCompetitors(), $scope.loadDisciplines()]).then(function(finished){
 		$scope.global.competitors = finished[0];
 		$scope.global.disciplines = finished[1];
+		
+		$scope.global.disciplines.forEach(function(discipline){
+			var formatObj = JSON.parse(discipline.format);
+			
+			/* jshint ignore:start */
+			discipline.format = eval(formatObj.format);
+			/* jshint ignore:end */
+			// discipline.validate = new RegExp(formatObj.validate.replace('\\', '\\\\'), 'i');
+			discipline.validate = '/' + formatObj.validate + '/';
+			discipline.placeholder = formatObj.placeholder;
+		});
+		
 		$scope.initCompetitorsPerDiscipline();
 	    
 		if(!$scope.global.selectedDisciplinesIds){

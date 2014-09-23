@@ -14,9 +14,16 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="infoText" class="col-md-4 control-label">Info Text</label>
+				<label for="infoTextInactive" class="col-md-4 control-label">Info Text Anmeldung inaktiv</label>
 				<div class="col-md-8">
-					<textarea name="infoText" data-ng-model="wettkampf.infoText" id="infoText" placeholder="Bitte Text hier eingeben" class="form-control"></textarea>
+					<textarea name="infoTextInactive" data-ng-model="wettkampf.infoTextInactive" id="infoTextInactive" placeholder="Bitte Text hier eingeben" class="form-control"></textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="infoTextActive" class="col-md-4 control-label">Info Text Anmeldung aktiv</label>
+				<div class="col-md-8">
+					<textarea name="infoTextActive" data-ng-model="wettkampf.infoTextActive" id="infoTextActive" placeholder="Bitte Text hier eingeben" class="form-control"></textarea>
 				</div>
 			</div>
 
@@ -100,9 +107,11 @@
 				<td>{{ user.name }}</td>
 				<td ng-show="rowform.$visible">Passwort:
 				<input type="password" name="password1" id="password{{$index}}"/>
+				<div>{{pw1Errors[$index]}}</div>
 				</td>
 				<td ng-show="rowform.$visible">Passwort bestätigen:
 				<input type="password" name="password2" id="passwordBe{{$index}}"/>
+				<div>{{pw2Errors[$index]}}</div>
 				</td>
 				<td style="white-space: nowrap"><!-- form -->
 				<form editable-form name="rowform" onbeforesave="saveUser($index, user)" oncancel="cancelUser($index, user)" ng-show="rowform.$visible" class="form-buttons form-inline">

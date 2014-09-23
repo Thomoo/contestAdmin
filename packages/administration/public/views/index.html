@@ -100,9 +100,11 @@
 				<td>{{ user.name }}</td>
 				<td ng-show="rowform.$visible">Passwort:
 				<input type="password" name="password1" id="password{{$index}}"/>
+				<div>{{pw1Errors[$index]}}</div>
 				</td>
 				<td ng-show="rowform.$visible">Passwort bestätigen:
 				<input type="password" name="password2" id="passwordBe{{$index}}"/>
+				<div>{{pw2Errors[$index]}}</div>
 				</td>
 				<td style="white-space: nowrap"><!-- form -->
 				<form editable-form name="rowform" onbeforesave="saveUser($index, user)" oncancel="cancelUser($index, user)" ng-show="rowform.$visible" class="form-buttons form-inline">

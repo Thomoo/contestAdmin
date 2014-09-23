@@ -28,6 +28,9 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 		User.query(function(users) {
 			$scope.users = users;
 		});
+		
+		$scope.pw1Errors = [];
+		$scope.pw2Errors = [];
 	};
 
 
@@ -240,18 +243,35 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	// ---------------------------------
 	// Roles
 	// ---------------------------------
+
 	$scope.saveUser = function($index, user) {
-		$scope.validationError = null;
+		$scope.pw1Errors[$index] = null;
+		$scope.pw2Errors[$index] = null;
+
+		var pw1 = $('#password' + $index).val();
+		var pw2 = $('#passwordBe' + $index).val();
+		if (pw1.length < 5 || pw1.length > 20) {
+			var errorMsgSize = 'Das Passwort muss zwischen 5 und 20 Zeichen lang sein.';
+			$scope.pw1Errors[$index] = errorMsgSize;
+			throw Error(errorMsgSize);
+		}
+		if (pw1 !== pw2) {
+			var errorMsgNotSame = 'Die Passwörter stimmen nicht überein.';
+			$scope.pw2Errors[$index] = errorMsgNotSame;
+			throw Error(errorMsgNotSame);
+		}
+
 		$http.post('/reset/' + user._id, {
-			password : $('#password' + $index).val(),
-			confirmPassword : $('#passwordBe' + $index).val()
+			password : pw1,
+			confirmPassword : pw2
 		}).error(function(error) {
-				$scope.validationError = error;
+			$scope.validationError = error;
 		});
-	};
+	}; 
 
 	$scope.cancelUser = function($index, user) {
-		$scope.validationError = null;
+		$scope.pw1Errors[$index] = null;
+		$scope.pw2Errors[$index] = null;
 	};
 	
 	// ---------------------------------

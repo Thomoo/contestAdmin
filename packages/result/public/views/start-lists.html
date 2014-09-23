@@ -22,7 +22,8 @@
 			<td>{{ competitor.startnr }}</td>
 			<td>{{ competitor.name }}</td>
 			<td>{{ competitor.firstname }}</td>
-			<td>{{ competitor.society }}</td>
+			<td ng-show="competitor.society">{{ competitor.society }}</td>
+			<td ng-show="!competitor.society">{{ competitor.location }}</td>
 			<td>{{ competitor.birthdate | date: 'yyyy' }}</td>
 		</tr>
 	</table>

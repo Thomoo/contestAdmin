@@ -18,13 +18,13 @@
 			<th>Jahrgang</th>
 			<th>Resultat</th>
 		</tr>
-		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy:'startnr'">
-			<td>{{ competitor.startnr }}</td>
+		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'disciplinesById[discipline._id].rank' : reverse">
+			<td>{{ competitor.disciplinesById[discipline._id].rank }}</td>
 			<td>{{ competitor.name }}</td>
 			<td>{{ competitor.firstname }}</td>
 			<td>{{ competitor.society }}</td>
 			<td>{{ competitor.birthdate | date: 'yyyy' }}</td>
-			<td>{{ competitor.disciplines.disciplineId | filter: discipline._id }}</td>
+			<td>{{ competitor.disciplinesById[discipline._id].result }}</td>
 		</tr>
 	</table>
 	</div>

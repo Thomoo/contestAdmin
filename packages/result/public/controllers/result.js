@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.result').controller('ResultController', ['$scope', '$window', '$log', '$location', '$q', 'Global', 'Disziplin', 'Competitor', 'Result',
-function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Result) {
+angular.module('mean.result').controller('ResultController', ['$scope', '$window', '$log', '$location', '$q', '$filter', 'Global', 'Disziplin', 'Competitor', 'Result',
+function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Competitor, Result) {
 	$scope.global = Global;
 	$scope.package = {
 		name : 'result'
@@ -9,26 +9,26 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 		
 	$scope.loadCompetitors = function(){
 		var deferred = $q.defer();
-		if(!$scope.global.competitors){
+		//if(!$scope.global.competitors){
 			Competitor.query(function(competitors) {
 				deferred.resolve(competitors);
 			});
-		}	
+		//}	
 		return deferred.promise;
 	};	
 	
 	$scope.loadDisciplines = function(){
 		var deferred = $q.defer();
-		if(!$scope.global.disciplines){
+		//if(!$scope.global.disciplines){
 			Disziplin.query(function(disciplines) {
 				deferred.resolve(disciplines);
 			});
-		}
+		//}
 		return deferred.promise;
 	};
 	
 	$scope.initCompetitorsPerDiscipline = function(){
-		if(!$scope.global.competitorsPerDiscipline){
+		//if(!$scope.global.competitorsPerDiscipline){
 			$scope.global.competitorsPerDiscipline = {};
 			$scope.global.competitors.forEach(function(competitor) {
 				competitor.disciplines.forEach(function(discipline) {
@@ -38,7 +38,7 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 					$scope.global.competitorsPerDiscipline[discipline.disciplineId].push(competitor);
 				});
 			});
-		}
+		//}
 	};	
 		
 	
@@ -142,6 +142,56 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 		});		
 	};
 	
+	$scope.updateRankings = function(){
+		$scope.global.disciplines.forEach(function(discipline){
+			$scope.reverse = (discipline.sortierung === 'DESC');
+			var sortedCompetitors = $filter('orderBy')($scope.global.competitorsPerDiscipline[discipline._id], 'disciplinesById[discipline._id].result', $scope.reverse);
+			//var sortedCompetitors = $filter('orderBy')($scope.global.competitorsPerDiscipline[discipline._id], 'startnr');
+			
+			
+			//if(sortedCompetitors[0].disciplinesById[discipline._id].result){
+				var counter = 1;
+				var rank = counter;
+				var tempResult = sortedCompetitors[0].disciplinesById[discipline._id].result;
+				sortedCompetitors.forEach(function(competitor){
+					console.log(competitor.disciplinesById[discipline._id]);
+					if(competitor.disciplinesById[discipline._id].result){
+						if(competitor.disciplinesById[discipline._id].result === tempResult){
+							competitor.disciplinesById[discipline._id].rank = rank;
+							competitor.disciplines.forEach(function(d){
+								if(d.disciplineId === discipline._id){
+									d.rank = rank;
+								}
+							});
+						} else {
+							rank = counter;
+							competitor.disciplinesById[discipline._id].rank = rank;
+							competitor.disciplines.forEach(function(d){
+								if(d.disciplineId === discipline._id){
+									d.rank = rank;
+								}
+							});
+							tempResult = competitor.disciplinesById[discipline._id].result;
+							
+						}
+						counter += 1;
+						console.log('rank: ' + rank + ', counter: ' + counter);
+						
+						if (!competitor.updated) {
+							competitor.updated = [];
+						}
+						competitor.updated.push(new Date().getTime());
+		
+						competitor.$update(function() {
+							//$location.path('result/rankings');
+						});
+					}
+				});
+			//}
+			
+		});
+	};
+	
     $scope.resetSearchForm = function(){
         $scope.search = {};
     };
@@ -157,6 +207,7 @@ function($scope, $window, $log, $location, $q, Global, Disziplin, Competitor, Re
 
 	$scope.navRankings = function() {
 		$scope.createSelectedDisciplines();
+		$scope.updateRankings();
 		$location.path('result/rankings');
 	};
 	

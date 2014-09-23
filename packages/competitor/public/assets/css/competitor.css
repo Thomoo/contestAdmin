@@ -20,3 +20,7 @@
 .competitions-table .table-bordered {
 	border: 5px solid #ddd;
 }
+
+.user-form-container{
+    margin-bottom: 20px;
+}

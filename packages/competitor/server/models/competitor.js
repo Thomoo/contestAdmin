@@ -16,6 +16,10 @@ var DisciplineResultSchema = new Schema({
     type: String,
     required: false,
     trim: true
+  },
+  rank: {
+  	type: Number,
+  	trim: true
   }
 });
 
@@ -85,6 +89,30 @@ var CompetitorSchema = new Schema({
   }
 });
 
+// CompetitorSchema.methods.getDisciplineById = function(discId){
+	// if(this.disciplines){
+		// this.disciplines.forEach(function(discipline){
+			// if(discipline === discId){
+				// return discipline;
+			// }
+		// });
+	// }
+	// return {};
+// };
+
+CompetitorSchema.virtual('disciplinesById').get(function(){
+	var d = {};
+	if(this.disciplines){
+		this.disciplines.forEach(function(discipline){
+			d[discipline.disciplineId] = discipline;
+		});
+	}
+	
+	return d;
+});
+
+
+CompetitorSchema.set('toJSON', { virtuals: true });
 
 /**
  * Validations

@@ -4,8 +4,8 @@
         <legend>
             Information
         </legend>
-		<p ng-show="wettkampf.anmeldungActive">{{wettkampf.infoTextActive}}</pre>
-		<p ng-show="!wettkampf.anmeldungActive">{{wettkampf.infoTextInactive}}</pre>
+		<p ng-show="wettkampf.anmeldungActive">{{wettkampf.infoTextActive}}</p>
+		<p ng-show="!wettkampf.anmeldungActive">{{wettkampf.infoTextInactive}}</p>
 	</fieldset>
 	<form ng-show="subscriptionActive" name="competitorForm" data-ng-submit="create(competitorForm.$valid)" xt-form novalidate>
 		<div class="form-group">

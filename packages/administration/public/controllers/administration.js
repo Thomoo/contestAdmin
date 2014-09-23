@@ -171,7 +171,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 
 	var time1Val = JSON.stringify({
 		placeholder: 'ss.hh',
-		validate : '^\\d{1-2}\\.\\d{2}$',
+		validate : '^\\d{1,2}\\.\\d{2}$',
 		format : '(function(val){return val + "sec";})'
 	});
 	var time2Val = JSON.stringify({
@@ -358,8 +358,6 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 			var wettkampf = new Wettkampf();
 			angular.copy(wettkampfJSON, wettkampf);
 			wettkampf.$save(function(response) {
-				// TODO SIR error handling?
-				// $log.debug('response: ' + response);
 			});
 
 			if ($('#overrideConfig').is(':checked')) {
@@ -374,9 +372,6 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 				saveDisziplinsToDB(textFromFileLoaded);
 			}
 
-			// refresh view
-			// TODO SIR prüfen ob dies so funktioniert oder ein window ENTWEDER ODER
-			// Ev. mit load image...
 			$scope.$apply($scope.loadConfig());
 			location.reload();
 		};

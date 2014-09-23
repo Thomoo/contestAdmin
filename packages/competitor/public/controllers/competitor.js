@@ -54,19 +54,12 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
         }
     };
 
-    $scope.loadAllDisziplinsAndFindOne = function() {
-        $log.info('loadAllDisziplinsAndFindOne called...');
-        $scope.loadAllDisziplins($scope.findOne);
-    };
-
-    $scope.loadAllDisziplinsAndConfig = function() {
-        $log.info('loadAllDisziplinsAndFindOne called...');
-        $scope.loadAllDisziplins($scope.loadConfig);
-    };
-
-    $scope.loadAllConfigAndDisziplinsAndFindOne = function() {
-        $log.info('loadAllDisziplinsAndFindOne called...');
-        $scope.loadConfig($scope.loadAllDisziplinsAndFindOne);
+    $scope.loadDisciplins = function(cb) {
+        $log.info('loadDisciplins called...');
+        Disziplin.query(function(disciplines) {
+            $scope.allDisciplines = disciplines;
+            cb();
+        });
     };
 
     $scope.loadConfig = function(cb) {
@@ -83,13 +76,21 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
         });
     };
 
-    $scope.loadAllDisziplins = function(cb) {
-        $log.info('loadAllDisziplins called...');
-        Disziplin.query(function(disciplines) {
-            $scope.allDisciplines = disciplines;
-            cb();
-        });
+    $scope.loadConfigAndDisciplins = function() {
+        $log.info('loadConfigAndDisciplins called...');
+        $scope.loadConfig($scope.loadDisciplins);
     };
+
+    $scope.loadDisciplinsAndFindOne = function() {
+        $log.info('loadDisciplinsAndFindOne called...');
+        $scope.loadDisciplins($scope.findOne);
+    };
+
+    $scope.loadConfigAndDisciplinsAndFindOne = function() {
+        $log.info('loadConfigAndDisciplinsAndFindOne called...');
+        $scope.loadConfig($scope.loadDisciplinsAndFindOne);
+    };
+
 
     $scope.findOne = function() {
         $log.info('find competitor called... with: ' + $stateParams.competitorId);

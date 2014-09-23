@@ -1,7 +1,18 @@
-<div class="form-container clearfix" data-ng-controller="CompetitorController" data-ng-init="loadAllConfigAndDisziplinsAndFindOne()">
-	<h1><label>{{wettkampf.title}}</label></h1>
-	<pre ng-show="wettkampf.anmeldungActive">{{wettkampf.infoTextActive}}</br></br>Sie können Sie hier ihre Anmeldedaten Überprüfen und mutieren.</pre>
-	<pre ng-show="!wettkampf.anmeldungActive">{{wettkampf.infoTextInactive}}</pre>
+<div class="form-container clearfix" data-ng-controller="CompetitorController" data-ng-init="loadConfigAndDisciplinsAndFindOne()">
+	<h1>{{wettkampf.title}}</h1>
+	<fieldset class='form-horizontal well'>
+		<legend>
+			Information
+		</legend>
+		<p ng-show="wettkampf.anmeldungActive">
+			{{wettkampf.infoTextActive}}
+			<br><br>
+			Sie können Sie hier ihre Anmeldedaten Überprüfen und mutieren.
+		</p>
+		<p ng-show="!wettkampf.anmeldungActive">
+			{{wettkampf.infoTextInactive}}
+		</p>
+	</fieldset>
 	<form name="competitorForm" data-ng-submit="update(competitorForm.$valid)" xt-form novalidate>
 		<div class="form-group">
 			<user-form readonly="!wettkampf.anmeldungActive"></user-form>

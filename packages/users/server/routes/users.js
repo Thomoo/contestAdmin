@@ -11,16 +11,6 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     .get(users.me);
   app.route('/users')
     .get(users.all);
-  app.route('users/changePassword/:password')
-  	.put(users.changepassword);
-
-  // Setting up the users api
-  // app.route('/register')
-    // .post(users.create);
-
-  // app.route('/forgot-password')
-    // .post(users.forgotpassword);
-
   app.route('/reset/:token')
     .post(users.resetpassword);
 

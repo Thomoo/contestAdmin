@@ -57,17 +57,5 @@ footer p {
     background-repeat: no-repeat;
     background-position: 0 -100px;
     background-size: cover;
-}
-body {
-    font-family: 'Oxygen', sans-serif;
-    background-image: url('/system/assets/img/tartan.jpg');
-    background-repeat: no-repeat;
-    background-position: 0 50px;
-    background-size: cover;
-    background-color: #000000;
-    background-attachment: fixed;
-}
-h1 {
-    color: #fff;
-    font-weight: bold;
+    margin-top: 20px;
 }

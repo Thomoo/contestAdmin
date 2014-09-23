@@ -48,3 +48,14 @@ footer p {
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
 }
+.home>.content {
+    margin-top: 10px;
+    min-height: 550px;
+    background-image: url('/system/assets/img/IMG_5506.jpg');
+    background-size: cover;
+    background-clip: content-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .6;
+    z-index: -1;
+}

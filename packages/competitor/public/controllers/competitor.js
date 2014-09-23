@@ -173,9 +173,12 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
     };
 
     $scope.deleteCompetitor = function(competitor) {
-        competitor.$delete(function() {
-            $location.path('competitor/administration');
-        });
+        var msg = 'Soll der Benutzer wirklich gelöscht werden? \n\nDies kann nicht mehr rückgängig gemacht werden!';
+        if (confirm(msg)) {
+            competitor.$delete(function () {
+                $location.path('competitor/administration');
+            });
+        }
     };
 
 }]);

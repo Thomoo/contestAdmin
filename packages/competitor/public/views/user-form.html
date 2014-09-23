@@ -75,7 +75,10 @@
                     <div class="col-md-6">
                         <p class="input-group">
                             <input id="geburtstag" ng-readonly="readonly" name="geburtstag" type="date" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}"
-                                   show-button-bar="false" ng-model="competitor.birthdate" is-open="opened" datepicker-options="dateOptions" required />
+                                   show-button-bar="false" ng-model="competitor.birthdate" is-open="opened" datepicker-options="dateOptions" required
+                                   xt-validate
+                                   msg-required="Das Geburtsdatum ein Pflichtfeld!"
+                                   msg-date="Bitte ein gültiges Geburtsdatum eingeben!" />
 							<span class="input-group-btn">
 								<button type="button" ng-disabled="readonly" class="btn btn-default" ng-click="open($event)">
                                     <i class="glyphicon glyphicon-calendar"></i>

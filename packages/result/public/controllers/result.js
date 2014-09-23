@@ -118,9 +118,9 @@ function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Compe
 	
 	$scope.updateResult = function() {
 		$log.info('update result called...');
-		console.log($scope.competitor);
-		console.log($scope.discipline.bezeichnung);
-		console.log($scope.result);
+		// console.log($scope.competitor);
+		// console.log($scope.discipline.bezeichnung);
+		// console.log($scope.result);
 
 		$scope.global.competitors.forEach(function(competitor) {
 			if (competitor.startnr === $scope.competitor.startnr) {
@@ -168,16 +168,14 @@ function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Compe
 	$scope.updateRankings = function(){
 		$scope.global.disciplines.forEach(function(discipline){
 			$scope.reverse = (discipline.sortierung === 'DESC');
-			var sortedCompetitors = $filter('orderBy')($scope.global.competitorsPerDiscipline[discipline._id], 'disciplinesById[discipline._id].result', $scope.reverse);
-			//var sortedCompetitors = $filter('orderBy')($scope.global.competitorsPerDiscipline[discipline._id], 'startnr');
-			
+			var sortedCompetitors = $filter('orderByResult')($scope.global.competitorsPerDiscipline[discipline._id], discipline._id, $scope.reverse);
 			
 			//if(sortedCompetitors[0].disciplinesById[discipline._id].result){
 				var counter = 1;
 				var rank = counter;
 				var tempResult = sortedCompetitors[0].disciplinesById[discipline._id].result;
 				sortedCompetitors.forEach(function(competitor){
-					console.log(competitor.disciplinesById[discipline._id]);
+					//console.log(competitor.disciplinesById[discipline._id]);
 					if(competitor.disciplinesById[discipline._id].result){
 						if(competitor.disciplinesById[discipline._id].result === tempResult){
 							competitor.disciplinesById[discipline._id].rank = rank;

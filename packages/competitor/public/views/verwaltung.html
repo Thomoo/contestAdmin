@@ -1,4 +1,4 @@
-<div data-ng-controller="VerwaltungController" data-ng-init="find()">
+<div data-ng-controller="VerwaltungController" data-ng-init="find()" class="form-container">
 
 	<h1>Teilnehmerverwaltung</h1>
 
@@ -40,8 +40,8 @@
                     <a data-toggle="dropdown" data-target="#" href="">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li><a href="#"  ng-click="removeStartNr(competitor)" tabindex="-1" role="menuitem">Startnummer entfernen</a></li>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" ng-click="removeStartNr(competitor)" tabindex="-1" role="menuitem">Startnummer wieder entfernen</a></li>
                         <!--<li><a href="#"  ng-click="removeStartNr(competitor)" tabindex="-1" role="menuitem">Startnummer manuell überschreiben</a></li>-->
                     </ul>
                 </div>

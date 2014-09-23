@@ -58,5 +58,14 @@ footer p {
     background-repeat: no-repeat;
     background-position: 0 -100px;
     background-size: cover;
-    opacity: 0.6;
+}
+body
+{
+    font-family: 'Oxygen', sans-serif;
+    background-image: url('/system/assets/img/tartan.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-color: #000000;
+    background-attachment: fixed;
 }

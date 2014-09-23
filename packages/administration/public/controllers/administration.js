@@ -40,8 +40,9 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 		if (isValid) {
 			var wettkampf = new Wettkampf({
 				title : $scope.wettkampf.title,
-				infoText : $scope.wettkampf.infoText,
-				anmeldungActive : $scope.wettkampf.anmeldungActive
+				infoTextActive : $scope.wettkampf.infoTextActive,
+				infoTextInactive : $scope.wettkampf.infoTextInactive,
+                anmeldungActive : $scope.wettkampf.anmeldungActive
 			});
 			wettkampf.$save(function(response) {
 				$log.info('saved');

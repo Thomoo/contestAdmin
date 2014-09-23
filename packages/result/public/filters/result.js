@@ -9,6 +9,13 @@ angular.module('mean.result').filter('reverse', function() {
 angular.module('mean.result').filter('withResultOnly', function() {
 	return function(competitors, disciplineId) {
     	competitors.forEach(function(competitor){
+    		competitor.disciplinesById = {};
+			if(competitor.disciplines){
+				competitor.disciplines.forEach(function(discipline){
+					competitor.disciplinesById[discipline.disciplineId] = discipline;
+				});
+			}
+    		
 		    if(!competitor.disciplinesById[disciplineId].result){
 		    	var index = competitors.indexOf(competitor);
 		    	if (index > -1) {

@@ -24,7 +24,7 @@
 			<td>{{ competitor.firstname }}</td>
 			<td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
 			<td>{{ competitor.birthdate | date: 'yyyy' }}</td>
-			<td>{{ competitor.disciplinesById[discipline._id].result }}</td>
+			<td>{{ discipline.formatFnc(competitor.disciplinesById[discipline._id].result) }}</td>
 		</tr>
 	</table>
 	</div>

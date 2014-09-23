@@ -99,7 +99,7 @@ var CompetitorSchema = new Schema({
 	// }
 	// return {};
 // };
-
+/*
 CompetitorSchema.virtual('disciplinesById').get(function(){
 	var d = {};
 	if(this.disciplines){
@@ -113,7 +113,7 @@ CompetitorSchema.virtual('disciplinesById').get(function(){
 
 
 CompetitorSchema.set('toJSON', { virtuals: true });
-
+*/
 /**
  * Validations
  */

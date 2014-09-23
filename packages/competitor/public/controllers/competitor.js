@@ -3,8 +3,9 @@
 /**
  * Module dependencies.
  */
-angular.module('mean.competitor').controller('CompetitorController', ['$scope', '$log', '$location', '$stateParams', 'Global', 'Competitor', 'Wettkampf', 'Disziplin', 'filterFilter',
-function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, Disziplin, filterFilter) {
+angular.module('mean.competitor').controller('CompetitorController', ['$scope', '$log', '$timeout', '$location', '$stateParams', 'Global', 'Competitor', 'Wettkampf', 'Disziplin', 'filterFilter',
+function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, Wettkampf, Disziplin, filterFilter) {
+    /*global Ladda:false */
     $scope.global = Global;
     $scope.package = {
         name : 'competitor',
@@ -17,10 +18,7 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
 
     $scope.hasAuthorization = function(competitor) {
         $log.info('hasAuthorization in competitor called...');
-        if (!competitor)
-            // if (!competitor || !competitor.user)
-            return false;
-        return $scope.global.isAdmin;
+        return $scope.global.isCompetitorAdmin;
     };
 
     $scope.create = function(isValid) {
@@ -107,7 +105,12 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
         });
     };
 
+    if (document.querySelector('#saveCompetitorMutation'))
+        var saveCompetitorMutationButton = Ladda.create(document.querySelector('#saveCompetitorMutation'));
+
     $scope.update = function(isValid) {
+        if (saveCompetitorMutationButton)
+            saveCompetitorMutationButton.start();
         $log.info('update competitor called...: ' + isValid);
         if (isValid) {
             var competitor = $scope.competitor;
@@ -119,6 +122,11 @@ function($scope, $log, $location, $stateParams, Global, Competitor, Wettkampf, D
             competitor.updated.push(new Date().getTime());
 
             competitor.$update(function() {
+                if (saveCompetitorMutationButton) {
+                    $timeout(function() {
+                        saveCompetitorMutationButton.stop();
+                    }, 500);
+                }
                 if ($scope.global.isCompetitorAdmin)
                     $location.path('competitor/administration');
             });

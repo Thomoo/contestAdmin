@@ -16,3 +16,7 @@
 .btn-cstm-controls-right {
     float: right;
 }
+
+.competitions-table .table-bordered {
+	border: 5px solid #ddd;
+}

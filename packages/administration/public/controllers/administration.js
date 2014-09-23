@@ -166,22 +166,27 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	}];
 
 	var time1Val = JSON.stringify({
+		placeholder: 'ss.hh',
 		validate : '^\\d{1-2}\\.\\d{2}$',
 		format : '(function(val){return val + "sec";})'
 	});
 	var time2Val = JSON.stringify({
+		placeholder: 'mm:ss.h',
 		validate : '^\\d{2}:\\d{2}\\.\\d{1}$',
 		format : '(function(val){return val.replace(":", "min ") + "sec";})'
 	});
 	var distance1Val = JSON.stringify({
+		placeholder: 'm',
 		validate : '^\\d+$',
 		format : '(function(val){return val + "m";})'
 	});
 	var distance2Val = JSON.stringify({
+		placeholder: 'm.cm',
 		validate : '\\d+\\.\\d{2}$',
 		format : '(function(val){return val + "m";})'
 	});
 	var punkte1Val = JSON.stringify({
+		placeholder: 'x',
 		validate : '^\\d+$',
 		format : '(function(val){return val + "pte";})'
 	});
@@ -352,7 +357,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 			// TODO SIR prüfen ob dies so funktioniert oder ein window ENTWEDER ODER
 			// Ev. mit load image...
 			$scope.$apply($scope.loadConfig());
-			// location.reload();
+			location.reload();
 		};
 		fileReader.readAsText(fileToLoad, 'UTF-8');
 	};

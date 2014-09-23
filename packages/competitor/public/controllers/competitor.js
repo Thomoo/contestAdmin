@@ -11,8 +11,18 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
         name : 'competitor',
 
     };
-
-    $scope.competitor = '';
+   
+    $scope.competitor = {
+        gender: '',
+        name:'',
+        firstname: '',
+        address: '',
+        zip: '',
+        location: '',
+        society: '',
+        email: '',
+        birthdate: ''
+    };
 
     $scope.subscriptionActive = $scope.global.isCompetitorAdmin;
 
@@ -39,15 +49,6 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
             competitorToCreate.$save(function(response) {
                 $location.path('/competitor/subscription/confirmation');
             });
-            this.competitor.gender = '';
-            this.competitor.name = '';
-            this.competitor.firstname = '';
-            this.competitor.address = '';
-            this.competitor.zip = '';
-            this.competitor.location = '';
-            this.competitor.society = '';
-            this.competitor.email = '';
-            this.competitor.birthdate = new Date();
         } else {
             $scope.competitor.submitted = true;
         }
@@ -76,7 +77,9 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
             if (wettkampf.anmeldungActive) {
                 $scope.subscriptionActive = true;
             }
-            cb();
+            if (cb) {
+                cb();
+            }
         });
     };
 

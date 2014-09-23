@@ -7,7 +7,7 @@
 		<legend>
 			Erfassung
 		</legend>
-		<form name="enterResultForm" data-ng-submit="updateResult()" novalidate>
+		<form name="enterResultForm" data-ng-submit="updateResult()" xt-form novalidate>
 			<div class="form-group">
 				<label for"discipline" class="col-md-4 control-label">Disziplin</label>
 				<div class="col-md-8">
@@ -25,7 +25,9 @@
 			<div class="form-group">
 				<label for="result" class="col-md-4 control-label">Resultat</label>
 				<div class="col-md-8">
-					<input id="result" required type="text" placeholder="{{discipline.placeholder}}" ng-pattern="discipline.validate" class="form-control" ng-model="result"/>
+					<input id="result" required type="text" placeholder="{{discipline.placeholder}}" ng-pattern="discipline.validate" name="result" class="form-control" ng-model="result"
+                           msg-required="Dies ist ein Pflichtfeld!"
+                           xt-validate />
 				</div>
 				<div class="col-md-8">
 					{{discipline.validate}}
@@ -43,7 +45,7 @@
 
 	<fieldset class='form-horizontal well'>
 		<legend>
-			Veraluf
+			Verlauf
 		</legend>
 		<table class="table table-bordered table-hover table-condensed table-striped" ng-show="(global.enteredResults | filter:criteria).length">
 			<tr>

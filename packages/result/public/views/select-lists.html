@@ -2,28 +2,20 @@
 
     <h1>Start- und Ranglisten</h1>
 
-    <!-- <form>
-        <fieldset class="competitor-filter-input-group well well-sm">
-            <legend>Filter</legend>
-        	<label for="searchTxt" class="col-md-1">Suchtext</label>
-            <input type="text" class="input-search-all form-control col-md-8" id="searchTxt" ng-model="search.bezeichnung">
-            <button class="btn btn-warning" ng-click="resetSearchForm()" ng-disabled="searchFormEmpty()">Filter zurücksetzen</button>
-        </fieldset>
-    </form>
-     -->
-    <br />
-	<table class="table table-bordered table-hover table-condensed table-striped">
-		<tr>
-			<th>Disziplin</th>
-			<th><input type="checkbox" ng-model="selectAllDisciplines" ng-change="refreshSelectAllDisciplines()">&nbsp; alle</th>
-		</tr>
-		<tr ng-repeat="discipline in global.disciplines | orderBy:'bezeichnung' | filter:search:strict">
-			<td>{{ discipline.bezeichnung }}</td>
-			<td><input type="checkbox" ng-model="global.selectedDisciplinesIds[discipline._id]" ng-change="refreshSelectedDisciplines()"></td>
-		</tr>
-	</table>
-	<button class="btn btn-success" ng-click="navStartLists()" ng-disabled="selectedNoDisciplines">Startlisten erstellen</button>
-	<button class="btn btn-success" ng-click="navRankings()" ng-disabled="selectedNoDisciplines">Ranglisten erstellen</button>
-
+    <fieldset class="well well-sm">
+        <legend>Verwalten</legend>
+        <table class="table table-bordered table-hover table-condensed table-striped">
+            <tr>
+                <th>Disziplin</th>
+                <th><input type="checkbox" ng-model="selectAllDisciplines" ng-change="refreshSelectAllDisciplines()">&nbsp; alle</th>
+            </tr>
+            <tr ng-repeat="discipline in global.disciplines | orderBy:'bezeichnung' | filter:search:strict">
+                <td>{{ discipline.bezeichnung }}</td>
+                <td><input type="checkbox" ng-model="global.selectedDisciplinesIds[discipline._id]" ng-change="refreshSelectedDisciplines()"></td>
+            </tr>
+        </table>
+        <button class="btn btn-success" ng-click="navStartLists()" ng-disabled="selectedNoDisciplines">Startlisten erstellen</button>
+        <button class="btn btn-success" ng-click="navRankings()" ng-disabled="selectedNoDisciplines">Ranglisten erstellen</button>
+    </fieldset>
 
 </div>

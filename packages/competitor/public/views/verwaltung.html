@@ -1,11 +1,11 @@
 <div data-ng-controller="VerwaltungController" data-ng-init="find()" class="form-container">
 
-	<h1>Teilnehmerverwaltung</h1>
+    <h1>Teilnehmerverwaltung</h1>
 
     <form>
         <fieldset class="competitor-filter-input-group well well-sm">
             <legend>Filter</legend>
-            <table>
+            <table class="fieldset-table">
                 <tr>
                     <td><label for="searchStartNbr">Startnummer</label></td>
                     <td><input type="text" class="input-search-start-nbr form-control" id="searchStartNbr" ng-model="search.startnr"></td>
@@ -17,62 +17,60 @@
         </fieldset>
     </form>
 
-	<br />
-	&nbsp;
-	<br />
 
-
-    <table class="table table-bordered table-hover table-striped">
-        <tr>
-            <th>Start-Nr.</th>
-            <th>Name</th>
-            <th>Vorname</th>
-            <th>Jahrgang</th>
-            <th>Geschlecht</th>
-            <th>Ort</th>
-            <th>Verein</th>
-            <th></th>
-        </tr>
-        <tr ng-repeat="competitor in competitors | filter:search:strict">
-            <td>
-                <span class="pull-left">{{ competitor.startnr }}</span>
-                <div ng-show="competitor.startnr" class="dropdown pull-right">
-                    <a data-toggle="dropdown" data-target="#" href="">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" ng-click="removeStartNr(competitor)" tabindex="-1" role="menuitem">Startnummer wieder entfernen</a></li>
-                        <!--<li><a href="#"  ng-click="removeStartNr(competitor)" tabindex="-1" role="menuitem">Startnummer manuell überschreiben</a></li>-->
-                    </ul>
-                </div>
-            </td>
-            <td>
-                  {{ competitor.name }}
-            </td>
-            <td>
-                  {{ competitor.firstname }}
-            </td>
-            <td>
-                  {{ competitor.birthdate | date:'yyyy' }}
-            </td>
-            <td>
-                  {{ competitor.gender }}
-            </td>
-            <td>
-                  {{ competitor.location }}
-            </td>
-            <td>
-                  {{ competitor.society }}
-            </td>
-            <td style="white-space: nowrap">
-                <div class="buttons" ng-show="!rowform.$visible">
-                    <button class="btn btn-info" ng-click="navigateToDetails(competitor)">Bearbeiten</button>
-                    <button ng-show="!competitor.startnr" class="btn btn-primary" ng-click="generateStartNr(competitor)">Start-Nr. vergeben</button>
-                </div>
-            </td>
-        </tr>
-    </table>
-
+    <fieldset class="well well-sm">
+        <legend>Einträge</legend>
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>Start-Nr.</th>
+                <th>Name</th>
+                <th>Vorname</th>
+                <th>Jahrgang</th>
+                <th>Geschlecht</th>
+                <th>Ort</th>
+                <th>Verein</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="competitor in competitors | filter:search:strict">
+                <td>
+                    <span class="pull-left">{{ competitor.startnr }}</span>
+                    <div ng-show="competitor.startnr" class="dropdown pull-right">
+                        <a data-toggle="dropdown" data-target="#" href="">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" ng-click="removeStartNr(competitor)" tabindex="-1" role="menuitem">Startnummer wieder entfernen</a></li>
+                            <!--<li><a href="#"  ng-click="removeStartNr(competitor)" tabindex="-1" role="menuitem">Startnummer manuell überschreiben</a></li>-->
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    {{ competitor.name }}
+                </td>
+                <td>
+                    {{ competitor.firstname }}
+                </td>
+                <td>
+                    {{ competitor.birthdate | date:'yyyy' }}
+                </td>
+                <td>
+                    {{ competitor.gender }}
+                </td>
+                <td>
+                    {{ competitor.location }}
+                </td>
+                <td>
+                    {{ competitor.society }}
+                </td>
+                <td style="white-space: nowrap">
+                    <div class="buttons" ng-show="!rowform.$visible">
+                        <button class="btn btn-info" ng-click="navigateToDetails(competitor)">Bearbeiten</button>
+                        <button ng-show="!competitor.startnr" class="btn btn-primary" ng-click="generateStartNr(competitor)">Start-Nr. vergeben</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 
 </div>
 

@@ -18,7 +18,7 @@
 			<th>Jahrgang</th>
 			<th>Resultat</th>
 		</tr>
-		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'disciplinesById[discipline._id].rank' : reverse">
+		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'disciplinesById[discipline._id].rank' : reverse | withResultOnly : discipline._id">
 			<td>{{ competitor.disciplinesById[discipline._id].rank }}</td>
 			<td>{{ competitor.name }}</td>
 			<td>{{ competitor.firstname }}</td>

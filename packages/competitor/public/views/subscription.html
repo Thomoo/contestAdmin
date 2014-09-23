@@ -1,7 +1,12 @@
 <div class="form-container clearfix" data-ng-controller="CompetitorController" data-ng-init="loadAllDisziplinsAndConfig()">
-	<h1><label>{{wettkampf.title}}</label></h1>
-	<pre ng-show="wettkampf.anmeldungActive">{{wettkampf.infoTextActive}}</pre>
-	<pre ng-show="!wettkampf.anmeldungActive">{{wettkampf.infoTextInactive}}</pre>
+	<h1>{{wettkampf.title}}</h1>
+    <fieldset class='form-horizontal well'>
+        <legend>
+            Information
+        </legend>
+		<p ng-show="wettkampf.anmeldungActive">{{wettkampf.infoTextActive}}</pre>
+		<p ng-show="!wettkampf.anmeldungActive">{{wettkampf.infoTextInactive}}</pre>
+	</fieldset>
 	<form ng-show="subscriptionActive" name="competitorForm" data-ng-submit="create(competitorForm.$valid)" xt-form novalidate>
 		<div class="form-group">
 			<user-form></user-form>

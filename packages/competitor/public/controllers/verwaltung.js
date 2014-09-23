@@ -32,7 +32,7 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
     };
 
     $scope.removeStartNr = function(competitor){
-        var msg = 'Willst du die Startnummer von ' + competitor.firstname + ' ' + competitor.name + ' wirklich entfernen? Dies darf nur gemacht werden, wenn der Teilnehmer die Nummer noch nicht abgeholt hat!';
+        var msg = 'Willst du die Startnummer von ' + competitor.firstname + ' ' + competitor.name + ' wirklich entfernen? \n\nDies darf nur gemacht werden, wenn der Teilnehmer die Nummer noch nicht abgeholt hat!';
         if(confirm(msg) && competitor.startnr) {
             competitor.$toggleStartNr();
         }

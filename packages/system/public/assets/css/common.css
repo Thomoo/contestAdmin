@@ -48,10 +48,9 @@ footer p {
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
 }
-.home>.content {
+.home-image {
     border: 1px solid #c0c0c0 !important;
     padding: 0;
-    margin-top: 20px;
     text-align: center;
     min-height: 500px;
     background-image: url('/system/assets/img/IMG_5506.jpg');
@@ -59,13 +58,16 @@ footer p {
     background-position: 0 -100px;
     background-size: cover;
 }
-body
-{
+body {
     font-family: 'Oxygen', sans-serif;
     background-image: url('/system/assets/img/tartan.jpg');
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: 0 50px;
     background-size: cover;
     background-color: #000000;
     background-attachment: fixed;
+}
+h1 {
+    color: #fff;
+    font-weight: bold;
 }

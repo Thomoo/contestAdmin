@@ -17,7 +17,8 @@
 			<th>Ort/Verein</th>
 			<th>Jahrgang</th>
 		</tr>
-		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy:'startnr'">
+		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'startnr' | filter: {startnr: '!!'}">
+		<!-- <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'startnr'"> -->
 			<td>{{ competitor.startnr }}</td>
 			<td>{{ competitor.name }}</td>
 			<td>{{ competitor.firstname }}</td>

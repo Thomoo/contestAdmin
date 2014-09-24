@@ -59,7 +59,7 @@
 				<td> {{ result.competitor.firstname }} </td>
 				<td ng-show="result.competitor.society">{{ result.competitor.society }}</td><td ng-show="!result.competitor.society">{{ result.competitor.location }}</td>
 				<td> {{ result.discipline.disziplin }} </td>
-				<td> {{ result.result }} </td>
+				<td> {{ result.discipline.formatFnc(result.result) }} </td>
 			</tr>
 		</table>
 	</fieldset>

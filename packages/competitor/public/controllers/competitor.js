@@ -57,6 +57,12 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
     $scope.loadDisciplins = function(cb) {
         $log.info('loadDisciplins called...');
         Disziplin.query(function(disciplines) {
+            
+            disciplines.forEach(function(discipline){
+                var formatObj = JSON.parse(discipline.format);
+                /* jshint ignore:start */
+                discipline.formatFnc = eval(formatObj.format);
+            });
             $scope.allDisciplines = disciplines;
             cb();
         });

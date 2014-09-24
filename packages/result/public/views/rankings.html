@@ -11,12 +11,12 @@
 	<h3>{{ discipline.bezeichnung }}</h3>
 	<table class="table table-bordered table-hover table-condensed table-striped page-break-after">
 		<tr>
-			<th>Rang</th>
-			<th>Name</th>
-			<th>Vorname</th>
-			<th>Ort/Verein</th>
-			<th>Jahrgang</th>
-			<th>Resultat</th>
+			<th width="5%">Rang</th>
+			<th width="15%">Name</th>
+			<th width="15%">Vorname</th>
+			<th width="15%">Ort/Verein</th>
+			<th width="5%">Jahrgang</th>
+			<th width="15%">Resultat</th>
 		</tr>
 		<!-- <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'disciplinesById[discipline._id].rank' | withResultOnly : discipline._id"> -->
 		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | withResultOnly : discipline._id | orderByRank: discipline._id">

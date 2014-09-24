@@ -104,7 +104,7 @@
                     </tr>
                     <tr ng-repeat="discipline in allDisciplines | filter:isPossibleDiscipline">
                         <td><input type="checkbox" ng-disabled="readonly" ng-model="discipline.declared"></td>
-                        <td>{{discipline.bezeichnung}}</td>
+                        <td>{{discipline.disziplin}}</td>
                         <td>{{discipline.result}}</td>
                     </tr>
                 </table>

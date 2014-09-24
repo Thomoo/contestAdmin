@@ -49,7 +49,7 @@
 				<th>Nr.</th>
 				<th>Name</th>
 				<th>Vorname</th>
-				<th>Verein</th>
+				<th>Verein/Ort</th>
 				<th>Disziplin</th>
 				<th>Resultat</th>
 			</tr>
@@ -57,8 +57,8 @@
 				<td> {{ result.competitor.startnr }} </td>
 				<td> {{ result.competitor.name }} </td>
 				<td> {{ result.competitor.firstname }} </td>
-				<td> {{ result.competitor.society }} </td>
-				<td> {{ result.discipline.bezeichnung }} </td>
+				<td ng-show="result.competitor.society">{{ result.competitor.society }}</td><td ng-show="!result.competitor.society">{{ result.competitor.location }}</td>
+				<td> {{ result.discipline.disziplin }} </td>
 				<td> {{ result.result }} </td>
 			</tr>
 		</table>

@@ -13,6 +13,25 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
         });
     };
 
+    // daten aufbereiten
+    $scope.genders = [{
+        value : 'male',
+        text : 'männlich'
+    }, {
+        value : 'female',
+        text : 'weiblich'
+    }];
+
+    $scope.showGender = function(competitor){
+        var selected = [];
+        if (competitor.gender) {
+            selected = $filter('filter')($scope.genders, {
+                value : competitor.gender
+            });
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
+
     $scope.navigateToDetails = function(competitor){
         $location.path('/competitor/' + competitor._id);
     };

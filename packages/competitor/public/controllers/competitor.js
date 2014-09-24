@@ -8,7 +8,7 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
     /*global Ladda:false */
     $scope.global = Global;
     $scope.package = {
-        name : 'competitor',
+        name : 'competitor'
 
     };
    
@@ -22,6 +22,10 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
         society: '',
         email: '',
         birthdate: ''
+    };
+
+    $scope.cancel = function(){
+        $location.path('/competitor/administration');
     };
 
     $scope.subscriptionActive = $scope.global.isCompetitorAdmin;

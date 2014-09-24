@@ -8,7 +8,7 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
     /*global Ladda:false */
     $scope.global = Global;
     $scope.package = {
-        name : 'competitor',
+        name : 'competitor'
 
     };
    

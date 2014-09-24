@@ -8,26 +8,27 @@
 	</div>
 	
 	<div ng-repeat="discipline in global.selectedDisciplines | orderBy:'bezeichnung'">
-	<h3>{{ discipline.bezeichnung }}</h3>
-	<table class="table table-bordered table-hover table-condensed table-striped page-break-after">
-		<tr>
-			<th width="5%">Start-Nr.</th>
-			<th width="15%">Name</th>
-			<th width="15%">Vorname</th>
-			<th width="15%">Ort/Verein</th>
-			<th width="5%">Jahrgang</th>
-		</tr>
-		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'startnr' | filter: {startnr: '!!'}">
-		<!-- <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'startnr'"> -->
-			<td>{{ competitor.startnr }}</td>
-			<td>{{ competitor.name }}</td>
-			<td>{{ competitor.firstname }}</td>
- 			<td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
-			<td>{{ competitor.birthdate | date: 'yyyy' }}</td>
-		</tr>
-	</table>
-	</div>
-	
+        <fieldset class='form-horizontal well'>
+            <legend>{{ discipline.bezeichnung }}</legend>
+            <table class="table table-bordered table-hover table-condensed table-striped page-break-after">
+                <tr>
+                    <th width="5%">Start-Nr.</th>
+                    <th width="15%">Name</th>
+                    <th width="15%">Vorname</th>
+                    <th width="15%">Ort/Verein</th>
+                    <th width="5%">Jahrgang</th>
+                </tr>
+                <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'startnr' | filter: {startnr: '!!'}">
+                    <!-- <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'startnr'"> -->
+                    <td>{{ competitor.startnr }}</td>
+                    <td>{{ competitor.name }}</td>
+                    <td>{{ competitor.firstname }}</td>
+                    <td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
+                    <td>{{ competitor.birthdate | date: 'yyyy' }}</td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
 	<div class="no-print">
 		<br/>
 		<button class="btn btn-primary no-print" ng-click="navBack()">zurück</button>

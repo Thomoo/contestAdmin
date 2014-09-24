@@ -24,6 +24,10 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
         birthdate: ''
     };
 
+    $scope.cancel = function(){
+        $location.path('/competitor/administration');
+    };
+
     $scope.subscriptionActive = $scope.global.isCompetitorAdmin;
 
     $scope.hasAuthorization = function(competitor) {

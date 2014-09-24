@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/linnovate/mean.png?branch=master)](https://travis-ci.org/linnovate/mean)
 [![Dependencies Status](https://david-dm.org/linnovate/mean.png)](https://david-dm.org/linnovate/mean)
 
-Silvan Test:
 MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you a quick and organized way to start developing MEAN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 
 ## Prerequisites
@@ -23,6 +22,18 @@ $ npm install -g bower
 ```
 $ npm install -g grunt-cli
 ```
+## Anleitung Contest Admin
+* mongodb starten
+* in Projekt-Home ausführen (einmalig nach Checkout): npm install
+* in Projekt-Home ausführen: grunt
+* öffnen: localhost:3000
+* Einloggen mit einem der Benutzer
+| Name				| PW				| Rolle									|
+|-------------------|-------------------|---------------------------------------|
+| admin				| admin				| alle Rechte							|
+| resultAdmin		| resultAdmin		| berechtigt Resultate zu verwalten		|
+| competitorAdmin	| competitorAdmin	| berechtigt Teilnehmer zu verwalten	|
+
 
 ## Additional Packages
 * Express - Defined as npm module in the [package.json](package.json) file.

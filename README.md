@@ -25,9 +25,13 @@ $ npm install -g grunt-cli
 ## Anleitung Contest Admin
 * mongodb starten
 * in Projekt-Home ausführen (einmalig nach Checkout): 
+```
 $ npm install
-* in Projekt-Home ausführen: 
+```
+* in Projekt-Home ausführen (startet den Server): 
+```
 $ grunt
+```
 * öffnen: [Localhost](http://localhost:3000)
 * Einloggen mit einem der Benutzer.
 

@@ -6,31 +6,33 @@
 		<br />
 		<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></div>
 	</div>
-	
-	<div ng-repeat="discipline in global.selectedDisciplines | orderBy:'bezeichnung'">
-	<h3>{{ discipline.bezeichnung }}</h3>
-	<table class="table table-bordered table-hover table-condensed table-striped page-break-after">
-		<tr>
-			<th width="5%">Rang</th>
-			<th width="15%">Name</th>
-			<th width="15%">Vorname</th>
-			<th width="15%">Ort/Verein</th>
-			<th width="5%">Jahrgang</th>
-			<th width="15%">Resultat</th>
-		</tr>
-		<!-- <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'disciplinesById[discipline._id].rank' | withResultOnly : discipline._id"> -->
-		<tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | withResultOnly : discipline._id | orderByRank: discipline._id">
-			<td>{{ competitor.disciplinesById[discipline._id].rank }}</td>
-			<td>{{ competitor.name }}</td>
-			<td>{{ competitor.firstname }}</td>
-			<td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
-			<td>{{ competitor.birthdate | date: 'yyyy' }}</td>
-			<td>{{ discipline.formatFnc(competitor.disciplinesById[discipline._id].result) }}</td>
-		</tr>
-	</table>
-	</div>
-	
-	<div class="no-print">
+
+    <div ng-repeat="discipline in global.selectedDisciplines | orderBy:'bezeichnung'">
+        <fieldset class='form-horizontal well'>
+            <legend>{{ discipline.bezeichnung }}</legend>
+            <table class="table table-bordered table-hover table-condensed table-striped page-break-after">
+                <tr>
+                    <th width="5%">Rang</th>
+                    <th width="15%">Name</th>
+                    <th width="15%">Vorname</th>
+                    <th width="15%">Ort/Verein</th>
+                    <th width="5%">Jahrgang</th>
+                    <th width="15%">Resultat</th>
+                </tr>
+                <!-- <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'disciplinesById[discipline._id].rank' | withResultOnly : discipline._id"> -->
+                <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | withResultOnly : discipline._id | orderByRank: discipline._id">
+                    <td>{{ competitor.disciplinesById[discipline._id].rank }}</td>
+                    <td>{{ competitor.name }}</td>
+                    <td>{{ competitor.firstname }}</td>
+                    <td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
+                    <td>{{ competitor.birthdate | date: 'yyyy' }}</td>
+                    <td>{{ discipline.formatFnc(competitor.disciplinesById[discipline._id].result) }}</td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+
+    <div class="no-print">
 		<br/>
 		<button class="btn btn-primary no-print" ng-click="navBack()">zurück</button>
 	</div>

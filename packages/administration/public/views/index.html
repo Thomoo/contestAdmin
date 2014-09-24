@@ -33,7 +33,7 @@
 					<input name="aktivieren" data-ng-model="wettkampf.anmeldungActive" id="aktivieren" type="checkbox" class="checkbox" />
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary ladda-button" name="saveWettkampf" id="saveWettkampf" data-color="green" data-style="expand-left">
+			<button type="submit" class="btn btn-primary ladda-button" name="saveWettkampf" id="saveWettkampf" data-color="green" data-size="s" data-style="expand-left">
 				<span class="ladda-label">Speichern</span>
 			</button>
 		</fieldset>
@@ -137,7 +137,7 @@
 			Konfiguration verwalten
 		</legend>
 		<input type="file" class="hidden" id="configFileInput" name="configFileInput" onchange="angular.element(this).scope().importConfig()" >
-		<button class="btn ladda-button" name="import" id="import" ng-click="openImport()" data-color="grey" data-style="expand-left">
+		<button class="btn ladda-button" name="import" id="import" ng-click="openImport()" data-color="grey" data-size="s" data-style="expand-left">
 			<span class="ladda-label">Import</span>
 		</button>
 		<div class="form-group">
@@ -146,7 +146,7 @@
 				<input name="overrideConfig" id="overrideConfig" type="checkbox" class="checkbox" />
 			</div>
 		</div>
-		<button class="btn ladda-button" name="export" id="export" ng-click="export()" data-color="grey" data-style="expand-left">
+		<button class="btn ladda-button" name="export" id="export" ng-click="export()" data-color="grey" data-size="s" data-style="expand-left">
 			<span class="ladda-label">Export</span>
 		</button>
 	</fieldset>

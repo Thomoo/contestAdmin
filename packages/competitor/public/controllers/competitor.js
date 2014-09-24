@@ -65,7 +65,9 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
                 /* jshint ignore:end */
             });
             $scope.allDisciplines = disciplines;
-            cb();
+            if (cb) {
+                cb();
+            }
         });
     };
 

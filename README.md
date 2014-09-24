@@ -27,12 +27,13 @@ $ npm install -g grunt-cli
 * in Projekt-Home ausführen (einmalig nach Checkout): npm install
 * in Projekt-Home ausführen: grunt
 * öffnen: localhost:3000
-* Einloggen mit einem der Benutzer
-| Name				| PW				| Rolle									|
+* Einloggen mit einem der Benutzer.
+
+| Name              | PW                | Rolle                                 |
 |-------------------|-------------------|---------------------------------------|
-| admin				| admin				| alle Rechte							|
-| resultAdmin		| resultAdmin		| berechtigt Resultate zu verwalten		|
-| competitorAdmin	| competitorAdmin	| berechtigt Teilnehmer zu verwalten	|
+| admin             | admin             | alle Rechte                           |
+| resultAdmin       | resultAdmin       | berechtigt Resultate zu verwalten     |
+| competitorAdmin   | competitorAdmin   | berechtigt Teilnehmer zu verwalten    |
 
 
 ## Additional Packages

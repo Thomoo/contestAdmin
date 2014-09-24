@@ -171,7 +171,8 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 
 	var time1Val = JSON.stringify({
 		placeholder: 'ss.hh',
-		validate : '^\\d{1,2}\\.\\d{2}$',
+		// validate : '^\\d{1,2}\\.\\d{2}$',
+        validate : '^\\d{2}\\.\\d{2}$',
 		format : '(function(val){return val + "sec";})'
 	});
 	var time2Val = JSON.stringify({
@@ -194,6 +195,12 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 		validate : '^\\d+$',
 		format : '(function(val){return val + "pte";})'
 	});
+	var rang1Val = JSON.stringify({
+        placeholder: 'x',
+        validate : '^\\d+$',
+        format : '(function(val){return val;})'
+    });
+
 	$scope.formats = [{
 		value : time1Val,
 		text : 'time: ss.hh'
@@ -209,7 +216,10 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	}, {
 		value : punkte1Val,
 		text : 'punkte: x'
-	}];
+	}, {
+        value : rang1Val,
+        text : 'rang: x'
+    }];
 
 	$scope.showGeschlecht = function(disziplin) {
 		var selected = [];

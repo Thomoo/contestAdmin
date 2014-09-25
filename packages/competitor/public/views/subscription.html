@@ -1,17 +1,25 @@
 <div class="form-container clearfix" data-ng-controller="CompetitorController" data-ng-init="loadConfigAndDisciplins()">
 	<h1>{{wettkampf.title}}</h1>
-    <fieldset class='form-horizontal well'>
-        <legend>
-            Information
-        </legend>
-		<p ng-show="wettkampf.anmeldungActive">{{wettkampf.infoTextActive}}</p>
-		<p ng-show="!wettkampf.anmeldungActive">{{wettkampf.infoTextInactive}}</p>
+	<fieldset class='form-horizontal well'>
+		<legend>
+			Information
+		</legend>
+		<p ng-show="wettkampf.anmeldungActive">
+			{{wettkampf.infoTextActive}}
+		</p>
+		<p ng-show="!wettkampf.anmeldungActive">
+			{{wettkampf.infoTextInactive}}
+		</p>
 	</fieldset>
 	<form ng-show="subscriptionActive" name="competitorForm" data-ng-submit="create(competitorForm.$valid)" xt-form novalidate>
 		<div class="form-group">
 			<user-form></user-form>
 		</div>
-		<button type="submit" ng-disabled="competitorForm.$invalid" class="btn btn-primary btn-success btn-cstm-controls btn-cstm-controls-right">Anmelden</button>
+		<fieldset class='form-horizontal well'>
+			<button type="submit" ng-disabled="competitorForm.$invalid" class="btn btn-primary btn-success btn-cstm-controls btn-cstm-controls-right">
+				Anmelden
+			</button>
+		</fieldset>
 	</form>
 </div>
 

@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-  db: 'mongodb://localhost/mean-prod',
+  db: 'mongodb://ds057000.mongolab.com:57000/niedersimmentaler',
   app: {
-    name: 'MEAN - A Modern Stack - Production'
+    name: 'Dr Schnällscht Niedersimmentaler'
   },
   facebook: {
     clientID: 'APP_ID',

@@ -6,7 +6,8 @@
 		</legend>
 		<p ng-show="wettkampf.anmeldungActive">
 			{{wettkampf.infoTextActive}}
-			<br><br>
+			<br>
+			<br>
 			Sie können Sie hier ihre Anmeldedaten Überprüfen und mutieren.
 		</p>
 		<p ng-show="!wettkampf.anmeldungActive">
@@ -17,8 +18,10 @@
 		<div class="form-group">
 			<user-form readonly="!wettkampf.anmeldungActive"></user-form>
 		</div>
-		<button ng-show="wettkampf.anmeldungActive" name="saveCompetitorMutation" id="saveCompetitorMutation" class="btn btn-primary ladda-button btn-cstm-controls btn-cstm-controls-right" type="submit" ng-disabled="competitorForm.$invalid" data-color="green" data-size="s" data-style="expand-right">
-			<span class="ladda-label">Speichern</span>
-		</button>
+		<fieldset class='form-horizontal well'>
+			<button ng-show="wettkampf.anmeldungActive" name="saveCompetitorMutation" id="saveCompetitorMutation" class="btn btn-primary ladda-button btn-cstm-controls btn-cstm-controls-right" type="submit" ng-disabled="competitorForm.$invalid" data-color="green" data-size="s" data-style="expand-right">
+				<span class="ladda-label">Speichern</span>
+			</button>
+		</fieldset>
 	</form>
 </div>

@@ -76,7 +76,7 @@
 						<p class="input-group">
 							<!-- <input id="geburtstag" ng-readonly="readonly" name="geburtstag" type="date" placeholder="dd.mm.jjjj" class="form-control" datepicker-popup="{{dateFormat}}" -->
 							<!-- show-button-bar="false" ng-model="competitor.birthdate" is-open="opened" datepicker-options="dateOptions" required -->
-							<input id="geburtstag" ng-readonly="readonly" name="geburtstag" type="date" placeholder="dd.mm.jjjj" class="form-control"
+							<input id="geburtstag" ng-readonly="readonly" name="geburtstag" type="date" placeholder="jjjj-mm-tt" class="form-control"
 							ng-model="competitor.birthdate" is-open="opened" required
 							xt-validate
 							msg-required="Das Geburtsdatum ist ein Pflichtfeld!"
@@ -113,9 +113,7 @@
 						<td><div ng-if="discipline.result">
 							{{discipline.formatFnc(discipline.result)}}
 						</div></td>
-						<td><div ng-if="discipline.result">
-							{{discipline.rank}}
-						</div></td>
+						<td>{{discipline.rank}}</td>
 					</tr>
 				</table>
 			</div>

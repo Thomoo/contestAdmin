@@ -3,7 +3,7 @@
 module.exports = {
   db: 'mongodb://localhost/mean-dev',
   app: {
-    name: 'Contest Admin'
+    name: 'Dr Schnällscht Niedersimmentaler'
   },
   facebook: {
     clientID: 'APP_ID',

@@ -117,6 +117,7 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
                     if (discipline._id === dbDiscipline.disciplineId) {
                         discipline.declared = true;
                         discipline.result = dbDiscipline.result;
+                        discipline.rank = dbDiscipline.rank;
                     }
                 });
             });
@@ -180,7 +181,9 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
             if (discipline.declared && $scope.isPossibleDiscipline(discipline)) {
                 //                $log.info('selectDeclaredDisciplines... ' + JSON.stringify(discipline));
                 destDisciplines.push({
-                    disciplineId : discipline._id
+                    disciplineId: discipline._id,
+                    result: discipline.result,
+                    rank: discipline.rank
                 });
             }
         });

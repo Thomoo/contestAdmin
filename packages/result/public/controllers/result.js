@@ -7,7 +7,7 @@ function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Compe
         name : 'result'
     };
     $scope.discipline = {
-        validate : new RegExp('^\\d$', 'i')
+        validate : new RegExp('^\\$', 'i')
     };
 
     $scope.loadCompetitors = function() {

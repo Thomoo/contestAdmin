@@ -165,10 +165,12 @@ function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Compe
     };
 
     $scope.updateRankings = function() {
-        $scope.global.disciplines.forEach(function(discipline) {
+        $scope.global.selectedDisciplines.forEach(function(discipline) {
             $scope.reverse = (discipline.sortierung === 'DESC');
             var sortedCompetitors = $filter('orderByResult')($scope.global.competitorsPerDiscipline[discipline._id], discipline._id, $scope.reverse);
+            // var sortedCompetitors = $scope.global.competitorsPerDiscipline[discipline._id];
             $log.info(JSON.stringify(sortedCompetitors));
+            
             //if(sortedCompetitors[0].disciplinesById[discipline._id].result){
             var counter = 1;
             var rank = counter;

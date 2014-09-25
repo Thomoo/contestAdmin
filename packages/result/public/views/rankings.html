@@ -1,8 +1,6 @@
 <div data-ng-controller="ResultController">
 	<div class="no-print">
 	    <h1>Ranglisten</h1>
-		<button class="btn btn-primary" ng-click="navBack()">zurück</button>
-		<br />
 		<br />
 		<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></div>
 	</div>
@@ -19,21 +17,15 @@
                     <th width="5%">Jahrgang</th>
                     <th width="15%">Resultat</th>
                 </tr>
-                <!-- <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderBy: 'disciplinesById[discipline._id].rank' | withResultOnly : discipline._id"> -->
-                <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | withResultOnly : discipline._id | orderByRank: discipline._id">
+                <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderByRank: discipline._id">
                     <td>{{ competitor.disciplinesById[discipline._id].rank }}</td>
                     <td>{{ competitor.name }}</td>
                     <td>{{ competitor.firstname }}</td>
                     <td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
                     <td>{{ competitor.birthdate | date: 'yyyy' }}</td>
-                    <td>{{ discipline.formatFnc(competitor.disciplinesById[discipline._id].result) }}</td>
+                    <td><div ng-show="competitor.disciplinesById[discipline._id].result">{{ discipline.formatFnc(competitor.disciplinesById[discipline._id].result) }}</div></td>
                 </tr>
             </table>
         </fieldset>
     </div>
-
-    <div class="no-print">
-		<br/>
-		<button class="btn btn-primary no-print" ng-click="navBack()">zurück</button>
-	</div>
 </div>

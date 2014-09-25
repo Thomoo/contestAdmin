@@ -36,7 +36,8 @@ angular.module('mean.result').filter('orderByResult', [ '$filter', function($fil
 			reverse = rev;
 		}
 		
-		var newCompetitors = angular.copy(competitors);
+		// var newCompetitors = angular.copy(competitors);
+		var newCompetitors = competitors;
 		
     	newCompetitors.forEach(function(competitor){
     		if(!competitor.disciplinesById){
@@ -66,7 +67,8 @@ angular.module('mean.result').filter('orderByRank', [ '$filter', function($filte
 			reverse = rev;
 		}
 		
-		var newCompetitors = angular.copy(competitors);
+		//var newCompetitors = angular.copy(competitors);
+		var newCompetitors = competitors;
 		
     	newCompetitors.forEach(function(competitor){
     		if(!competitor.disciplinesById){
@@ -81,7 +83,9 @@ angular.module('mean.result').filter('orderByRank', [ '$filter', function($filte
 	    	competitor.currentRank = competitor.disciplinesById[disciplineId].rank;
     	});
     	
-    	var sortedCompetitors = $filter('orderBy')(newCompetitors, 'currentRank', reverse);
+    	var competitorsWithResults = $filter('withResultOnly')(newCompetitors, disciplineId);
+    	
+    	var sortedCompetitors = $filter('orderBy')(competitorsWithResults, 'currentRank', reverse);
     	
 	    return sortedCompetitors;
   };

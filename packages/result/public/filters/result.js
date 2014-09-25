@@ -51,7 +51,9 @@ angular.module('mean.result').filter('orderByResult', [ '$filter', function($fil
 	    	competitor.currentResult = competitor.disciplinesById[disciplineId].result;
     	});
     	
-    	var sortedCompetitors = $filter('orderBy')(newCompetitors, 'currentResult', reverse);
+    	var competitorsWithResults = $filter('withResultOnly')(newCompetitors, disciplineId);
+    	
+    	var sortedCompetitors = $filter('orderBy')(competitorsWithResults, 'currentResult', reverse);
     	
 	    return sortedCompetitors;
   };

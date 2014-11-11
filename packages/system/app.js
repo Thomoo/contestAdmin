@@ -7,29 +7,29 @@ var Module = require('meanio').Module,
   favicon = require('serve-favicon'),
   express = require('express');
 
-var System = new Module('system');
+var Syst = new Module('system');
 
 /*
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-System.register(function(app, auth, database) {
+Syst.register(function(app, auth, database) {
 
   //We enable routing. By default the Package Object is passed to the routes
-  System.routes(app, auth, database);
+  Syst.routes(app, auth, database);
 
-  System.aggregateAsset('css', 'common.css');
+  Syst.aggregateAsset('css', 'common.css');
   
   // Add own global aggregates
   	// Ladda for button-animation
-    System.aggregateAsset('js','dist/spin.min.js');
-	System.aggregateAsset('js','dist/ladda.min.js');
-	System.aggregateAsset('css','dist/ladda-themeless.min.css');
-    System.aggregateAsset('css','dist/ladda.min.css');
+    Syst.aggregateAsset('js','dist/spin.min.js');
+	Syst.aggregateAsset('js','dist/ladda.min.js');
+	Syst.aggregateAsset('css','dist/ladda-themeless.min.css');
+    Syst.aggregateAsset('css','dist/ladda.min.css');
 
 
     // custom styles that should be available globally
-    System.aggregateAsset('css','global.css');
+    Syst.aggregateAsset('css','global.css');
 
     // The middleware in config/express will run before this code
 
@@ -42,5 +42,5 @@ System.register(function(app, auth, database) {
   // Adding robots and humans txt
   app.use(express.static(__dirname + '/public/assets/static'));
 
-  return System;
+  return Syst;
 });

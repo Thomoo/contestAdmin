@@ -18,24 +18,64 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 		return $scope.global.isAdmin;
 	};
 
-	$scope.loadConfig = function() {
-		Wettkampf.get({
-		}, function(wettkampf) {
-			$scope.wettkampf = wettkampf;
-		});
+	// $scope.loadConfig = function() {
+		// Wettkampf.get({
+		// }, function(wettkampf) {
+			// $scope.wettkampf = wettkampf;
+		// });
+// 
+		// Disziplin.query(function(disziplins) {
+			// $scope.disziplins = disziplins;
+		// });		
+// 		
+		// User.query(function(users) {
+			// $scope.users = users;
+		// });
+// 		
+		// $scope.pw1Errors = [];
+		// $scope.pw2Errors = [];
+	// };
+	
+   $scope.loadConfig = function() {
+       
+        $scope.loadWettkampf($scope.loadDisciplins($scope.loadUsers));
+        
+        $scope.pw1Errors = [];
+        $scope.pw2Errors = [];
+    };
 
-		Disziplin.query(function(disziplins) {
-			$scope.disziplins = disziplins;
-		});		
-		
-		User.query(function(users) {
-			$scope.users = users;
-		});
-		
-		$scope.pw1Errors = [];
-		$scope.pw2Errors = [];
-	};
-
+	
+    $scope.loadWettkampf = function(cb) {
+        $log.info('loadWettkampf called...');
+        Wettkampf.get({
+        }, function(wettkampf) {
+            $scope.wettkampf = wettkampf;
+            if (cb) {
+                cb();
+            }
+        });
+    };
+    
+    $scope.loadDisciplins = function(cb) {
+        $log.info('loadDisciplins called...');
+        Disziplin.query(function(disziplins){
+            $scope.disziplins = disziplins;
+            if (cb) {
+                cb();
+            }
+        });
+    };
+    
+    $scope.loadUsers = function(cb) {
+        $log.info('loadUsers called...');
+        User.query(function(users) {
+            $scope.users = users;
+            if (cb) {
+                cb();
+            }
+        });
+    };
+     
 
 	// ---------------------------------
 	// WETTKAMPF

@@ -62,6 +62,7 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
         $log.info('loadDisciplins called...');
         Disziplin.query(function(disciplines){
             
+            // get the format function to show the result in that way
             disciplines.forEach(function(discipline){
                 /* jshint ignore:start */
                 var formatObj = JSON.parse(discipline.format);

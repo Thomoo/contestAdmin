@@ -39,7 +39,7 @@
 		<div class="form-group">
 			<label for="zip" class="col-md-4 control-label">PLZ</label>
 			<div class="col-md-8">
-				<input name="zip" ng-model="competitor.zip" ng-readonly="readonly" required id="zip" type="number" min="1000" max="999999" placeholder="PLZ" class="form-control"
+				<input name="zip" ng-model="competitor.zip" ng-readonly="readonly" required id="zip" type="number" min="1000" max="9999" maxlength="4" placeholder="PLZ" class="form-control"
 				xt-validate
 				msg-required="Die Postleitzahl ist ein Pflichtfeld!"
 				msg-number="Die Postleitzahl muss eine Nummer sein!" />
@@ -73,15 +73,12 @@
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-6">
-						<p class="input-group">
-
-							<input type="text" class="form-control" placeholder="tt.mm.jjjj" maxlength="10" datepicker-popup="{{dateFormat}}" 
-								ng-model="competitor.birthdate" datepicker-options="dateOptions" 
-								ng-disabled="readonly" ng-required="true"
-								xt-validate
-								msg-required="Das Geburtsdatum ist ein Pflichtfeld!"
-								msg-date="Bitte ein gültiges Geburtsdatum eingeben!" />
-						</p>
+						<input type="text" class="form-control" placeholder="tt.mm.jjjj" maxlength="10" datepicker-popup="{{dateFormat}}" 
+							ng-model="competitor.birthdate" datepicker-options="dateOptions" 
+							ng-disabled="readonly" ng-required="true"
+							xt-validate
+							msg-required="Das Geburtsdatum ist ein Pflichtfeld!"
+							msg-date="Bitte ein gültiges Geburtsdatum eingeben!" />
 					</div>
 				</div>
 			</div>

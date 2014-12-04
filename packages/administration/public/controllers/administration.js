@@ -17,27 +17,9 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	$scope.hasAuthorization = function() {
 		return $scope.global.isAdmin;
 	};
-
-	// $scope.loadConfig = function() {
-		// Wettkampf.get({
-		// }, function(wettkampf) {
-			// $scope.wettkampf = wettkampf;
-		// });
-// 
-		// Disziplin.query(function(disziplins) {
-			// $scope.disziplins = disziplins;
-		// });		
-// 		
-		// User.query(function(users) {
-			// $scope.users = users;
-		// });
-// 		
-		// $scope.pw1Errors = [];
-		// $scope.pw2Errors = [];
-	// };
 	
    $scope.loadConfig = function() {
-       
+        $log.info('loadConfig called...');       
         $scope.loadWettkampf($scope.loadDisciplins($scope.loadUsers));
         
         $scope.pw1Errors = [];
@@ -394,6 +376,39 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.importConfig = function() {
+        $log.info('importConfig called...');
+        
+        var fileReader = new FileReader();
+        fileReader.onload = function(fileLoadedEvent) {
+            var textFromFileLoaded = fileLoadedEvent.target.result;
+
+            var wettkampfText = /<<!#WETTKAMPF(.*?)#!>>/.exec(textFromFileLoaded)[1];
+            var wettkampfJSON = JSON.parse(wettkampfText);
+
+            var wettkampf = new Wettkampf();
+            angular.copy(wettkampfJSON, wettkampf);
+
+            wettkampf.$save(function(response) {
+            }); 
+
+
+            if ($('#overrideConfig').is(':checked')) {
+                $log.debug('remove all iterator');
+                Disziplin.query(function(disziplins) {
+                    $.each(disziplins, function() {
+                        this.$remove();
+                    });
+                    saveDisziplinsToDB(textFromFileLoaded);
+                });
+            } else {
+                saveDisziplinsToDB(textFromFileLoaded);
+            }
+
+            $scope.$apply($scope.loadConfig());
+            location.reload();
+        };
+
+
 		var fileToLoad = document.getElementById('configFileInput').files[0];
 
 		if (!fileToLoad) {
@@ -401,37 +416,11 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 			return;
 		}
 
-		var fileReader = new FileReader();
-		fileReader.onload = function(fileLoadedEvent) {
-			var textFromFileLoaded = fileLoadedEvent.target.result;
-
-			var wettkampfText = /<<!#WETTKAMPF(.*?)#!>>/.exec(textFromFileLoaded)[1];
-			var wettkampfJSON = JSON.parse(wettkampfText);
-
-			var wettkampf = new Wettkampf();
-			angular.copy(wettkampfJSON, wettkampf);
-			wettkampf.$save(function(response) {
-			});
-
-			if ($('#overrideConfig').is(':checked')) {
-				$log.debug('remove all iterator');
-				Disziplin.query(function(disziplins) {
-					$.each(disziplins, function() {
-						this.$remove();
-					});
-					saveDisziplinsToDB(textFromFileLoaded);
-				});
-			} else {
-				saveDisziplinsToDB(textFromFileLoaded);
-			}
-
-			$scope.$apply($scope.loadConfig());
-			location.reload();
-		};
 		fileReader.readAsText(fileToLoad, 'UTF-8');
 	};
 
 	var saveDisziplinsToDB = function(textFromFileLoaded) {
+        $log.info('saveToDB called...');
 		$log.debug('saveToDB');
 		var disziplinText = /<<!#DISZIPLIN(.*?)#!>>/.exec(textFromFileLoaded)[1];
 		var disziplinJSON = JSON.parse(disziplinText);

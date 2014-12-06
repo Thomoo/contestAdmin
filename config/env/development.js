@@ -1,8 +1,7 @@
 'use strict';
 
 module.exports = {
-  db: 'mongodb://niedersimmentaler:tvspiez@ds057000.mongolab.com:57000/niedersimmentaler',
-//  db: 'mongodb://localhost/mean-dev',
+  db: 'mongodb://localhost/mean-dev',
   app: {
     name: 'Dr Schnällscht Niedersimmentaler'
   },

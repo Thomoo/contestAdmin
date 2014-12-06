@@ -3,16 +3,16 @@
   "version": "0.4.0",
   "dependencies": {
     "jquery": "1.x",
-    "angular": "latest",
-    "angular-resource": "latest",
-    "angular-cookies": "latest",
-    "angular-mocks": "latest",
-    "angular-route": "latest",
+    "angular": "1.2.23",
+    "angular-resource": "1.2.23",
+    "angular-cookies": "1.2.23",
+    "angular-mocks": "1.2.23",
+    "angular-route": "1.2.23",
     "bootstrap": "3.1.1",
     "angular-bootstrap": "0.11.0",
-    "angular-ui-router": "#master",
-    "angular-xeditable": "latest",
-    "xtform": "latest",
+    "angular-ui-router": "0.2.10",
+    "angular-xeditable": "0.1.8",
+    "xtform": "6b8158b9ce77119683b75deec49f3bbe07c3d80a",
     "lodash": "~2.4.1"
   }
 }

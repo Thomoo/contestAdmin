@@ -4,7 +4,7 @@
 			Personalien
 		</legend>
 		<div class="form-group">
-			<label for="gender-radios" class="col-md-4 control-label">Geschlecht</label>
+			<label for="gender-radios" class="col-md-4 control-label">Geschlecht*</label>
 			<div class="col-md-8" id="gender-radios">
 				<label for="female">weiblich</label>
 				<input ng-model="competitor.gender" ng-disabled="!wettkampf.anmeldungActive" required id="female" type="radio" name="geschlecht" value="female"/>
@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="name" class="col-md-4 control-label">Name</label>
+			<label for="name" class="col-md-4 control-label">Name*</label>
 			<div class="col-md-8">
 				<input name="name" ng-model="competitor.name" ng-readonly="!wettkampf.anmeldungActive" required id="name" type="text" placeholder="Name" class="form-control"
 				msg-required="Der Name ist ein Pflichtfeld!"
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="vorname" class="col-md-4 control-label">Vorname</label>
+			<label for="vorname" class="col-md-4 control-label">Vorname*</label>
 			<div class="col-md-8">
 				<input name="vorname" ng-model="competitor.firstname" ng-readonly="!wettkampf.anmeldungActive" required id="vorname" type="text" placeholder="Vorname" class="form-control"
 				msg-required="Der Vorname ist ein Pflichtfeld!"
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="adresse" class="col-md-4 control-label">Adresse</label>
+			<label for="adresse" class="col-md-4 control-label">Adresse*</label>
 			<div class="col-md-8">
 				<input name="adresse" ng-model="competitor.address" ng-readonly="!wettkampf.anmeldungActive" required id="adresse" type="text" placeholder="Adresse" class="form-control"
 				msg-required="Die Adresse ist ein Pflichtfeld!"
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="zip" class="col-md-4 control-label">PLZ</label>
+			<label for="zip" class="col-md-4 control-label">PLZ*</label>
 			<div class="col-md-8">
 				<input name="zip" ng-model="competitor.zip" ng-readonly="!wettkampf.anmeldungActive" required id="zip" type="number" min="1000" max="9999" maxlength="4" placeholder="PLZ" class="form-control"
 				xt-validate
@@ -46,7 +46,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="location" class="col-md-4 control-label">Ort</label>
+			<label for="location" class="col-md-4 control-label">Ort*</label>
 			<div class="col-md-8">
 				<input name="location" ng-model="competitor.location" ng-readonly="!wettkampf.anmeldungActive" required id="location" type="text" placeholder="Ort" class="form-control"
 				xt-validate
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="email" class="col-md-4 control-label">Email</label>
+			<label for="email" class="col-md-4 control-label">Email*</label>
 			<div class="col-md-8">
 				<input name="email" ng-model="competitor.email" ng-readonly="!wettkampf.anmeldungActive" required id="email" type="email" placeholder="Email" class="form-control"
 				xt-validate
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 		<div class="form-group" ng-controller="DatePickerCtrl">
-			<label for="geburtstag" class="col-md-4 control-label">Geburtsdatum (z.B. 02.03.2003)</label>
+			<label for="geburtstag" class="col-md-4 control-label">Geburtsdatum (z.B. 02.03.2003)*</label>
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-6">
@@ -83,6 +83,10 @@
 				</div>
 			</div>
 		</div>
+		<div class="form-group">
+			<label class="col-md-4 control-label">* Pflichtfelder</label>
+		</div>
+		
 	</fieldset>
 	<fieldset class='competitions-table form-horizontal well'>
 		<legend>

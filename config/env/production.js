@@ -35,7 +35,7 @@ module.exports = {
         host : 'mail.turnenspiez.ch',
         auth : {
             user : 'niedersimmentaler@turnenspiez.ch',
-            pass : 'X7cvy87_'
+            pass : '<pass>'
         }
 
     }

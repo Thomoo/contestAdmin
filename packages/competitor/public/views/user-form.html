@@ -69,11 +69,11 @@
 			</div>
 		</div>
 		<div class="form-group" ng-controller="DatePickerCtrl">
-			<label for="geburtstag" class="col-md-4 control-label">Geburtstag</label>
+			<label for="geburtstag" class="col-md-4 control-label">Geburtsdatum (z.B. 02.03.2003)</label>
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-6">
-						<input type="text" class="form-control" placeholder="tt.mm.jjjj" maxlength="10" datepicker-popup="{{dateFormat}}" 
+						<input name="geburtstag" type="text" class="form-control" placeholder="dd.mm.yyyy" maxlength="10" datepicker-popup="{{dateFormat}}" 
 							ng-model="competitor.birthdate" datepicker-options="dateOptions" 
 							ng-disabled="!wettkampf.anmeldungActive" ng-required="true"
 							xt-validate

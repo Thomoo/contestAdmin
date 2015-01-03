@@ -13,7 +13,7 @@
 	</fieldset>
 	<form ng-show="subscriptionActive" name="competitorForm" data-ng-submit="create(competitorForm.$valid)" xt-form novalidate>
 		<div class="form-group">
-			<user-form></user-form>
+			<user-form readonly="false" competitor="competitor" allDisciplines="allDisciplines" ></user-form>
 		</div>
 		<fieldset class='form-horizontal well'>
 			<button type="submit" ng-disabled="competitorForm.$invalid" class="btn btn-primary btn-success btn-cstm-controls btn-cstm-controls-right">

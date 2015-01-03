@@ -8,7 +8,7 @@
 			{{wettkampf.infoTextActive}}
 			<br>
 			<br>
-			Sie können Sie hier ihre Anmeldedaten Überprüfen und mutieren.
+			Solange die Anmeldung aktiviert ist, können die Daten hier online mutiert werden.
 		</p>
 		<p ng-show="!wettkampf.anmeldungActive">
 			{{wettkampf.infoTextInactive}}
@@ -16,9 +16,9 @@
 	</fieldset>
 	<form name="competitorForm" data-ng-submit="update(competitorForm.$valid)" xt-form novalidate>
 		<div class="form-group">
-			<user-form readonly="!wettkampf.anmeldungActive"></user-form>
+			<user-form readonly="!wettkampf.anmeldungActive" competitor="competitor" allDisciplines="allDisciplines" ></user-form>
 		</div>
-		<fieldset class='form-horizontal well'>
+		<fieldset ng-show="subscriptionActive" class='form-horizontal well'>
 			<button ng-show="wettkampf.anmeldungActive" name="saveCompetitorMutation" id="saveCompetitorMutation" class="btn btn-primary ladda-button btn-cstm-controls btn-cstm-controls-right" type="submit" ng-disabled="competitorForm.$invalid" data-color="green" data-size="s" data-style="expand-right">
 				<span class="ladda-label">Speichern</span>
 			</button>

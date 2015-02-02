@@ -55,7 +55,7 @@
 				<th>Sortierung</th>
 				<th>Bearbeiten</th>
 			</tr>
-			<tr ng-repeat="disziplin in disziplins">
+			<tr ng-repeat="disziplin in disziplins | orderBy : 'bezeichnung' | orderBy : 'jahrgang_von' ">
 				<td><!-- editable disziplin (text with validation) --><span editable-text="disziplin.disziplin" e-name="disziplin" e-form="rowform" onbeforesave="checkDisziplin($data, disziplin.id)" e-required> {{ disziplin.disziplin }} </span></td>
 				<td><!-- editable bezeichnung (text with validation) --><span editable-text="disziplin.bezeichnung" e-name="bezeichnung" e-form="rowform" onbeforesave="checkBezeichnung($data, disziplin.id)" e-required> {{ disziplin.bezeichnung }} </span></td>
 				<td><!-- editable jahrgang_von (text with validation) --><span editable-text="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" onbeforesave="checkJahrgang($data, disziplin)"  e-required> {{ disziplin.jahrgang_von }} </span></td>

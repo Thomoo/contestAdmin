@@ -15,11 +15,12 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	$scope.disziplins = [];
 	
 	$scope.hasAuthorization = function() {
+        $log.info('hasAuthorization in administration called...');
 		return $scope.global.isAdmin;
 	};
 	
    $scope.loadConfig = function() {
-        $log.info('loadConfig called...');       
+        $log.info('loadConfig in administration called...');       
         $scope.loadWettkampf($scope.loadDisciplins($scope.loadUsers));
         
         $scope.pw1Errors = [];
@@ -28,7 +29,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 
 	
     $scope.loadWettkampf = function(cb) {
-        $log.info('loadWettkampf called...');
+        $log.info('loadWettkampf in administration called...');
         Wettkampf.get({
         }, function(wettkampf) {
             $scope.wettkampf = wettkampf;
@@ -39,7 +40,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
     };
     
     $scope.loadDisciplins = function(cb) {
-        $log.info('loadDisciplins called...');
+        $log.info('loadDisciplins in administration called...');
         Disziplin.query(function(disziplins){
             $scope.disziplins = disziplins;
             if (cb) {
@@ -49,7 +50,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
     };
     
     $scope.loadUsers = function(cb) {
-        $log.info('loadUsers called...');
+        $log.info('loadUsers in administration called...');
         User.query(function(users) {
             $scope.users = users;
             if (cb) {
@@ -64,6 +65,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	// ---------------------------------
 	var saveWettkampfButton = Ladda.create(document.querySelector('#saveWettkampf'));
 	$scope.saveWettkampf = function(isValid) {
+        $log.info('saveWettkampf in administration called...');
 		saveWettkampfButton.start();
 		if (isValid) {
 			var wettkampf = new Wettkampf({
@@ -88,6 +90,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	// ---------------------------------
 	// functions
 	$scope.removeDisziplin = function(disziplin) {
+        $log.info('removeDisziplin in administration called...');
 		if (disziplin) {
 			disziplin.$remove();
 			for (var i in $scope.disziplins) {
@@ -103,6 +106,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.addDisziplin = function() {
+        $log.info('addDisziplin in administration called...');
 		var disziplin = new Disziplin({
 			geschlecht : null,
 			sortierung : null
@@ -112,6 +116,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.saveDisziplin = function(data, disziplin) {
+        $log.info('saveDisziplin in administration called...');
 		var id = disziplin._id;
 		angular.copy(data, disziplin);
 		if (id) {
@@ -128,6 +133,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 
 	// cancel all changes
 	$scope.cancelDisziplin = function(index, disziplin) {
+        $log.info('cancelDisziplin in administration called...');
 		// falls disziplin noch nicht gespeichert, muss sie aus der liste gelöscht werden.
 		if (!disziplin._id) {
 			$scope.disziplins.splice(index, 1);
@@ -136,18 +142,21 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 
 	//  daten validieren
 	$scope.checkDisziplin = function(data, id) {
+        $log.info('checkDisziplin in administration called...');
 		if (!data) {
 			return 'Es muss eine Disziplin angegeben werden.';
 		}
 	};
 
 	$scope.checkBezeichnung = function(data, id) {
+        $log.info('checkBezeichnung in administration called...');
 		if (!data) {
 			return 'Es muss eine Bezeichnung angegeben werden.';
 		}
 	};
 
 	$scope.checkJahrgang = function(data, disziplin) {
+        $log.info('checkJahrgang in administration called...');
 		if (!data) {
 			return 'Es muss ein Jahrgang angegeben werden.';
 		}
@@ -157,18 +166,21 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.checkGeschlecht = function(data) {
+        $log.info('checkGeschlecht in administration called...');
 		if (!data) {
 			return 'Es muss eine Geschlecht ausgewählt werden.';
 		}
 	};
 
 	$scope.checkSortierung = function(data) {
+        $log.info('checkSortierung in administration called...');
 		if (!data) {
 			return 'Es muss eine Sortierung ausgewählt werden.';
 		}
 	};
 
 	$scope.checkFormat = function(data) {
+        $log.info('checkFormat in administration called...');
 		if (!data) {
 			return 'Es muss eine Format ausgewählt werden.';
 		}
@@ -247,6 +259,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
     }];
 
 	$scope.showGeschlecht = function(disziplin) {
+        $log.info('showGeschlecht in administration called...');
 		var selected = [];
 		if (disziplin.geschlecht) {
 			selected = $filter('filter')($scope.geschlechter, {
@@ -257,6 +270,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.showSortierung = function(disziplin) {
+        $log.info('showSortierung in administration called...');
 		var selected = [];
 		if (disziplin.sortierung) {
 			selected = $filter('filter')($scope.sortierungen, {
@@ -267,6 +281,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.showFormat = function(disziplin) {
+        $log.info('showFormat in administration called...');
 		var selected = [];
 		if (disziplin.format) {
 			selected = $filter('filter')($scope.formats, {
@@ -281,6 +296,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	// ---------------------------------
 
 	$scope.saveUser = function($index, user) {
+        $log.info('saveUser in administration called...');
 		$scope.pw1Errors[$index] = null;
 		$scope.pw2Errors[$index] = null;
 
@@ -306,6 +322,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	}; 
 
 	$scope.cancelUser = function($index, user) {
+        $log.info('cancelUser in administration called...');
 		$scope.pw1Errors[$index] = null;
 		$scope.pw2Errors[$index] = null;
 	};
@@ -326,6 +343,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.export = function() {
+        $log.info('export in administration called...');
 		exportButton.start();
 		$log.debug('export');
 
@@ -372,11 +390,12 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.openImport = function() {
+        $log.info('openImport in administration called...');
 		document.getElementById('configFileInput').click();
 	};
 
 	$scope.importConfig = function() {
-        $log.info('importConfig called...');
+        $log.info('importConfig in administration called...');
         
         var fileReader = new FileReader();
         fileReader.onload = function(fileLoadedEvent) {
@@ -420,8 +439,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	var saveDisziplinsToDB = function(textFromFileLoaded) {
-        $log.info('saveToDB called...');
-		$log.debug('saveToDB');
+        $log.info('saveDisziplinsToDB in administration called...');
 		var disziplinText = /<<!#DISZIPLIN(.*?)#!>>/.exec(textFromFileLoaded)[1];
 		var disziplinJSON = JSON.parse(disziplinText);
 		var disziplin;

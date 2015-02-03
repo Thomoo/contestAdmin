@@ -2,6 +2,7 @@
 
 module.exports = {
     db: 'mongodb://niedersimmentaler:tvspiez@ds057000.mongolab.com:57000/niedersimmentaler',
+//    db: 'mongodb://niedersimmentaler:<pass>@ds057000.mongolab.com:57000/niedersimmentaler',
     app : {
         name : 'Dr Schnällscht Niedersimmentaler'
     },
@@ -35,7 +36,8 @@ module.exports = {
         host : 'mail.turnenspiez.ch',
         auth : {
             user : 'niedersimmentaler@turnenspiez.ch',
-            pass : '<pass>'
+            pass : 'X7cvy87_'
+//            pass : '<pass>'
         }
 
     }

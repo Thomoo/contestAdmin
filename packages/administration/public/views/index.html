@@ -55,7 +55,7 @@
 				<th>Sortierung</th>
 				<th>Bearbeiten</th>
 			</tr>
-			<tr ng-repeat="disziplin in disziplins | orderBy : 'bezeichnung' | orderBy : 'jahrgang_von' ">
+			<tr ng-repeat="disziplin in disziplins | orderBy : 'bezeichnung' ">
 				<td><!-- editable disziplin (text with validation) --><span editable-text="disziplin.disziplin" e-name="disziplin" e-form="rowform" onbeforesave="checkDisziplin($data, disziplin.id)" e-required> {{ disziplin.disziplin }} </span></td>
 				<td><!-- editable bezeichnung (text with validation) --><span editable-text="disziplin.bezeichnung" e-name="bezeichnung" e-form="rowform" onbeforesave="checkBezeichnung($data, disziplin.id)" e-required> {{ disziplin.bezeichnung }} </span></td>
 				<td><!-- editable jahrgang_von (text with validation) --><span editable-text="disziplin.jahrgang_von" e-name="jahrgang_von" e-form="rowform" onbeforesave="checkJahrgang($data, disziplin)"  e-required> {{ disziplin.jahrgang_von }} </span></td>
@@ -145,7 +145,10 @@
 			<div class="col-md-8">
 				<input name="overrideConfig" id="overrideConfig" type="checkbox" class="checkbox" />
 			</div>
-		</div>
+		</div>	
+		<!-- <button class="btn " name="export" id="export" ng-click="export()" data-color="grey" data-size="s" data-style="expand-left">
+			<span >Export</span>
+		</button> -->
 		<button class="btn ladda-button" name="export" id="export" ng-click="export()" data-color="grey" data-size="s" data-style="expand-left">
 			<span class="ladda-label">Export</span>
 		</button>

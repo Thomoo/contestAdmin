@@ -12,7 +12,8 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 		name : 'administration'
 	};
 	
-	$scope.disziplins = [];
+	$log.info('initializing...');       
+    $scope.disziplins = [];
 	
 	$scope.hasAuthorization = function() {
         $log.info('hasAuthorization in administration called...');
@@ -142,21 +143,21 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 
 	//  daten validieren
 	$scope.checkDisziplin = function(data, id) {
-        $log.info('checkDisziplin in administration called...');
+//        $log.debug('checkDisziplin in administration called...');
 		if (!data) {
 			return 'Es muss eine Disziplin angegeben werden.';
 		}
 	};
 
 	$scope.checkBezeichnung = function(data, id) {
-        $log.info('checkBezeichnung in administration called...');
+//        $log.debug('checkBezeichnung in administration called...');
 		if (!data) {
 			return 'Es muss eine Bezeichnung angegeben werden.';
 		}
 	};
 
 	$scope.checkJahrgang = function(data, disziplin) {
-        $log.info('checkJahrgang in administration called...');
+//        $log.debug('checkJahrgang in administration called...');
 		if (!data) {
 			return 'Es muss ein Jahrgang angegeben werden.';
 		}
@@ -166,21 +167,21 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.checkGeschlecht = function(data) {
-        $log.info('checkGeschlecht in administration called...');
+//        $log.debug('checkGeschlecht in administration called...');
 		if (!data) {
 			return 'Es muss eine Geschlecht ausgewählt werden.';
 		}
 	};
 
 	$scope.checkSortierung = function(data) {
-        $log.info('checkSortierung in administration called...');
+//        $log.debug('checkSortierung in administration called...');
 		if (!data) {
 			return 'Es muss eine Sortierung ausgewählt werden.';
 		}
 	};
 
 	$scope.checkFormat = function(data) {
-        $log.info('checkFormat in administration called...');
+//        $log.debug('checkFormat in administration called...');
 		if (!data) {
 			return 'Es muss eine Format ausgewählt werden.';
 		}
@@ -259,7 +260,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
     }];
 
 	$scope.showGeschlecht = function(disziplin) {
-        $log.info('showGeschlecht in administration called...');
+//        $log.debug('showGeschlecht in administration called...');
 		var selected = [];
 		if (disziplin.geschlecht) {
 			selected = $filter('filter')($scope.geschlechter, {
@@ -270,7 +271,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.showSortierung = function(disziplin) {
-        $log.info('showSortierung in administration called...');
+//        $log.debug('showSortierung in administration called...');
 		var selected = [];
 		if (disziplin.sortierung) {
 			selected = $filter('filter')($scope.sortierungen, {
@@ -281,7 +282,7 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 	};
 
 	$scope.showFormat = function(disziplin) {
-        $log.info('showFormat in administration called...');
+//        $log.debug('showFormat in administration called...');
 		var selected = [];
 		if (disziplin.format) {
 			selected = $filter('filter')($scope.formats, {

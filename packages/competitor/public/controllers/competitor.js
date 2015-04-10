@@ -118,6 +118,7 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
                         discipline.declared = true;
                         discipline.result = dbDiscipline.result;
                         discipline.rank = dbDiscipline.rank;
+                        discipline.award = dbDiscipline.award;
                     }
                 });
             });
@@ -183,7 +184,8 @@ function($scope, $log, $timeout, $location, $stateParams, Global, Competitor, We
                 destDisciplines.push({
                     disciplineId: discipline._id,
                     result: discipline.result,
-                    rank: discipline.rank
+                    rank: discipline.rank,
+                    award: discipline.award
                 });
             }
         });

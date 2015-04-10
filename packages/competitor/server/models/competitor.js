@@ -19,6 +19,17 @@ var DisciplineResultSchema = new Schema({
   },
   rank: {
   	type: Number,
+    required: false,
+  	trim: true
+  },
+  printRank: {
+  	type: String,
+    required: false,
+  	trim: true
+  },
+  award: {
+  	type: String,
+    required: false,
   	trim: true
   }
 });
@@ -80,50 +91,11 @@ var CompetitorSchema = new Schema({
     type: Number,
     required: false,
   },
-  // user: {
-    // type: Schema.ObjectId,
-    // ref: 'User'
-  // },
   disciplines: {
   	type: [DisciplineResultSchema]
   }
 });
 
-// CompetitorSchema.methods.getDisciplineById = function(discId){
-	// if(this.disciplines){
-		// this.disciplines.forEach(function(discipline){
-			// if(discipline === discId){
-				// return discipline;
-			// }
-		// });
-	// }
-	// return {};
-// };
-/*
-CompetitorSchema.virtual('disciplinesById').get(function(){
-	var d = {};
-	if(this.disciplines){
-		this.disciplines.forEach(function(discipline){
-			d[discipline.disciplineId] = discipline;
-		});
-	}
-	
-	return d;
-});
-
-
-CompetitorSchema.set('toJSON', { virtuals: true });
-*/
-/**
- * Validations
- */
-// ArticleSchema.path('title').validate(function(title) {
-  // return !!title;
-// }, 'Title cannot be blank');
-// 
-// ArticleSchema.path('content').validate(function(content) {
-  // return !!content;
-// }, 'Content cannot be blank');
 
 /**
  * Statics
@@ -132,7 +104,6 @@ CompetitorSchema.statics.load = function(id, cb) {
   this.findOne({
     _id: id
   }).exec(cb);
-//  }).populate('user', 'name username').exec(cb);
 };
 
 

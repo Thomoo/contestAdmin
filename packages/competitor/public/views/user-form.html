@@ -155,20 +155,24 @@
 			<div class="col-md-8 col-md-offset-4">
 				<table class="table table-bordered table-striped">
 					<tr id="heading">
-						<th>Teilnahme</th>
-						<th>Disziplin</th>
-						<th>Resultat</th>
-						<th>Rang</th>
+						<th width="5%">Teilnahme</th>
+						<th width="20%">Disziplin</th>
+						<th width="10%">Resultat</th>
+						<th width="5%">Rang</th>
+						<th width="3%" ng-show="showAward" >Q</th>
 					</tr>
 					<tr ng-repeat="discipline in $parent.allDisciplines | filter:$parent.isPossibleDiscipline">
 						<td>
-						<input type="checkbox" ng-disabled="readonly" ng-model="discipline.declared">
+							<input type="checkbox" ng-disabled="readonly" ng-model="discipline.declared">
 						</td>
 						<td>{{discipline.disziplin}}</td>
 						<td><div ng-if="discipline.result">
 							{{discipline.formatFnc(discipline.result)}}
 						</div></td>
 						<td>{{discipline.rank}}</td>
+						<td ng-show="showAward">
+							<input ng-disabled="readonly" type="text" maxlength="2" class="form-control" ng-model="discipline.award">
+						</td>
 					</tr>
 				</table>
 			</div>

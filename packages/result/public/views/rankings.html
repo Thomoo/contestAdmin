@@ -1,8 +1,8 @@
 <div data-ng-controller="ResultController">
-	<div class="no-print">
+	<div>
 	    <h1>Ranglisten</h1>
 		<br />
-		<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></div>
+		<div class="alert alert-info no-print"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></div>
 	</div>
 
     <div ng-repeat="discipline in global.selectedDisciplines | orderBy:'bezeichnung'">
@@ -17,14 +17,16 @@
                     <th width="15%">Ort/Verein</th>
                     <th width="5%">Jahrgang</th>
                     <th width="15%">Resultat</th>
+                    <th width="5%">Q</th>
                 </tr>
                 <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderByRank: discipline._id">
-                    <td>{{ competitor.disciplinesById[discipline._id].rank }}</td>
+                    <td>{{ competitor.disciplinesById[discipline._id].printRank }}</td>
                     <td>{{ competitor.name }}</td>
                     <td>{{ competitor.firstname }}</td>
                     <td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
                     <td>{{ competitor.birthdate | date: 'yyyy' }}</td>
                     <td><div ng-show="competitor.disciplinesById[discipline._id].result">{{ discipline.formatFnc(competitor.disciplinesById[discipline._id].result) }}</div></td>
+                    <td>{{ competitor.disciplinesById[discipline._id].award }}</td>
                 </tr>
             </table>
         </fieldset>

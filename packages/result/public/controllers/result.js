@@ -174,23 +174,31 @@ function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Compe
             //if(sortedCompetitors[0].disciplinesById[discipline._id].result){
             var counter = 1;
             var rank = counter;
-            var tempResult = sortedCompetitors[0].disciplinesById[discipline._id].result;
+            var awardState = true;
+            var tempResult;// = sortedCompetitors[0].disciplinesById[discipline._id].result;
             sortedCompetitors.forEach(function(competitor) {
                 //console.log(competitor.disciplinesById[discipline._id]);
                 if (competitor.disciplinesById[discipline._id].result) {
                     if (competitor.disciplinesById[discipline._id].result === tempResult) {
+                    	// gleiches Resulat, Rang bleibt gleich
                         competitor.disciplinesById[discipline._id].rank = rank;
                         competitor.disciplines.forEach(function(d) {
                             if (d.disciplineId === discipline._id) {
                                 d.rank = rank;
-                            }
+                                d.award = (awardState) ? '*' : '';
+                                d.printRank = '';
+                             }
                         });
                     } else {
+                    	// neuer Rang
                         rank = counter;
+                        awardState = (counter <=3);
                         competitor.disciplinesById[discipline._id].rank = rank;
                         competitor.disciplines.forEach(function(d) {
                             if (d.disciplineId === discipline._id) {
                                 d.rank = rank;
+                                d.printRank = rank;
+                                d.award = (awardState) ? '*' : '';
                             }
                         });
                         tempResult = competitor.disciplinesById[discipline._id].result;

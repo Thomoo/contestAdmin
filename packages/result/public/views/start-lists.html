@@ -1,8 +1,8 @@
 <div data-ng-controller="ResultController">
-	<div class="no-print">
+	<div>
 	    <h1>Startlisten</h1>
 		<br />
-		<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></div>
+		<div class="alert alert-info no-print"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<strong>Bitte Listen über die Browserfunktion drucken (Ctrl-P).</strong></div>
 	</div>
 	
 	<div ng-repeat="discipline in global.selectedDisciplines | orderBy:'bezeichnung'">

@@ -31,7 +31,7 @@
                 <th>Verein</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="competitor in competitors | filter:search:strict">
+            <tr ng-repeat="competitor in competitors | filter:search:strict | orderBy : 'firstname' | orderBy : 'name' ">
                 <td>
                     <span class="pull-left">{{ competitor.startnr }}</span>
                     <div ng-show="competitor.startnr" class="dropdown pull-right">

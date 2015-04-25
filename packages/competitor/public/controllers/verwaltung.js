@@ -41,7 +41,7 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
     };
 
     $scope.searchFormEmpty = function(){
-        return (!$scope.search || (!$scope.search.startnr && !$scope.search.$));
+        return (!$scope.search || (!$scope.search.startnr && !$scope.search.birthdate && !$scope.search.$));
     };
 
     $scope.generateStartNr = function(competitor){

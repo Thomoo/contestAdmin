@@ -9,6 +9,8 @@
                 <tr>
                     <td><label for="searchStartNbr">Startnummer</label></td>
                     <td><input type="text" class="input-search-start-nbr form-control" id="searchStartNbr" ng-model="search.startnr"></td>
+                    <td><label for="searchJahrgang">Jahrgang</label></td>
+                    <td><input type="text" class="input-search-jahrgang form-control" id="searchJahrgang" ng-model="search.birthdate"></td>
                     <td><label for="searchTxt">Suchtext</label></td>
                     <td><input type="text" class="input-search-all form-control" id="searchTxt" ng-model="search.$"></td>
                     <td><button class="btn btn-warning" ng-click="resetSearchForm()" ng-disabled="searchFormEmpty()">Filter zurücksetzen</button></td>
@@ -73,4 +75,3 @@
     </fieldset>
 
 </div>
-

@@ -7,6 +7,9 @@
 .competitor-filter-input-group input.input-search-start-nbr{
     width: 60px;
 }
+.competitor-filter-input-group input.input-search-jahrgang{
+    width: 60px;
+}
 .competitor-filter-input-group input.input-search-all{
      width: 350px;
 }

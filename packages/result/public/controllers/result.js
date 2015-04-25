@@ -168,16 +168,15 @@ function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Compe
         $scope.global.selectedDisciplines.forEach(function(discipline) {
             $scope.reverse = (discipline.sortierung === 'DESC');
             var sortedCompetitors = $filter('orderByResult')($scope.global.competitorsPerDiscipline[discipline._id], discipline._id, $scope.reverse);
-            // var sortedCompetitors = $scope.global.competitorsPerDiscipline[discipline._id];
             $log.info(JSON.stringify(sortedCompetitors));
             
-            //if(sortedCompetitors[0].disciplinesById[discipline._id].result){
             var counter = 1;
             var rank = counter;
             var awardState = true;
-            var tempResult;// = sortedCompetitors[0].disciplinesById[discipline._id].result;
+            var awardCounter = 0;
+            var tempResult;
+//            console.log(sortedCompetitors);
             sortedCompetitors.forEach(function(competitor) {
-                //console.log(competitor.disciplinesById[discipline._id]);
                 if (competitor.disciplinesById[discipline._id].result) {
                     if (competitor.disciplinesById[discipline._id].result === tempResult) {
                     	// gleiches Resulat, Rang bleibt gleich
@@ -185,40 +184,53 @@ function($scope, $window, $log, $location, $q, $filter, Global, Disziplin, Compe
                         competitor.disciplines.forEach(function(d) {
                             if (d.disciplineId === discipline._id) {
                                 d.rank = rank;
-                                d.award = (awardState) ? '*' : '';
+                                if (!d.award || d.award === '*' || d.award === '' ) {
+                                	awardCounter += 1;
+                                	d.award = (awardState) ? '*' : '';	
+                                }
                                 d.printRank = '';
-                             }
+                                console.log('printRank: ' + d.printRank  + ' rank: ' + d.rank + ', counter: ' + counter + ' competitor: ' + competitor.firstname + ' ' + competitor.name);
+                            }
                         });
                     } else {
                     	// neuer Rang
                         rank = counter;
-                        awardState = (counter <=3);
                         competitor.disciplinesById[discipline._id].rank = rank;
                         competitor.disciplines.forEach(function(d) {
                             if (d.disciplineId === discipline._id) {
                                 d.rank = rank;
                                 d.printRank = rank;
-                                d.award = (awardState) ? '*' : '';
+                                if (!d.award || d.award === '*' || d.award === '' ) {
+                                	awardCounter += 1;
+                                	awardState = (awardCounter <=3);
+                                	d.award = (awardState) ? '*' : '';	
+                                }
+                            	console.log('printRank: ' + d.printRank  + ' rank: ' + d.rank + ', counter: ' + counter + ' competitor: ' + competitor.firstname + ' ' + competitor.name);
                             }
                         });
                         tempResult = competitor.disciplinesById[discipline._id].result;
 
                     }
                     counter += 1;
-                    console.log('rank: ' + rank + ', counter: ' + counter + 'competitor: ' + competitor.firstname + ' ' + competitor.name);
 
-                    if (!competitor.updated) {
-                        competitor.updated = [];
-                    }
-                    competitor.updated.push(new Date().getTime());
-
-                    competitor.$update(function() {
-                        //$location.path('result/rankings');
+                } else {
+                	competitor.disciplines.forEach(function(d) {
+                        if (d.disciplineId === discipline._id) {
+                                d.rank = undefined;
+                                d.printRank = 'dnf';
+                    			console.log('printRank: ' + d.printRank  + ' rank: ' + d.rank + ', counter: ' + counter + ' competitor: ' + competitor.firstname + ' ' + competitor.name);
+                        }
                     });
                 }
-            });
-            //}
+                
+                if (!competitor.updated) {
+                        competitor.updated = [];
+                    }
+                competitor.updated.push(new Date().getTime());
 
+                competitor.$update(function() {
+                });
+            });
         });
     };
 

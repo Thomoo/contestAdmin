@@ -52,9 +52,10 @@ angular.module('mean.result').filter('orderByResult', [ '$filter', function($fil
 	    	competitor.currentResult = competitor.disciplinesById[disciplineId].result;
     	});
     	
-    	var competitorsWithResults = $filter('withResultOnly')(newCompetitors, disciplineId);
+//    	var competitorsWithResults = $filter('withResultOnly')(newCompetitors, disciplineId);
     	
-    	var sortedCompetitors = $filter('orderBy')(competitorsWithResults, 'currentResult', reverse);
+//    	var sortedCompetitors = $filter('orderBy')(competitorsWithResults, 'currentResult', reverse);
+    	var sortedCompetitors = $filter('orderBy')(newCompetitors, 'currentResult', reverse);
     	
 	    return sortedCompetitors;
   };
@@ -83,9 +84,10 @@ angular.module('mean.result').filter('orderByRank', [ '$filter', function($filte
 	    	competitor.currentRank = competitor.disciplinesById[disciplineId].rank;
     	});
     	
-    	var competitorsWithResults = $filter('withResultOnly')(newCompetitors, disciplineId);
+//    	var competitorsWithResults = $filter('withResultOnly')(newCompetitors, disciplineId);
     	
-    	var sortedCompetitors = $filter('orderBy')(competitorsWithResults, 'currentRank', reverse);
+//    	var sortedCompetitors = $filter('orderBy')(competitorsWithResults, 'currentRank', reverse);
+    	var sortedCompetitors = $filter('orderBy')(newCompetitors, 'currentRank', reverse);
     	
 	    return sortedCompetitors;
   };

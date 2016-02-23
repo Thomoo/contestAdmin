@@ -9,18 +9,20 @@
         <fieldset class='form-horizontal well page-break-after'>
             <legend>{{ discipline.bezeichnung }}</legend>
             <!-- <table class="table table-bordered table-hover table-condensed table-striped page-break-after"> -->
-            <table class="table table-bordered table-hover table-condensed table-striped">
+            <table ng-if="true" class="table table-bordered table-hover table-condensed table-striped">
                 <tr>
                     <th width="5%">Rang</th>
+                    <th ng-if="global.showStartnummer" width="5%">Start-Nr.</th>
                     <th width="15%">Name</th>
                     <th width="15%">Vorname</th>
                     <th width="15%">Ort/Verein</th>
                     <th width="5%">Jahrgang</th>
                     <th width="15%">Resultat</th>
-                    <th width="5%">Q</th>
+                    <th width="3%">Q</th>
                 </tr>
                 <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderByRank: discipline._id  | filter: {startnr: '!!'}">
                     <td>{{ competitor.disciplinesById[discipline._id].printRank }}</td>
+                    <td ng-if="global.showStartnummer" >{{ competitor.startnr }}</td>
                     <td>{{ competitor.name }}</td>
                     <td>{{ competitor.firstname }}</td>
                     <td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('mean.competitor').controller('VerwaltungController', ['$scope', '$location', '$filter', '$log', '$stateParams', 'Global', 'Competitor',
-function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {    $scope.global = Global;
+function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {
+    $scope.global = Global;
     $scope.package = {
         name : 'competitor'
     };
@@ -37,11 +38,11 @@ function($scope, $location, $filter, $log, $stateParams, Global, Competitor) {  
     };
 
     $scope.resetSearchForm = function(){
-        $scope.search = {};
+        $scope.global.search = {};
     };
 
     $scope.searchFormEmpty = function(){
-        return (!$scope.search || (!$scope.search.startnr && !$scope.search.birthdate && !$scope.search.$));
+        return (!$scope.global.search || (!$scope.global.search.startnr && !$scope.global.search.birthdate && !$scope.global.search.$));
     };
 
     $scope.generateStartNr = function(competitor){

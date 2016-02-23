@@ -8,11 +8,11 @@
             <table class="fieldset-table">
                 <tr>
                     <td><label for="searchStartNbr">Startnummer</label></td>
-                    <td><input type="text" class="input-search-start-nbr form-control" id="searchStartNbr" ng-model="search.startnr"></td>
+                    <td><input type="text" class="input-search-start-nbr form-control" id="searchStartNbr" ng-model="global.search.startnr"></td>
                     <td><label for="searchJahrgang">Jahrgang</label></td>
-                    <td><input type="text" class="input-search-jahrgang form-control" id="searchJahrgang" ng-model="search.birthdate"></td>
+                    <td><input type="text" class="input-search-jahrgang form-control" id="searchJahrgang" ng-model="global.search.birthdate"></td>
                     <td><label for="searchTxt">Suchtext</label></td>
-                    <td><input type="text" class="input-search-all form-control" id="searchTxt" ng-model="search.$"></td>
+                    <td><input type="text" class="input-search-all form-control" id="searchTxt" ng-model="global.search.$"></td>
                     <td><button class="btn btn-warning" ng-click="resetSearchForm()" ng-disabled="searchFormEmpty()">Filter zurücksetzen</button></td>
                 </tr>
             </table>
@@ -21,7 +21,7 @@
 
 
     <fieldset class="well well-sm">
-        <legend>Einträge ({{(competitors| filter:search:strict).length }})</legend>
+        <legend>Einträge ({{(competitors| filter:global.search:strict).length }})</legend>
         <table class="table table-bordered table-hover table-striped">
             <tr>
                 <th>Start-Nr.</th>
@@ -33,7 +33,7 @@
                 <th>Verein</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="competitor in competitors | filter:search:strict | orderBy : 'firstname' | orderBy : 'name' ">
+            <tr ng-repeat="competitor in competitors | filter:global.search:strict | orderBy : 'firstname' | orderBy : 'name' ">
                 <td>
                     <span class="pull-left">{{ competitor.startnr }}</span>
                     <div ng-show="competitor.startnr" class="dropdown pull-right">

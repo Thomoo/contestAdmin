@@ -13,12 +13,12 @@
                 <tr>
                     <th width="5%">Rang</th>
                     <th ng-if="global.showStartnummer" width="5%">Start-Nr.</th>
-                    <th width="15%">Name</th>
-                    <th width="15%">Vorname</th>
-                    <th width="15%">Ort/Verein</th>
+                    <th width="13%">Name</th>
+                    <th width="13%">Vorname</th>
+                    <th width="19%">Ort/Verein</th>
                     <th width="5%">Jahrgang</th>
-                    <th width="15%">Resultat</th>
-                    <th width="3%">Q</th>
+                    <th width="15%" style="text-align: right">Resultat</th>
+                    <th width="3%" style="text-align: center">Q</th>
                 </tr>
                 <tr ng-repeat="competitor in global.competitorsPerDiscipline[discipline._id] | orderByRank: discipline._id  | filter: {startnr: '!!'}">
                     <td>{{ competitor.disciplinesById[discipline._id].printRank }}</td>
@@ -27,8 +27,8 @@
                     <td>{{ competitor.firstname }}</td>
                     <td ng-show="competitor.society">{{ competitor.society }}</td><td ng-show="!competitor.society">{{ competitor.location }}</td>
                     <td>{{ competitor.birthdate | date: 'yyyy' }}</td>
-                    <td><div ng-if="competitor.disciplinesById[discipline._id].result">{{ discipline.formatFnc(competitor.disciplinesById[discipline._id].result) }}</div></td>
-                    <td>{{ competitor.disciplinesById[discipline._id].award }}</td>
+                    <td style="text-align: right"><div ng-if="competitor.disciplinesById[discipline._id].result">{{ discipline.formatFnc(competitor.disciplinesById[discipline._id].result) }}</div></td>
+                    <td style="text-align: center">{{ competitor.disciplinesById[discipline._id].award }}</td>
                 </tr>
             </table>
         </fieldset>

@@ -211,12 +211,12 @@ function($scope, $http, $location, $log, $timeout, $filter, Global, Wettkampf, D
 		placeholder: 'ss.hh',
 		// validate : '^\\d{1,2}\\.\\d{2}$',
         validate : '^\\d{2}\\.\\d{2}$',
-		format : '(function(val){return val + "sec";})'
+		format : '(function(val){return val.replace(/^0+(?=\\d\\.)/, "") + "sec";})'
 	});
 	var time2Val = JSON.stringify({
 		placeholder: 'mm:ss.h',
 		validate : '^\\d{2}:\\d{2}\\.\\d{1}$',
-		format : '(function(val){return val.replace(":", "min ") + "sec";})'
+		format : '(function(val){return val.replace(/^0+(?=\\d\\:)/, "").replace(":", "min ") + "sec";})'
 	});
 	var distance1Val = JSON.stringify({
 		placeholder: 'm',
